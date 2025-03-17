@@ -22,6 +22,8 @@ This article assumes we have a stable proxy service already. In my scenario, I h
 
 Type this to the new laptop terminal, and we are ready to go!
 
+<!-- more -->
+
 ```bash
 export {http,https,ftp,all}_proxy="http://IPhone_inner_ip:Proxy_port"
 export {HTTP,HTTPS,FTP,ALL}_PROXY="http://IPhone_inner_ip:Proxy_port"
