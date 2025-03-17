@@ -1,17 +1,21 @@
-# Welcome to MkDocs
+# 👋 Hi! I’m **Tom**
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+💻 **Passionate Programmer** | 🎨 Hobbyist Painter | 📖 Philosophy Enthusiast
 
-## Commands
+Here’s the entrance to my **[🚀 Blog](/blog)**, where I share my **study notes** 📝 and **daily thoughts** 💭.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## 🛠️ Programming Languages
 
-## Project layout
+- ☕ `Java`
+- 🐍 `Python`
+- ⚡ `C/C++`
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## 🖥️ Workstation
+
+🖥️ **Operating System**: **LINUX** _(I use Arch, btw 🤓)_
+
+🛠️ Click to check out my **Linux Config** : [📝 My-Linux-Config](blog/posts/My-Linux-Config.md)
+
+## 🎨 Other Interests
+
+✨ I also dabble in **painting** 🖌️ and enjoy **philosophy** 📚.
