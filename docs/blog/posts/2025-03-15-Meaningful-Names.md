@@ -1,7 +1,15 @@
 ---
-author: GentleTomZerg
-tags: clean code
-title: Clean Code Notes
+title: Meaningful Names
+summary: how to give names when coding
+authors:
+  - GentleTomZerg
+date:
+  created: 2025-03-15
+  updated: 2025-03-15
+categories:
+  - Software Engineering
+tags:
+  - clean code
 ---
 
 # Meaningful Names

@@ -1,6 +1,11 @@
 ---
-author: GentleTomZerg
-tags: Software Design
+authors:
+  - GentleTomZerg
+categories:
+  - Software Engineering
+tags:
+  - Software Design
+date: 2024-01-07
 title: Philosophy of Software Design
 ---
 

@@ -1,6 +1,9 @@
 ---
-author: GentleTomZerg
-tags: logic
+authors:
+  - GentleTomZerg
+categories:
+  - Logic
+date: 2023-06-27
 title: Syllogisms in Ordinary Language
 ---
 

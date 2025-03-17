@@ -1,6 +1,9 @@
 ---
-author: GentleTomZerg
-tags: logic
+authors:
+  - GentleTomZerg
+categories:
+  - Logic
+date: 2023-05-30
 title: Categorical propositions
 ---
 
