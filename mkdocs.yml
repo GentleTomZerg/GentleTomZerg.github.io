@@ -22,7 +22,7 @@ theme:
     - navigation.instant.progress
     - navigation.tabs
     - navigation.path
-    - toc.integrate
+    # - toc.integrate
     - search.suggest
     - search.share
 plugins:
@@ -46,6 +46,7 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
+      toc_depth: 3
 
   # Python Markdown Extensions
   - pymdownx.arithmatex:
@@ -68,6 +69,11 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 extra_javascript:
   - javascripts/mathjax.js

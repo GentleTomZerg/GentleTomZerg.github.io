@@ -11,7 +11,7 @@ categories:
 mathjax: true
 ---
 
-# Chapter1. Operating Systems Interfaces
+## Chapter1. Operating Systems Interfaces
 
 When a **process** needs to invoke a **kernel service**, it invokes a **system call**, one of the calls in the operating system’s interface. The system call enters the kernel; the kernel performs the service and returns. Thus a process alternates between executing in user space and kernel space.
 
@@ -23,13 +23,13 @@ When a user program invokes a system call, the hardware raises the privilege lev
 
 ![image-20220307213809995](assets/Operating Systems.assets/image-20220307213809995.png)
 
-## 1.1 Process and Memory
+### 1.1 Process and Memory
 
-### Xv6 System Calls Table
+#### Xv6 System Calls Table
 
 ![image-20220307214019798](assets/Operating Systems.assets/image-20220307214019798.png)
 
-### System Call Example : fork()
+#### System Call Example : fork()
 
 `fork` **creates a new process**, called the child process, with **exactly the same memory contents as the calling process**, called the parent process. Fork **returns in both the parent and the child**.
 
@@ -48,8 +48,8 @@ If the caller has no children, wait immediately returns -1.
 If the parent doesn’t care about the exit status of a child, it can pass a 0 address to wait.
 
 ```c
-#include <stdio.h>
-#include <stdlib.h>
+##include <stdio.h>
+##include <stdlib.h>
 
 int main(int argc, char const *argv[])
 {
@@ -80,7 +80,7 @@ int main(int argc, char const *argv[])
 //child 4821 is done
 ```
 
-### System Call Example: shell
+#### System Call Example: shell
 
 When `exec` succeeds, it **does not return to the calling program**; instead, the instructions loaded from the file **start executing at the entry point declared in the ELF header**.
 
@@ -115,11 +115,11 @@ fork1(void)
 }
 ```
 
-### How does system calls shown above allocate memory
+#### How does system calls shown above allocate memory
 
 Xv6 allocates most user-space memory implicitly: **fork** allocates the memory required **for the child’s copy of the parent’s memory**, and **exec** allocates enough memory to **hold the executable file**. A process that needs more memory at run-time (perhaps for malloc) can call **`sbrk(n)`** to grow its data memory by n bytes; **`sbrk`** returns the location of the new memory.
 
-## 1.2 I/O and File descriptors
+### 1.2 I/O and File descriptors
 
 A **`file descriptor`** is a small integer representing **a kernel-managed object** that a process may read from or write to.
 
@@ -133,7 +133,7 @@ writes output to file descriptor **1 (standard output)**,
 
 writes error messages to file descriptor **2 (standard error)**.
 
-### read(), write(), close()
+#### read(), write(), close()
 
 **`Each file descriptor that refers to a file has an offset associated with it`**
 
@@ -143,12 +143,12 @@ call **`write(fd, buf, n)`** writes n bytes from `buf` to the file descriptor `f
 
 The **`close`** system call releases a file descriptor, making it free for reuse by a future open, pipe, or dup system call (see below). **A newly allocated file descriptor is always the <u>lowest numbered unused descriptor</u> of the current process**.
 
-### `cat` source code
+#### `cat` source code
 
 ```c
-#include "kernel/types.h"
-#include "kernel/stat.h"
-#include "user/user.h"
+##include "kernel/types.h"
+##include "kernel/stat.h"
+##include "user/user.h"
 
 char buf[512];
 
@@ -191,7 +191,7 @@ main(int argc, char *argv[])
 }
 ```
 
-### I/O Redirection
+#### I/O Redirection
 
 `Fork` copies the parent’s **file descriptor table** along with its memory, so that the **child starts with exactly the same open files as the parent**.
 
@@ -220,7 +220,7 @@ The **parent process’s file descriptors are not changed by this sequence**, si
 
 Now it should be clear why it is helpful that fork and exec are separate calls: between the two, the **shell has a chance to redirect the child’s I/O <u>without disturbing the I/O setup of the main shell</u>**.
 
-### Shared file offset(?)
+#### Shared file offset(?)
 
 ```tex
 My Question
@@ -241,13 +241,13 @@ write(1, "world\n", 6);
 //Hello World
 ```
 
-## 1.3 Pipes(\*)
+### 1.3 Pipes(\*)
 
-### Definition
+#### Definition
 
 A pipe is a small kernel buffer **exposed to processes** as **a pair of file descriptors**, one for reading and one for writing. Writing data to one end of the pipe makes that data available for reading from the other end of the pipe. **Pipes provide a way for processes to communicate**.
 
-### Example
+#### Example
 
 pipe()函数由内核提供。
 
@@ -276,9 +276,9 @@ close(p[1]);
 
 <img src="assets/Operating Systems.assets/20161223173958916.png" alt="img"  />
 
-## 1.4 File system
+### 1.4 File system
 
-### `chdir()`
+#### `chdir()`
 
 ```c
 //The first fragment changes the process’s current directory to /a/b;
@@ -289,7 +289,7 @@ open("c", O_RDONLY);
 open("/a/b/c", O_RDONLY);
 ```
 
-### `mknod`
+#### `mknod`
 
 ```c
 mkdir("/dir");
@@ -301,7 +301,7 @@ mknod("/console", 1, 1);
 
 `Mknod` creates a special file that refers to a device. Associated with a device file are the major and minor device numbers (the two arguments to `mknod`), which uniquely identify a kernel device. When a process later opens a device file, t**he kernel diverts read and write system calls to the kernel device implementation** instead of passing them to the file system
 
-# Chapter2. Operating system organization
+## Chapter2. Operating system organization
 
 An operating system must fulfill three requirements: **multiplexing**, **isolation**, and **interaction**
 
@@ -311,13 +311,13 @@ An operating system must fulfill three requirements: **multiplexing**, **isolati
 
 - Complete isolation, however, is too strong, since **it should be possible for processes to intentionally interact**;
 
-## 2.1 Abstracting physical resources
+### 2.1 Abstracting physical resources
 
 **It’s more typical for applications to not trust each other**, **and to have bugs**, so one often wants stronger isolation than a cooperative scheme provides. **To achieve strong isolation it’s helpful to forbid applications from directly accessing sensitive hardware resources, and instead to abstract the resources into services**.
 
 For example, Unix applications interact with storage only through the file system’s open, read, write, and close system calls, instead of reading and writing the disk directly.
 
-## 2.2 User mode, supervisor mode, and system calls
+### 2.2 User mode, supervisor mode, and system calls
 
 To achieve strong **isolation**, the operating system must arrange that applications **cannot modify (or even read) the operating system’s data structures and instructions** and that **applications cannot access other processes’ memory**.
 
@@ -331,7 +331,7 @@ To achieve strong **isolation**, the operating system must arrange that applicat
 
 Once the CPU has switched to supervisor mode, the **kernel can then validate the arguments of the system call**, <u>decide whether the application is allowed to perform the requested operation, and then deny it or execute it</u>. It is important that the **kernel control the entry point for transitions to supervisor mode**; if the application could decide the kernel entry point, a malicious application could, for example, enter the kernel at a point where the validation of arguments is skipped.
 
-## 2.3 Kernel organization
+### 2.3 Kernel organization
 
 **`monolithic kernel`**. the **entire operating system resides in the kernel**, so that the implementations of all system calls run in supervisor mode.
 
@@ -349,7 +349,7 @@ Once the CPU has switched to supervisor mode, the **kernel can then validate the
 
 ![image-20220311165258588](assets/Operating Systems.assets/image-20220311165258588.png)
 
-## 2.5 Process overview
+### 2.5 Process overview
 
 **The unit of isolation in xv6 (as in other Unix operating systems) is a process**.
 
@@ -358,7 +358,7 @@ Once the CPU has switched to supervisor mode, the **kernel can then validate the
 
 The **mechanisms used by the kernel to implement processes** include the **user/supervisor mode flag**, **address spaces**, and **time-slicing of threads**. To help enforce isolation, the process abstraction provides the illusion to a program that it has its own private machine. A process provides a program with what appears to be a private memory system, or address space, which other processes cannot read or write. A process also provides the program with what appears to be its own CPU to execute the program’s instructions.
 
-### Page Tables Brief Introduction
+#### Page Tables Brief Introduction
 
 Xv6 uses **page tables** (which are implemented by hardware) to **give each process its own address space**. The <u>RISC-V page table translates (or “maps”) a virtual address (the address that an RISC-V instruction manipulates) to a physical address (an address that the CPU chip sends to main memory).</u>
 
@@ -370,7 +370,7 @@ There are a number of factors that limit the maximum size of a process’s addre
 
 At the top of the address space xv6 reserves a page for a **trampoline** and a page mapping the process’s **trapframe** to switch to the kernel, as we will explain in Chapter 4.
 
-### Thread Brief Introduction
+#### Thread Brief Introduction
 
 **Each process has a thread of execution (or thread for short) that executes the process’s instructions**. A thread can be suspended and later resumed. **To switch transparently between processes, the kernel suspends the currently running thread and resumes another process’s thread**. Much of **the state of a thread (local variables, function call return addresses) is stored on the thread’s stacks.**
 
@@ -380,7 +380,7 @@ At the top of the address space xv6 reserves a page for a **trampoline** and a p
 - When the process enters the kernel (for a system call or interrupt), the kernel code executes on the process’s kernel stack;
 - A process’s thread alternates between actively using its user stack and its kernel stack.
 
-### System Call Start and End
+#### System Call Start and End
 
 A process can make a system call by executing the RISC-V **`ecall`** instruction.
 
@@ -397,9 +397,9 @@ When the system call completes, the kernel switches back to the user stack and r
 - which **lowers the hardware privilege level** and resumes executing user instructions just after the system call instruction.
 - **A process’s thread can “block” in the kernel to wait for I/O**, and resume where it left off when the I/O has finished.
 
-## 2.6 Code: starting xv6 and the first process
+### 2.6 Code: starting xv6 and the first process
 
-### Machine Mode
+#### Machine Mode
 
 The loader loads the xv6 kernel into memory at physical address 0x80000000. The reason it places the kernel at 0x80000000 rather than 0x0 is because the address range 0x0:0x80000000 contains I/O devices.
 
@@ -408,7 +408,7 @@ The loader loads the xv6 kernel into memory at physical address 0x80000000. The 
 The instructions at \_entry set up a stack so that xv6 can run C code. **Xv6 declares space for an initial stack, stack0, in the file `start.c` (`kernel/start.c:11`). The code at \_entry loads the stack pointer register sp with the address stack0+4096**, the top of the stack, because the stack on RISC-V grows down. Now that the kernel has a stack, \_entry calls into C code at start (kernel/start.c:21).
 
 ```assembly
-# qemu -kernel loads the kernel at 0x80000000
+## qemu -kernel loads the kernel at 0x80000000
         # and causes each CPU to jump there.
         # kernel.ld causes the following code to
         # be placed at 0x80000000.
@@ -484,7 +484,7 @@ start()
 }
 ```
 
-### Supervisor Mode
+#### Supervisor Mode
 
 `main.c`
 
@@ -493,12 +493,12 @@ start()
 The first process executes a small program written in RISC-V assembly, **`initcode.S`** (user/initcode.S:1), which **re-enters the kernel by invoking the exec system call**(系统开启后的第一次system call).
 
 ```assembly
-# Initial process that execs /init.
-# This code runs in user space.
+## Initial process that execs /init.
+## This code runs in user space.
 
-#include "syscall.h"
+##include "syscall.h"
 
-# exec(init, argv)
+## exec(init, argv)
 .globl start
 start:
         la a0, init
@@ -506,17 +506,17 @@ start:
         li a7, SYS_exec
         ecall
 
-# for(;;) exit();
+## for(;;) exit();
 exit:
         li a7, SYS_exit
         ecall
         jal exit
 
-# char init[] = "/init\0";
+## char init[] = "/init\0";
 init:
   .string "/init\0"
 
-# char *argv[] = { init, 0 };
+## char *argv[] = { init, 0 };
 .p2align 2
 argv:
   .long init
@@ -525,11 +525,11 @@ argv:
 
 `initcode.S`本质上就是`exec(init, argv)`, 因为此时没有文件系统，所以只能用这种方式运行`user/init.c`.
 
-### User Mode
+#### User Mode
 
 `Init `(user/init.c:15) creates a new console device file if needed and then **opens it as file descriptors 0, 1, and 2**. Then it **starts a shell** on the console. The system is up.
 
-# Chapter3. Page tables
+## Chapter3. Page tables
 
 **Page tables** are the mechanism through which the operating system **provides each process** with its **own private address space and memory**.
 
@@ -542,16 +542,16 @@ Page tables also provide a level of indirection that allows xv6 to perform a few
 - mapping the same memory (a trampoline page) in several address spaces,
 - guarding kernel and user stacks with an unmapped page.
 
-## 3.1 Paging hardware
+### 3.1 Paging hardware
 
-### Terminology
+#### Terminology
 
 - **PTE**: page table entry
 - **PPN**: physical page number
 
 **As a reminder, RISC-V instructions <u>(both user and kernel)</u> manipulate <u>virtual addresses</u>.**
 
-### Logical Page Table
+#### Logical Page Table
 
 The RISC-V **page table hardware** connects these two kinds of addresses, by mapping each virtual address to a physical address.
 
@@ -571,7 +571,7 @@ In Sv39 RISC-V, the top 25 bits of a virtual address are not used for translatio
 
 这个page table最多会有2^27个条目（虚拟内存地址中的index长度为27）。**如果每个进程都使用这么大的page table，进程需要为page table消耗大量的内存，并且很快物理内存就会耗尽。**
 
-### Actual Translation
+#### Actual Translation
 
 The actual translation happens in **three steps**.
 
@@ -589,7 +589,7 @@ To tell the hardware to use a page table, t**he kernel must write the physical a
 
 **在前一个方案中，虽然我们只使用了一个page，还是需要`2^27`个PTE。这个方案中，我们只需要`3 * 512`个PTE。所需的空间大大减少了。这是实际上硬件采用这种层次化的3级page directory结构的主要原因。**
 
-### PPN+Flags
+#### PPN+Flags
 
 Each PTE contains **flag bits that tell the paging hardware how the associated virtual address is allowed to be used**.
 
@@ -605,7 +605,7 @@ Each PTE contains **flag bits that tell the paging hardware how the associated v
 
 ![image-20220319161110245](assets/Operating Systems.assets/image-20220319161110245.png)
 
-## 3.2 Kernel address space
+### 3.2 Kernel address space
 
 **Xv6 maintains one page table per process, describing each process’s user address space, plus a single page table that describes the kernel’s address space**.
 
@@ -619,7 +619,7 @@ The kernel gets at RAM and memory-mapped device registers using **“direct mapp
 
 ![image-20220319161821600](assets/Operating Systems.assets/image-20220319161821600.png)
 
-### kernel virtual addresses that aren’t direct-mapped
+#### kernel virtual addresses that aren’t direct-mapped
 
 There are a couple of **kernel virtual addresses that aren’t direct-mapped**:
 
@@ -629,9 +629,9 @@ There are a couple of **kernel virtual addresses that aren’t direct-mapped**:
 
   **The guard page’s PTE is invalid (PTE_V is not set), so that if the kernel overflows a kernel stack, it will likely cause an exception and the kernel will panic**.
 
-## 3.3 Code: creating an address space
+### 3.3 Code: creating an address space
 
-### What is in `kernel/vm.c`
+#### What is in `kernel/vm.c`
 
 - The **central data structure** is `pagetable_t`, which is really <u>a **pointer to** a RISC-V **root page-table page**</u>;
 
@@ -650,7 +650,7 @@ There are a couple of **kernel virtual addresses that aren’t direct-mapped**:
   - other functions are used for both.
   - **`copyout`** and **`copyin`** copy **data to and from user virtual addresses provided as system call arguments**; they are in `vm.c` because **they need to explicitly translate those addresses in order to find the corresponding physical memory**. (内核态和用户态数据交互的原理)
 
-### Kernel Page Table Initialization
+#### Kernel Page Table Initialization
 
 - Early in the boot sequence, `main` calls `kvminit` (kernel/vm.c:22) to **create the kernel’s page table**. This call occurs **before xv6 has enabled paging** on the RISC-V, **so addresses refer directly to physical memory**.
 
@@ -778,7 +778,7 @@ There are a couple of **kernel virtual addresses that aren’t direct-mapped**:
 
   The above code depends on physical memory being direct-mapped into the kernel virtual address space. For example, as walk descends levels of the page table, it pulls the (physical) address of the next-level-down page table from a PTE (kernel/vm.c:80), and then uses that address as a virtual address to fetch the PTE at the next level down (kernel/vm.c:78).
 
-### User Page Table Initialization
+#### User Page Table Initialization
 
 - main calls `kvminithart` (kernel/vm.c:53) to install the kernel page table. **It writes the physical address of the root page-table page into the register `satp`.** After this the CPU will translate addresses using the kernel page table. Since the kernel uses an identity mapping, the now virtual address of the next instruction will map to the right physical memory address.
 
@@ -822,11 +822,11 @@ There are a couple of **kernel virtual addresses that aren’t direct-mapped**:
   }
   ```
 
-## 3.4 Physical memory allocation
+### 3.4 Physical memory allocation
 
 The kernel must allocate and free physical memory at run-time for page tables, user memory, kernel stacks, and pipe buffers. xv6 uses the physical memory between the end of the kernel and PHYSTOP for run-time allocation. It allocates and frees whole 4096-byte pages at a time. It keeps track of which pages are free by threading a linked list through the pages themselves. **Allocation consists of removing a page from the linked list; freeing consists of adding the freed page to the list.**
 
-## 3.5 Code: Physical memory allocator
+### 3.5 Code: Physical memory allocator
 
 - The allocator resides in `kalloc.c` (kernel/kalloc.c:1).
 
@@ -891,20 +891,20 @@ The kernel must allocate and free physical memory at run-time for page tables, u
     }
     ```
 
-## 3.6 Process address space
+### 3.6 Process address space
 
 **Each process has a separate page table**, and **when xv6 switches between processes, it also changes page tables**. As Figure 2.3 shows, a process’s user memory starts at virtual address zero and can grow up to MAXVA (kernel/riscv.h:348), allowing a process to address in principle 256 Gigabytes of memory (`#define MAXVA (1L << (9 + 9 + 9 + 12 - 1))`).
 
 <img src="assets/Operating Systems.assets/image-20220311170706075.png" alt="image-20220311170706075" style="zoom: 67%;" />
 
-### How Does a Process Obtain Memory
+#### How Does a Process Obtain Memory
 
 When a process asks xv6 for more user memory,
 
 1. xv6 first uses `kalloc` to **allocate physical pages**.
 2. It then **adds PTEs to the process’s page table that point to the new physical pages**. Xv6 sets the PTE_W, PTE_X, PTE_R, PTE_U, and PTE_V flags in these PTEs. Most processes do not use the entire user address space; xv6 leaves PTE_V clear in unused PTEs.
 
-### Use of Page Tables
+#### Use of Page Tables
 
 We see here a few nice examples of use of page tables.
 
@@ -912,7 +912,7 @@ We see here a few nice examples of use of page tables.
 2. Second, each process sees its memory as having contiguous virtual addresses starting at zero, while **the process’s physical memory can be non-contiguous**.
 3. Third, the kernel maps a page with trampoline code at the top of the user address space, thus **a single page of physical memory shows up in all address spaces**.
 
-### Layout of the User Memory of an Executing Process
+#### Layout of the User Memory of an Executing Process
 
 Figure 3.4 shows the layout of the user memory of an executing process in xv6 in more detail. **The stack is a single page**, and is shown with the initial contents as created by exec. Strings containing the command-line arguments, as well as an array of pointers to them, are at the very top of the stack. Just under that are values that allow a program to start at main as if the function `main(argc, argv)` had just been called.
 
@@ -920,7 +920,7 @@ Figure 3.4 shows the layout of the user memory of an executing process in xv6 in
 
 To detect **a user stack overflowing the allocated stack memory**, **xv6 places an invalid guard page right below the stack**. If the user stack overflows and the process tries to use an address below the stack, the hardware will generate a page-fault exception because the mapping is not valid. A real-world operating system might instead automatically allocate more memory for the user stack when it overflows.
 
-## 3.7 Code: `sbrk`
+### 3.7 Code: `sbrk`
 
 `Sbrk` **is the system call for a process to shrink or grow its memory**. `sbrk()` change the location of the **program break**, which defines the end of the process's data segment (i.e., the program break is the first location after the end of the uninitialized data segment).
 
@@ -1029,21 +1029,21 @@ uvmunmap(pagetable_t pagetable, uint64 va, uint64 npages, int do_free)
 }
 ```
 
-### Why use page table
+#### Why use page table
 
 xv6 uses a process’s page table
 
 1. tell the hardware how to map user virtual addresses,
 2. the only record of which physical memory pages are allocated to that process. That is the reason why freeing user memory (in `uvmunmap`) requires examination of the user page table.
 
-## 3.8 Code: `exec`
+### 3.8 Code: `exec`
 
 `Exec` is the system call that **creates the user part of an address space**.
 
 1. It initializes the user part of an address space from a file stored in the file system.
 2. `Exec` (kernel/exec.c:13) opens the named binary path using `namei` (kernel/exec.c:26), which is explained in Chapter 8. Then, it reads the ELF header.
 
-### ELF format
+#### ELF format
 
 Xv6 applications are described in the widely-used ELF format, defined in (`kernel/elf.h`).
 
@@ -1086,15 +1086,15 @@ struct proghdr {
 };
 ```
 
-### How to check the file probably contains an ELF binary
+#### How to check the file probably contains an ELF binary
 
 An ELF binary starts with the four-byte “**magic number”** 0x7F, ‘E’, ‘L’, ‘F’, or ELF_MAGIC (kernel/elf.h:3). If the ELF header has the right magic number, exec assumes that the binary is well-formed.
 
 ```c
-#define ELF_MAGIC 0x464C457FU  // "\x7FELF" in little endian
+##define ELF_MAGIC 0x464C457FU  // "\x7FELF" in little endian
 ```
 
-### `exec.c`
+#### `exec.c`
 
 `exec(char *path, char **argv)`
 
@@ -1104,7 +1104,7 @@ An ELF binary starts with the four-byte “**magic number”** 0x7F, ‘E’, �
 
 - **loads each segment into memory** with `loadseg` (kernel/exec.c:10). `loadseg` uses `walkaddr` to find the physical address of the allocated memory at which to write each page of the ELF segment, and `readi` to read from the file.
 
-### Example of `exec("/init", argv)`
+#### Example of `exec("/init", argv)`
 
 The program section header for `/init`, the first user program created with exec, looks like this:
 
@@ -1116,7 +1116,7 @@ The program section header for `/init`, the first user program created with exec
 
 - `Exec` **places an inaccessible page just below the stack page**, so that programs that try to use more than one page will fault. This inaccessible page also allows exec to deal with arguments that are too large; in that situation, the `copyout` (kernel/vm.c:355) function that exec uses to copy arguments to the stack will notice that the destination page is not accessible, and will return -1.
 
-### Error handling
+#### Error handling
 
 During the preparation of the new memory image,
 
@@ -1126,13 +1126,13 @@ Exec must wait to free the old image until it is sure that the system call will 
 
 The only error cases in exec happen during the creation of the image. Once the image is complete, exec can commit to the new page table (kernel/exec.c:113) and free the old one (kernel/exec.c:117).
 
-### Risk of `exec()`
+#### Risk of `exec()`
 
 **Exec loads bytes from the ELF file into memory at addresses specified by the ELF file**. Users or processes **can place whatever addresses they want into an ELF file**. Thus exec is risky, because the addresses in the ELF file may refer to the kernel, accidentally or on purpose. The consequences for an unwary kernel could range from a crash to a malicious subversion of the kernel’s isolation mechanisms (i.e., a security exploit). xv6 performs a number of checks to avoid these risks. For example `if (ph.vaddr + ph.memsz < ph.vaddr)` checks for whether the sum overflows a 64-bit integer. The danger is that a user could construct an ELF binary with a `ph.vaddr` that points to a user-chosen address, and `ph.memsz` large enough that the sum overflows to 0x1000, which will look like a valid value. In an older version of xv6 in which the user address space also contained the kernel (but not readable/writable in user mode), the user could choose an address that corresponded to kernel memory and would thus copy data from the ELF binary into the kernel. In the RISC-V version of xv6 this cannot happen, because the kernel has its own separate page table; `loadseg` loads into the process’s page table, not in the kernel’s page table.
 
-# Chapter4. Traps and system calls
+## Chapter4. Traps and system calls
 
-## Trap
+### Trap
 
 There are **three** kinds of event which cause the CPU to set aside ordinary execution of instructions and force a transfer of control to special code that handles the event.
 
@@ -1151,9 +1151,9 @@ The usual sequence is that
 - the kernel **executes appropriate handler code** (e.g., a system call implementation or device driver);
 - the kernel **restores the saved state and returns from the trap**; and the original code resumes where it left off.
 
-## 4.1 RISC-V trap machinery
+### 4.1 RISC-V trap machinery
 
-### Registers for Trap
+#### Registers for Trap
 
 Each **RISC-V CPU has a set of control registers that the kernel writes to tell the CPU how to handle traps**, **and that the kernel can read to find out about a trap that has occurred**. The RISC-V documents contain the full story. `riscv.h` (kernel/riscv.h:1) contains definitions that xv6 uses. Here’s an outline of the most important registers:
 
@@ -1169,7 +1169,7 @@ Each **RISC-V CPU has a set of control registers that the kernel writes to tell 
 
 The above registers relate to traps handled in supervisor mode, and **they cannot be read or written in user mode**. There is an equivalent set of control registers for traps handled in machine mode; xv6 uses them only for the special case of timer interrupts. Each CPU on a multi-core chip has its own set of these registers, and more than one CPU may be handling a trap at any given time.
 
-### CPU hardware’s trap handling sequence
+#### CPU hardware’s trap handling sequence
 
 When it needs to force a trap, the RISC-V hardware does the following for all trap types (other than timer interrupts):
 
@@ -1192,7 +1192,7 @@ One reason that the CPU does minimal work during a trap is to provide flexibilit
 
 You might wonder whether the CPU hardware’s trap handling sequence could be further simplified. For example, suppose that the CPU didn’t switch program counters. Then a trap could switch to supervisor mode while still running user instructions. Those user instructions could break the user/kernel isolation, for example by modifying the `satp` register to point to a page table that allowed accessing all of physical memory. It is thus important that the CPU switch to a kernel specified instruction address, namely `stvec`.
 
-## 4.2 Traps from user space
+### 4.2 Traps from user space
 
 > CPU对于trap所做的事其实很少，他只设置了一些flag并保存了pc值，然后让pc指向了本章内容的开端`uservec`。`uservec`就要想办法切换页表并保存用户态占有的寄存器。从而为执行trap的handler代码提供运行环境。
 
@@ -1519,14 +1519,14 @@ userret:
         sret
 ```
 
-## 4.3 Code: Calling system calls
+### 4.3 Code: Calling system calls
 
 Chapter 2 ended with `initcode.S` invoking the exec system call (user/initcode.S:11).
 
 ```assembly
-#include "syscall.h"
+##include "syscall.h"
 
-# exec(init, argv)
+## exec(init, argv)
 .globl start
 start:
         la a0, init
@@ -1534,17 +1534,17 @@ start:
         li a7, SYS_exec
         ecall
 
-# for(;;) exit();
+## for(;;) exit();
 exit:
         li a7, SYS_exit
         ecall
         jal exit
 
-# char init[] = "/init\0";
+## char init[] = "/init\0";
 init:
   .string "/init\0"
 
-# char *argv[] = { init, 0 };
+## char *argv[] = { init, 0 };
 .p2align 2
 argv:
   .long init
@@ -1590,7 +1590,7 @@ syscall(void)
 
 For the first system call, a7 contains SYS_exec (kernel/syscall.h:8), resulting in a call to the system call implementation function sys_exec. When the system call implementation function returns, `syscall` records its return value in `p->trapframe->a0`. This will cause the original user-space call to exec() to return that value, since the C calling convention on RISC-V places return values in a0. System calls conventionally return negative numbers to indicate errors, and zero or positive numbers for success. If the system call number is invalid, `syscall` prints an error and returns −1.
 
-## 4.4 Code: System call arguments
+### 4.4 Code: System call arguments
 
 > 系统调用的参数在哪里呢？当然是存在寄存器里，然而，在我们进入trap handler之前，我们用`trapframe`保存了所有的用户态的寄存器，从而，系统调用函数需要在`p->trapframe`中获取自己需要的参数。
 
@@ -1715,7 +1715,7 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
 }
 ```
 
-## 4.5 Traps from kernel space
+### 4.5 Traps from kernel space
 
 Xv6 configures the CPU trap registers somewhat differently depending on whether user or kernel code is executing. When the kernel is executing on a CPU, the kernel points `stvec` to the assembly code at `kernelvec` (kernel/kernelvec.S:10). Since xv6 is already in the kernel, `kernelvec` can rely on `satp` being set to the kernel page table, and on the stack pointer referring to a valid kernel stack. `kernelvec` saves all registers so that the interrupted code can eventually resume without disturbance.
 
@@ -1815,7 +1815,7 @@ It’s worth thinking through how the trap return happens if `kerneltrap` called
 
 Xv6 sets a CPU’s `stvec` to `kernelvec` when that CPU enters the kernel from user space; you can see this in `usertrap` (kernel/trap.c:29). **There’s a window of time when the kernel is executing but `stvec` is set to `uservec`, and it’s crucial that device interrupts be disabled during that window**. Luckily the RISC-V always disables interrupts when it starts to take a trap, and xv6 doesn’t enable them again until after it sets `stvec`.
 
-## 4.6 Page-fault exceptions
+### 4.6 Page-fault exceptions
 
 Xv6’s response to exceptions is quite boring: if an exception happens in user space, the kernel kills the faulting process. If an exception happens in the kernel, the kernel panics. Real operating systems often respond in much more interesting ways.
 
@@ -1833,7 +1833,7 @@ Yet another widely-used feature that exploits page faults is **`paging from disk
 
 Other features that combine paging and page-fault exceptions include automatically extending stacks and memory-mapped files.
 
-# Chapter5. Interrupts and device drivers
+## Chapter5. Interrupts and device drivers
 
 A driver is the code in an operating system that manages a particular device: it configures the device hardware, tells the device to perform operations, handles the resulting interrupts, and interacts with processes that may be waiting for I/O from the device. Driver code can be tricky because a driver executes concurrently with the device that it manages. In addition, the driver must understand the device’s hardware interface, which can be complex and poorly documented. Devices that need attention from the operating system can usually be configured to generate interrupts, which are one type of trap. The kernel trap handling code recognizes when a device has raised an interrupt and calls the driver’s interrupt handler; in xv6, this dispatch happens in `devintr` (kernel/trap.c:177).
 
@@ -1895,7 +1895,7 @@ devintr()
 }
 ```
 
-## 5.1 Code: Console input
+### 5.1 Code: Console input
 
 The console driver (`console.c`) is a simple illustration of driver structure.
 
@@ -1910,21 +1910,21 @@ User processes, such as the **shell, use the read system call to fetch lines of 
 // some have different meanings for
 // read vs write.
 // see http://byterunner.com/16550.html
-#define RHR 0                 // receive holding register (for input bytes)
-#define THR 0                 // transmit holding register (for output bytes)
-#define IER 1                 // interrupt enable register
-#define IER_RX_ENABLE (1<<0)
-#define IER_TX_ENABLE (1<<1)
-#define FCR 2                 // FIFO control register
-#define FCR_FIFO_ENABLE (1<<0)
-#define FCR_FIFO_CLEAR (3<<1) // clear the content of the two FIFOs
-#define ISR 2                 // interrupt status register
-#define LCR 3                 // line control register
-#define LCR_EIGHT_BITS (3<<0)
-#define LCR_BAUD_LATCH (1<<7) // special mode to set baud rate
-#define LSR 5                 // line status register
-#define LSR_RX_READY (1<<0)   // input is waiting to be read from RHR
-#define LSR_TX_IDLE (1<<5)    // THR can accept another character to send
+##define RHR 0                 // receive holding register (for input bytes)
+##define THR 0                 // transmit holding register (for output bytes)
+##define IER 1                 // interrupt enable register
+##define IER_RX_ENABLE (1<<0)
+##define IER_TX_ENABLE (1<<1)
+##define FCR 2                 // FIFO control register
+##define FCR_FIFO_ENABLE (1<<0)
+##define FCR_FIFO_CLEAR (3<<1) // clear the content of the two FIFOs
+##define ISR 2                 // interrupt status register
+##define LCR 3                 // line control register
+##define LCR_EIGHT_BITS (3<<0)
+##define LCR_BAUD_LATCH (1<<7) // special mode to set baud rate
+##define LSR 5                 // line status register
+##define LSR_RX_READY (1<<0)   // input is waiting to be read from RHR
+##define LSR_TX_IDLE (1<<5)    // THR can accept another character to send
 ```
 
 Xv6’s main calls `consoleinit` (kernel/console.c:184) to initialize the UART hardware. This code configures the UART to
@@ -2135,7 +2135,7 @@ consoleintr(int c)
 }
 ```
 
-## 5.2 Code: Console output
+### 5.2 Code: Console output
 
 > 上一节说的是系统调用`read()`是怎么读到用户输入的`ls`并返回给内核的，这一节说的是，我们在shell命令行输入`l,s`时，他是如何被一个一个的打印在命令行中的。这里和`console.c`没有什么关系，这里时UART会将buffer中的字符发送给其他的device，例如显存。
 
@@ -2151,7 +2151,7 @@ A **write system call** on a file descriptor connected to the console eventually
 // from interrupts; it's only suitable for use
 // by write().
 
-#define UART_TX_BUF_SIZE 32
+##define UART_TX_BUF_SIZE 32
 char uart_tx_buf[UART_TX_BUF_SIZE];
 uint64 uart_tx_w; // write next to uart_tx_buf[uart_tx_w % UART_TX_BUF_SIZE]
 uint64 uart_tx_r; // read next from uart_tx_buf[uart_tx_r % UART_TX_BUF_SIZE]
@@ -2192,7 +2192,7 @@ uartputc(int c)
 
 This decoupling can increase performance by allowing processes to execute concurrently with device I/O, and is particularly important when the device is slow (as with the UART) or needs immediate attention (as with echoing typed characters). This idea is sometimes called I/O concurrency.
 
-## 5.3 Concurrency in drivers
+### 5.3 Concurrency in drivers
 
 You may have noticed calls to acquire in `consoleread` and in `consoleintr`. These calls acquire a lock, which protects the console driver’s data structures from concurrent access.
 
@@ -2204,7 +2204,7 @@ There are **three concurrency dangers** here:
 
 Another way in which concurrency requires care in drivers is that **one process may be waiting for input from a device, but the interrupt signaling arrival of the input may arrive when a different process (or no process at all) is running.** Thus interrupt handlers are not allowed to think about the process or code that they have interrupted. For example, an interrupt handler cannot safely call `copyout` with the current process’s page table. Interrupt handlers typically do relatively little work (e.g., just copy the input data to a buffer), and wake up top-half code to do the rest.
 
-## 5.4 Timer interrupts
+### 5.4 Timer interrupts
 
 Xv6 uses timer interrupts to maintain its clock and to enable it to switch among compute-bound processes; the yield calls in usertrap and kerneltrap cause this switching. Timer interrupts come from clock hardware attached to each RISC-V CPU. Xv6 programs this clock hardware to interrupt each CPU periodically.
 
@@ -2216,7 +2216,7 @@ Xv6 uses timer interrupts to maintain its clock and to enable it to switch among
 
 The machine-mode timer interrupt vector is `timervec` (kernel/kernelvec.S:93). It saves a few registers in the scratch area prepared by start, tells the CLINT when to generate the next timer interrupt, asks the RISC-V to raise a software interrupt, restores registers, and returns. There’s no C code in the timer interrupt handler.
 
-## 5.5 Real world
+### 5.5 Real world
 
 - DMA
 
@@ -2229,7 +2229,7 @@ The machine-mode timer interrupt vector is `timervec` (kernel/kernelvec.S:93). I
   - One trick is to raise a single interrupt for a whole batch of incoming or outgoing requests.
   - Another trick is for the driver to **disable interrupts entirely, and to check the device <u>periodically</u> to see if it needs attention**. This technique is called `polling`. Polling makes sense if the device performs operations very quickly, but it wastes CPU time if the device is mostly idle. Some drivers dynamically switch between polling and interrupts depending on the current device load.
 
-# Chapter6. Locking
+## Chapter6. Locking
 
 Most kernels, including xv6, interleave the execution of multiple activities. One source of interleaving is multiprocessor hardware: computers with multiple CPUs executing independently, such as xv6’s RISC-V. These multiple CPUs share physical RAM, and xv6 exploits the sharing to maintain data structures that all CPUs read and write. **This sharing raises the possibility of one CPU reading a data structure while another CPU is mid-way through updating it, or even multiple CPUs updating the same data simultaneously;** without careful design such parallel access is likely to yield incorrect results or a broken data structure. Even on a uniprocessor, the kernel may switch the CPU among a number of threads, causing their execution to be interleaved. Finally, a device interrupt handler that modifies the same data as some interruptible code could damage the data if the interrupt occurs at just the wrong time. **The word concurrency refers to situations in which multiple instruction streams are interleaved, due to multiprocessor parallelism, thread switching, or interrupts.**
 
@@ -2241,7 +2241,7 @@ The rest of this chapter explains why xv6 needs locks, how xv6 implements them, 
 
 ![image-20220605000625203](assets/Operating Systems.assets/image-20220605000625203.png)
 
-## 6.1 Race conditions
+### 6.1 Race conditions
 
 > 2个CPU同时在进行子进程的`kfree`, 然而kernel维护的链表只有一个，此时无法并行
 
@@ -2324,7 +2324,7 @@ We say that **multiple processes conflict if they want the same lock at the same
 
 The placement of locks is also important for performance. For example, it would be correct to move acquire earlier in push: it is fine to move the call to acquire up to before line 13. This may reduce performance because then the calls to malloc are also serialized. The section “Using locks” below provides some guidelines for where to insert acquire and release invocations.
 
-## 6.2 Code: Locks
+### 6.2 Code: Locks
 
 Xv6 has two types of locks:
 
@@ -2332,7 +2332,7 @@ Xv6 has two types of locks:
 
 ---
 
-### `Spinlocks`
+#### `Spinlocks`
 
 We’ll start with spinlocks. Xv6 represents a spinlock as a struct spinlock (kernel/spinlock.h:2). The important field in the structure is locked, a word that is zero when the lock is available and non-zero when it is held. Logically, xv6 should acquire a lock by executing code like
 
@@ -2366,7 +2366,7 @@ Because locks are widely used, **multi-core processors usually provide instructi
 
 `amoswap` reads the value at the memory address a, writes the contents of register r to that address, and puts the value it read into r. That is, **it swaps the contents of the register and the memory address**. It performs this sequence **atomically**, using **special hardware** to prevent any other CPU from using the memory address between the read and the write.
 
-### Acquire
+#### Acquire
 
 > 锁依靠的是硬件的技术，硬件使得指令可以原子的执行。上锁的过程就是用原子指令`amoswap`不断地用1和某个寄存器中的值进行交换，若交换后为0，则证明其他CPU已经开了锁，当前CPU也把1放进了该寄存器中；若交换后为1，说明有其他CPU还在占用，但我们是用1换了1，所以并没有对上锁本身造成影响。
 
@@ -2402,7 +2402,7 @@ acquire(struct spinlock *lk)
 
 Once the lock is acquired, acquire records, for debugging, the CPU that acquired the lock. The `lk->cpu` field is protected by the lock and must only be changed while holding the lock.
 
-### Release
+#### Release
 
 > release就是acquire的反面了，她就是用0去换1。
 
@@ -2441,7 +2441,7 @@ release(struct spinlock *lk)
 }
 ```
 
-## 6.3 Code: Using locks
+### 6.3 Code: Using locks
 
 Xv6 uses locks in many places to avoid race conditions. As described above, `kalloc` (kernel/kalloc.c:69) and `kfree` (kernel/kalloc.c:47) form a good example. Try Exercises 1 and 2 to see what happens if those functions omit the locks. You’ll likely find that it’s difficult to trigger incorrect behavior, suggesting that it’s hard to reliably test whether code is free from locking errors and races. It is not unlikely that xv6 has some races.
 
@@ -2462,7 +2462,7 @@ As an example of **coarse-grained(粗粒度) locking**, xv6’s `kalloc.c` alloc
 
 As an example of **fine-grained locking**, **xv6 has a separate lock for each file**, so that processes that manipulate different files can often proceed without waiting for each other’s locks. The file locking scheme could be made even more fine-grained if one wanted to allow processes to simultaneously write different areas of the same file. Ultimately lock granularity decisions need to be driven by performance measurements as well as complexity considerations.
 
-## 6.4 Deadlock and lock ordering
+### 6.4 Deadlock and lock ordering
 
 ![image-20220605234049019](assets/Operating Systems.assets/image-20220605234049019.png)
 
@@ -2496,7 +2496,7 @@ Honoring a global deadlock-avoiding order can be surprisingly difficult.
 
 Sometimes the **lock order conflicts with logical program structure**, e.g., perhaps code module M1 calls module M2, but the lock order requires that a lock in M2 be acquired before a lock in M1. Sometimes **the identities of locks aren’t known in advance**, perhaps because one lock must be held in order to discover the identity of the lock to be acquired next. This kind of situation arises in the file system as it looks up successive components in a path name, and in the code for wait and exit as they search the table of processes looking for child processes. Finally, the danger of deadlock is often a constraint on how fine-grained one can make a locking scheme, since **more locks often means more opportunity for deadlock**. The need to avoid deadlock is often a major factor in kernel implementation.
 
-## 6.5 Locks and interrupt handlers
+### 6.5 Locks and interrupt handlers
 
 Some xv6 spinlocks protect data that is used by both threads and interrupt handlers. For example, the `clockintr` timer interrupt handler might increment ticks (kernel/trap.c:163) at about the same time that a kernel thread reads ticks in sys_sleep (kernel/sysproc.c:64). The lock `tickslock` serializes the two accesses.
 
@@ -2576,7 +2576,7 @@ pop_off(void)
 
 It is important that acquire call push_off strictly before setting `lk->locked` (kernel/spinlock.c:28). If the two were reversed, there would be a brief window when the lock was held with interrupts enabled, and an unfortunately timed interrupt would deadlock the system. Similarly, it is important that release call `pop_off` only after releasing the lock (kernel/spinlock.c:66).
 
-## 6.6 Instruction and memory ordering
+### 6.6 Instruction and memory ordering
 
 It is natural to think of programs executing in the order in which source code statements appear. **Many compilers and CPUs, however, execute code out of order to achieve higher performance.** If an instruction takes many cycles to complete, a CPU may issue the instruction early so that it can overlap with other instructions and avoid CPU stalls(停顿). For example, a CPU may notice that in a serial sequence of instructions A and B are not dependent on each other. The CPU may start instruction B first, either because its inputs are ready before A’s inputs, or in order to overlap execution of A and B. A compiler may perform a similar re-ordering by emitting instructions for one statement before the instructions for a statement that precedes it in the source.
 
@@ -2599,7 +2599,7 @@ If such a re-ordering occurred, there would be a window during which another CPU
 
 **To tell the hardware and compiler not to perform such re-orderings**, xv6 uses **`__sync_synchronize()`** in both acquire (kernel/spinlock.c:22) and release (kernel/spinlock.c:47).` __sync_synchronize()` is a **memory barrier**: it tells the compiler and CPU to not reorder loads or stores across the barrier. The barriers in xv6’s acquire and release force order in almost all cases where it matters, since xv6 uses locks around accesses to shared data. Chapter 9 discusses a few exceptions.
 
-## 6.7 Sleep locks
+### 6.7 Sleep locks
 
 > 锁带来问题的情况之一：向磁盘读写文件时，因为锁的原因，其他的进程也无法使用CPU，只能等待CPU执行到磁盘返回消息并解开锁，但磁盘的读写是非常慢的。我们其实可以在当前进程等待I/O操作的空闲时间，把CPU让给其他的进程。
 >
@@ -2629,11 +2629,11 @@ acquiresleep(struct sleeplock *lk)
 
 Because sleep-locks leave interrupts enabled, they cannot be used in interrupt handlers. Because `acquiresleep` may yield the CPU, sleep-locks cannot be used inside spinlock critical sections (though spinlocks can be used inside sleep-lock critical sections). **Spin-locks are best suited to short critical sections, since waiting for them wastes CPU time; sleep-locks work well for lengthy operations.**
 
-# Chapter 7 Scheduling
+## Chapter 7 Scheduling
 
 Any operating system is likely to run with more processes than the computer has CPUs, so a plan is needed to time-share the CPUs among the processes. Ideally the sharing would be transparent to user processes. A common approach is to provide each process with the illusion that it has its own virtual CPU by multiplexing the processes onto the hardware CPUs. This chapter explains how xv6 achieves this multiplexing.
 
-## 7.1 Multiplexing
+### 7.1 Multiplexing
 
 > xv6在两种情况下实现了对CPU的复用
 >
@@ -2663,7 +2663,7 @@ Implementing **multiplexing** poses a few **challenges**.
 
 ![image-20220610234710788](assets/Operating Systems.assets/image-20220610234710788.png)
 
-## 7.2 Code: Context switching
+### 7.2 Code: Context switching
 
 Figure 7.1 outlines the **steps involved in switching from one user process to another**:
 
@@ -2799,11 +2799,11 @@ In addition, it returns on the **new thread’s stack.**
 > 另一点需要留意的就是我们只保存和恢复了`ra 和 sp`。`sp`很好理解，每个线程都有自己独立的栈；`ra`指的是return address，当下边的汇编代码执行到ret时，我们的pc就会指向`ra`中的地址, 所以在这里设置pc的值是没有必要的。
 
 ```assembly
-# Context switch
-#
-#   void swtch(struct context *old, struct context *new);
-#
-# Save current registers in old. Load from new.
+## Context switch
+##
+##   void swtch(struct context *old, struct context *new);
+##
+## Save current registers in old. Load from new.
 
 
 .globl swtch
@@ -2845,7 +2845,7 @@ swtch:
 
 In our example, `sched` called `swtch` to switch to `cpu->scheduler`, the per-CPU scheduler context. That context had been saved by scheduler’s call to `swtch` (kernel/proc.c:475). **When the `swtch` we have been tracing returns, it returns not to `sched` but to scheduler, and its stack pointer points at the current CPU’s scheduler stack.**
 
-## 7.3 Code: Scheduling
+### 7.3 Code: Scheduling
 
 The last section looked at the low-level details of `swtch`; now let’s take `swtch` as a given and examine switching from one process’s kernel thread through the scheduler to another process. **The scheduler exists in the form of a special thread per CPU, each running the scheduler function.** This function is in charge of choosing which process to run next.
 
@@ -3046,7 +3046,7 @@ scheduler(void)
 
 ---
 
-### Locks in scheduling code
+#### Locks in scheduling code
 
 One way to think about the structure of the scheduling code is that it enforces a set of invariants about each process, and holds p->lock whenever those invariants are not true. One invariant is that if a process is RUNNING, a timer interrupt’s yield must be able to safely switch away from the process; this means that the CPU registers must hold the process’s register values (i.e. `swtch` hasn’t moved them to a context), and c->proc must refer to the process. Another invariant is that if a process is RUNNABLE, it must be safe for an idle CPU’s scheduler to run it; this means that p->context must hold the process’s registers (i.e., they are not actually in the real registers), that no CPU is executing on the process’s kernel stack, and that no CPU’s c->proc refers to the process. Observe that these properties are often not true while p->lock is held.
 
@@ -3054,7 +3054,7 @@ Maintaining the above invariants is the reason why xv6 often acquires p->lock in
 
 p->lock protects other things as well: the interplay between exit and wait, the machinery to avoid lost wakeups (see Section 7.5), and avoidance of races between a process exiting and other processes reading or writing its state (e.g., the exit system call looking at `p->pid` and setting `p->killed` (kernel/proc.c:611)). It might be worth thinking about whether the different functions of p->lock could be split up, for clarity and perhaps for performance.
 
-## 7.4 Code: `mycpu` and `myproc`
+### 7.4 Code: `mycpu` and `myproc`
 
 Xv6 often needs a pointer to the current process’s proc structure. On a uniprocessor one could have a global variable pointing to the current proc. This doesn’t work on a multi-core machine, since each core executes a different process. The way to solve this problem is to exploit the fact that each core has its own set of registers; we can use one of those registers to help find per-core information.
 
@@ -3137,7 +3137,7 @@ myproc(void) {
 }
 ```
 
-## 7.5 Sleep and wakeup
+### 7.5 Sleep and wakeup
 
 > 有了进程调度和锁，为什么还需要sleep和wakeup呢？
 
@@ -3266,13 +3266,13 @@ We’ll fix the preceding scheme by changing sleep’s interface: **the caller m
 
 The fact that P holds s->lock prevents V from trying to wake it up between P’s check of c->count and its call to sleep. Note, however, that we need sleep to atomically release s->lock and put the consuming process to sleep.
 
-## 7.6 Code: Sleep and wakeup
+### 7.6 Code: Sleep and wakeup
 
 > 接下来就该看看sleep和wakeup究竟是怎么实现的了
 
 Let’s look at the implementation of sleep (kernel/proc.c:548) and wakeup (kernel/proc.c:582). The basic idea is to have sleep mark the current process as SLEEPING and then call `sched` to release the CPU; wakeup looks for a process sleeping on the given wait channel and marks it as RUNNABLE. Callers of sleep and wakeup can use any mutually convenient number as the channel. Xv6 often uses the address of a kernel data structure involved in the waiting.
 
-### Sleep
+#### Sleep
 
 ```c
 // Atomically release lock and sleep on chan.
@@ -3336,7 +3336,7 @@ Now that sleep holds p->lock and no others, it can put the process to sleep by r
 
 ---
 
-### Wakeup
+#### Wakeup
 
 At some point, a process will acquire the condition lock, set the condition that the sleeper is waiting for, and call `wakeup(chan`). It’s important that wakeup is called while holding the condition lock . Wakeup loops over the process table (kernel/proc.c:582). It acquires the p->lock of each process it inspects, both because it may manipulate that process’s state and because p->lock ensures that sleep and wakeup do not miss each other. When wakeup finds a process in state SLEEPING with a matching `chan`, it changes that process’s state to RUNNABLE. The next time the scheduler runs, it will see that the process is ready to be run.
 
@@ -3378,7 +3378,7 @@ It is sometimes the case that multiple processes are sleeping on the same channe
 
 No harm is done if two uses of sleep/wakeup accidentally choose the same channel: they will see spurious wakeups, but looping as described above will tolerate this problem. Much of the charm of sleep/wakeup is that it is both lightweight (no need to create special data structures to act as sleep channels) and provides a layer of indirection (callers need not know which specific process they are interacting with).
 
-## 7.7 Code: Pipes
+### 7.7 Code: Pipes
 
 > 管道是使用sleep和wakeup来实现进程同步的
 
@@ -3467,7 +3467,7 @@ Now that `pi->lock` is available, `piperead` manages to acquire it and enters it
 
 **The pipe code uses separate sleep channels for reader and writer** (`pi->nread` and `pi->nwrite`); this might make the system more efficient in the unlikely event that there are lots of readers and writers waiting for the same pipe. The pipe code sleeps inside a loop checking the sleep condition; if there are multiple readers or writers, all but the first process to wake up will see the condition is still false and sleep again.
 
-## 7.8 Code: Wait, exit, and kill
+### 7.8 Code: Wait, exit, and kill
 
 `Sleep` and `wakeup` can be used for many kinds of waiting. An interesting example, introduced in Chapter 1, is the interaction between a child’s `exit` and its parent’s `wait`.
 
@@ -3478,7 +3478,7 @@ At the time of the child’s death, the parent may already be sleeping in `wait`
 
 ---
 
-### Wait
+#### Wait
 
 **Wait** uses the calling process’s `p->lock` as the condition lock to **avoid lost wakeups**, and it acquires that lock at the start (kernel/proc.c:398).
 
@@ -3575,7 +3575,7 @@ It is possible that np is an ancestor of the current process, in which case acqu
 
 ---
 
-### Exit
+#### Exit
 
 **Exit** (kernel/proc.c:333)
 
@@ -3695,7 +3695,7 @@ wakeup1(struct proc *p)
 
 ---
 
-### Kill
+#### Kill
 
 While exit allows a process to terminate itself, **kill** (kernel/proc.c:611) lets one process request that another terminate. It would be too complex for kill to directly destroy the victim process, since the victim might be executing on another CPU, perhaps in the middle of a sensitive sequence of updates to kernel data structures.
 
@@ -3756,9 +3756,9 @@ Some xv6 sleep loops do not check `p->killed` **because the code is in the middl
 
 **A process that is killed while waiting for disk I/O won’t exit until it completes the current system call and `usertrap` sees the killed flag.**
 
-## 7.9 Real world
+### 7.9 Real world
 
-### Different scheduling policy
+#### Different scheduling policy
 
 The xv6 scheduler implements a simple scheduling policy, which runs each process in turn. This policy is called **round robin**.
 
@@ -3775,7 +3775,7 @@ for example, the operating might also want to <u>guarantee fairness and high **t
 
 ---
 
-### Different synchronization method
+#### Different synchronization method
 
 `Sleep` and `wakeup` are a simple and effective **synchronization method**, but there are many others.
 
@@ -3807,13 +3807,13 @@ The implementation of `wakeup` wakes up all processes that are waiting on a part
 
 ---
 
-### Terminating Process
+#### Terminating Process
 
 Terminating processes and cleaning them up introduces much complexity in xv6. In most operating systems it is even more complex, because, for example, the victim process may be deep inside the kernel sleeping, and unwinding（展开） its stack requires much careful programming. Many operating systems unwind the stack using explicit mechanisms for exception handling, such as `longjmp`.
 
 Furthermore, there are other events that can cause a sleeping process to be woken up, even though the event it is waiting for has not happened yet. For example, when a Unix process is sleeping, another process may send a signal to it. In this case, the process will return from the interrupted system call with the value -1 and with the error code set to EINTR. The application can check for these values and decide what to do. Xv6 doesn’t support signals and this complexity doesn’t arise.
 
-### Kill Problem
+#### Kill Problem
 
 Xv6’s support for kill is not entirely satisfactory: there are sleep loops which probably should check for p->killed. A related problem is that, **even for sleep loops that check p->killed, there is a race between sleep and kill**; the latter may set p->killed and try to wake up the victim just after the victim’s loop checks p->killed but before it calls sleep. If this problem occurs, the victim won’t notice the p->killed until the condition it is waiting for occurs. This may be quite a bit later (e.g., when the `virtio` driver returns a disk block that the victim is waiting for) or never (e.g., if the victim is waiting from input from the console, but the user doesn’t type any input).
 
@@ -3821,7 +3821,7 @@ Xv6’s support for kill is not entirely satisfactory: there are sleep loops whi
 
 A real operating system would find free proc structures with an explicit free list in constant time instead of the linear-time search in `allocproc`; xv6 uses the linear scan for simplicity.
 
-# Chapter 8 File system
+## Chapter 8 File system
 
 The purpose of a file system is to organize and store data. File systems typically support sharing of data among users and applications, as well as persistence so that data is still available after a reboot.
 
@@ -3837,7 +3837,7 @@ The xv6 file system provides Unix-like files, directories, and pathnames (see Ch
 
 The rest of this chapter explains how xv6 addresses these challenges.
 
-## 8.1 Overview
+### 8.1 Overview
 
 The xv6 file system implementation is organized in **seven layers**, shown in Figure 8.1.
 
@@ -3905,7 +3905,7 @@ struct superblock {
 };
 ```
 
-## 8.2 Buffer cache layer
+### 8.2 Buffer cache layer
 
 > Buffer cache是对整个文件系统的缓存，在其之上的层可以通过它更快的和disk进行交互。
 
@@ -3935,9 +3935,9 @@ The main interface exported by the buffer cache consists of `bread` and `bwrite`
 
 Let’s return to the buffer cache. **The buffer cache has a <u>fixed number of buffers</u> to hold disk blocks**, which means that if the file system asks for a block that is not already in the cache, <u>the buffer cache must recycle a buffer currently holding some other block</u>. The buffer cache recycles the least recently used buffer for the new block. The assumption is that the least recently used buffer is the one least likely to be used again soon.
 
-## 8.3 Code: Buffer cache
+### 8.3 Code: Buffer cache
 
-### Buffer Cache Data Structure
+#### Buffer Cache Data Structure
 
 The **buffer cache** is a **doubly-linked list of buffers**. The function `binit`, called by main (kernel/- main.c:27), initializes the list with the NBUF buffers in the static array `buf` (kernel/bio.c:43-52). **All other access to the buffer cache refer to the linked list via `bcache.head`, not the `buf` array.**
 
@@ -3974,7 +3974,7 @@ binit(void)
 }
 ```
 
-### `Buf` Data Structure
+#### `Buf` Data Structure
 
 > 一个buffer中只能存放一个block中的内容，也就是1024B大小的内容。
 
@@ -3994,7 +3994,7 @@ struct buf {
 };
 ```
 
-### `Bread`
+#### `Bread`
 
 **`Bread`** (kernel/bio.c:93) calls `bget` to <u>get a buffer for the given sector</u> (kernel/bio.c:97). If the buffer needs to be read from disk, `bread` calls `virtio_disk_rw` to do that before returning the buffer.
 
@@ -4014,7 +4014,7 @@ bread(uint dev, uint blockno)
 }
 ```
 
-### `Sleep-Lock`
+#### `Sleep-Lock`
 
 > 从下一小节的代码中可以知道，`Sleep-Lock`是用来保证一个buffer cache的唯一读写权限的。每个buffer cache都有一块自己的`Sleep-Lock`。
 >
@@ -4071,7 +4071,7 @@ releasesleep(struct sleeplock *lk)
 }
 ```
 
-### `Bget`
+#### `Bget`
 
 **`Bget`** (kernel/bio.c:59) scans the buffer list for a buffer with the given device and sector numbers (kernel/bio.c:65-73). If there is such a buffer, `bget` acquires the **sleep-lock** for the buffer. `Bget` then returns the locked buffer.
 
@@ -4171,7 +4171,7 @@ If all the buffers are busy, then too many processes are simultaneously executin
 
 Once `bread` has read the disk (if needed) and returned the buffer to its caller, the caller has exclusive use of the buffer and can read or write the data bytes. <u>If the caller does modify the buffer, it must call `bwrite` to write the changed data to disk before releasing the buffer</u>.
 
-### `Bwrite`
+#### `Bwrite`
 
 **`Bwrite`** (kernel/bio.c:107) calls `virtio_disk_rw` to talk to the disk hardware.
 
@@ -4188,7 +4188,7 @@ bwrite(struct buf *b)
 
 ---
 
-### `Brelse`
+#### `Brelse`
 
 <u>When the caller is done with a buffer, it must call `brelse` to release it.</u> (The name `brelse`, a shortening of b-release, is cryptic but worth learning: it originated in Unix and is used in BSD, Linux, and Solaris too.)
 
@@ -4229,7 +4229,7 @@ brelse(struct buf *b)
 }
 ```
 
-## 8.7 Code: Block allocator
+### 8.7 Code: Block allocator
 
 > 8.3讲的的都是Memory里存储的缓存，但我们在建立文件的时候，是要在磁盘上给每个文件分配一些地方的。操作系统将磁盘抽象成了许多的BLOCK, 并把其中一个BLOCK用作bitmap用来记录哪些BLOCK已经被分配了。
 >
@@ -4247,7 +4247,7 @@ The program **`mkfs` sets the bits corresponding to the boot sector, superblock,
 
 The block allocator provides two functions:
 
-### `Balloc`
+#### `Balloc`
 
 **`balloc`** allocates a new disk block, and **`bfree`** frees a block.
 
@@ -4308,7 +4308,7 @@ balloc(uint dev)
 }
 ```
 
-### `Bfree`
+#### `Bfree`
 
 `Bfree` (kernel/fs.c:90) finds the right bitmap block and clears the right bit. Again the exclusive use implied by `bread` and `brelse` avoids the need for explicit locking.
 
@@ -4331,7 +4331,7 @@ bfree(int dev, uint b)
 }
 ```
 
-## 8.8 `Inode` layer
+### 8.8 `Inode` layer
 
 > `Inode`是对BLOCK的再一次抽象，我们不可能仅仅把文件存储在一个BLOCK里边，`Inode`就是一个BLOCK的集合，让我们可以存储更大的文件。
 
@@ -4341,7 +4341,7 @@ The term `inode` can have one of **two related meanings**.
 
 - ` “inode”` might refer to an **`in-memory inode`,** which contains a copy of the on-disk `inode` as well as extra information needed within the kernel.
 
-### **on-disk `inodes`**
+#### **on-disk `inodes`**
 
 <img src="assets/Operating Systems.assets/image-20220716230656087.png" alt="image-20220716230656087" style="zoom:50%;" />
 
@@ -4375,7 +4375,7 @@ struct dinode {
 
 ---
 
-### in-memory `inode`
+#### in-memory `inode`
 
 > 内存中的`inodes`多了一些新特性，只有C指针指向的 `inodes`才有资格被加载到内存中。
 
@@ -4407,7 +4407,7 @@ The **`iget` and `iput`** functions **acquire and release pointers** to an `inod
 
 ---
 
-### Lock in `Inode`
+#### Lock in `Inode`
 
 > 因为`inodes`在内核中也会被缓存，所以和buffer cache很相似，`inodes`也有一把大锁用来保证`inodes`的原子性（内存中不会有重复的`inodes`，内核对`inodes`的引用计数也是正确的）。每个`inodes`里边也有一把小锁（睡眠锁），用来保证该文件的独享访问权限。
 
@@ -4425,7 +4425,7 @@ An `inode’s` ref, if it is greater than zero, causes the system to maintain th
 
 ---
 
-### Life Cycle of `inode`
+#### Life Cycle of `inode`
 
 > 我们获取到的内存中的`inodes`如下特性。
 >
@@ -4447,9 +4447,9 @@ The struct `inode` that `iget` returns may not have any useful content. In order
 
 The `inode` cache only caches `inodes` to which kernel code or data structures hold C pointers. **Its main job is really synchronizing access by multiple processes**; caching is secondary. If an `inode` is used frequently, the buffer cache will probably keep it in memory if it isn’t kept by the `inode` cache. The `inode` cache is **write-through**, which means that **code that modifies a cached `inode` must immediately write it to disk with `iupdate`.**
 
-## 8.9 Code: `Inodes`
+### 8.9 Code: `Inodes`
 
-### `ialloc`
+#### `ialloc`
 
 > `ialloc` 就是创建文件实现，它的原理很简单，把disk上`inodes`那一段BLOCK加载到buffer cache中，然后在其中找到一个空闲的`inodes`
 >
@@ -4496,7 +4496,7 @@ ialloc(uint dev, short type)
 }
 ```
 
-### `Iget`
+#### `Iget`
 
 > 书接上文，上一步，我们在`inode` BLOCK中拿到了一个新的`inode`，我们下一步要做的就是把这个新的`inode`放进`inode` 缓存中。（Xv6维护了两个缓存，一个是BLOCK的缓存，另一个是`inode`的缓存，具体查看8.3，8.7)。
 >
@@ -4542,7 +4542,7 @@ iget(uint dev, uint inum)
 }
 ```
 
-### `ilock`
+#### `ilock`
 
 > 在Buffer Cache中可以得知，遇到有缓存的问题，我们就要想办法解决多线程的问题。这一节的前一部分，我们知道，`inode` cache外边有把大锁，每个`inode`缓存中有把小锁。这个`ilock`就是那个小锁，他的本质是一个sleep lock。
 >
@@ -4591,7 +4591,7 @@ ilock(struct inode *ip)
 
 ---
 
-### `Iput`
+#### `Iput`
 
 > `Iput`涉及的是`inode`缓存的释放，若是没有C指针指向它，那缓存就没有必要了；
 >
@@ -4658,7 +4658,7 @@ The other main danger is that a concurrent call to `ialloc` might choose the sam
 
 **`iput()` can write to the disk.** This means that any system call that uses the file system may write the disk, because the system call may be the last one having a reference to the file. **Even calls like `read()` that appear to be read-only, may end up calling `iput()`**. This, in turn, means that even read-only system calls must be wrapped in transactions if they use the file system.
 
-### `iput()` and `crashes`
+#### `iput()` and `crashes`
 
 > 这里引出了一个有趣的问题，`iput()`代码在`inode` link等于0时并没有选择去吧disk中的内容删除，而是选择继续让进程对缓存中的内容进行读写。
 >
@@ -4678,7 +4678,7 @@ File systems handle this case in one of **two ways.**
 
 Xv6 implements neither solution, which means that `inodes` may be marked allocated on disk, even though they are not in use anymore. This means that over time xv6 runs the risk that it may run out of disk space.
 
-## 8.10 Code: `Inode` content
+### 8.10 Code: `Inode` content
 
 ```c
 // On-disk inode structure
@@ -4712,7 +4712,7 @@ This is a good on-disk representation but a complex one for clients. The functio
 
 > 这里就把文件存储的方式说明白了，但是不得不承认的是，让用户面对着这样的数据结构去操作文件，确实是很困难的。所以这就引出了下边的函数。
 
-### `Bmap`
+#### `Bmap`
 
 > `Bmap`的会接受一个BLOCK的序号，当然这里的序号是`inode`给真实的BLOCK所编的序号。
 >
@@ -4769,7 +4769,7 @@ bmap(struct inode *ip, uint bn)
 
 `Bmap` makes it easy for `readi` and `writei` to get at an `inode’s` data.
 
-### `readi`
+#### `readi`
 
 > `readi`是在`bmap`上的又一层抽象。
 >
@@ -4809,7 +4809,7 @@ readi(struct inode *ip, int user_dst, uint64 dst, uint off, uint n)
 }
 ```
 
-### `writei`
+#### `writei`
 
 > `writei`和`readi`是十分类似的，但是写操作多了三个异常
 >
@@ -4870,11 +4870,11 @@ writei(struct inode *ip, int user_src, uint64 src, uint off, uint n)
 
 Both `readi` and `writei` begin by checking for `ip->type == T_DEV`. This case handles special devices whose data does not live in the file system; we will return to this case in the file descriptor layer.
 
-### `stati`
+#### `stati`
 
 The function `stati` (kernel/fs.c:442) copies `inode` metadata into the stat structure, which is exposed to user programs via the stat system call.
 
-## 8.11 Code: directory layer
+### 8.11 Code: directory layer
 
 A directory is implemented internally much like a file. Its `inode` has type `T_DIR` and its data is a sequence of directory entries. Each entry is a struct `dirent` (kernel/fs.h:56), which contains a name and an `inode` number. The name is at most `DIRSIZ (14)` characters; if shorter, it is terminated by a NUL (0) byte. Directory entries with `inode` number zero are free.
 
@@ -4882,7 +4882,7 @@ A directory is implemented internally much like a file. Its `inode` has type `T_
 
 ```c
 // Directory is a file containing a sequence of dirent structures.
-#define DIRSIZ 14
+##define DIRSIZ 14
 
 struct dirent {
   ushort inum;
@@ -4890,7 +4890,7 @@ struct dirent {
 };
 ```
 
-### `dirlookup`
+#### `dirlookup`
 
 The function `dirlookup` (kernel/fs.c:527) searches a directory for an entry with the given name.
 
@@ -4934,7 +4934,7 @@ dirlookup(struct inode *dp, char *name, uint *poff)
 }
 ```
 
-### `dirlink`
+#### `dirlink`
 
 > 创建新文件夹
 
@@ -4976,13 +4976,13 @@ dirlink(struct inode *dp, char *name, uint inum)
 }
 ```
 
-## 8.12 Code: Path names
+### 8.12 Code: Path names
 
 Path name lookup involves a succession of calls to `dirlookup`, one for each path component.
 
 > 两个通过名字找`inode`的函数
 
-### `Namei/nameiparent`
+#### `Namei/nameiparent`
 
 `Namei` (kernel/fs.c:661) evaluates path and returns the corresponding `inode`.
 
@@ -5003,7 +5003,7 @@ nameiparent(char *path, char *name)
 }
 ```
 
-### `Namex`
+#### `Namex`
 
 > 第一步，相对路径还是绝对路径？
 
@@ -5086,7 +5086,7 @@ Xv6 avoids such races. For example, when executing `dirlookup` in `namex`, the l
 
 Another risk is deadlock. For example, next points to the same `inode` as `ip` when looking up ".". Locking next before releasing the lock on `ip` would result in a deadlock. To avoid this deadlock, `namex` unlocks the directory before obtaining a lock on next. Here again we see why the separation between `iget` and `ilock` is important.
 
-## 8.13 File descriptor layer
+### 8.13 File descriptor layer
 
 > File descriptor,句柄，是对硬盘或者其他硬件资源的进一步抽象。
 
@@ -5119,7 +5119,7 @@ A cool aspect of the Unix interface is that most resources in Unix are represent
 > };
 > ```
 
-### Struct `file`
+#### Struct `file`
 
 Xv6 gives each process its own table of open files, or file descriptors, as we saw in Chapter 1. **Each open file is represented by a struct file (kernel/file.h:1), which is a wrapper around either an `inode` or a `pipe`, plus an I/O offset**.
 
@@ -5163,7 +5163,7 @@ struct {
 
 The first three follow the now-familiar form. `Filealloc` (kernel/file.c:30) scans the file table for an unreferenced file (f->ref == 0) and returns a new reference; `filedup` (kernel/file.c:48) increments the reference count; and `fileclose` (kernel/file.c:60) decrements it. When a file’s reference count reaches zero, `fileclose` releases the underlying pipe or `inode`, according to the type.
 
-### `Filealloc`
+#### `Filealloc`
 
 从全局表中找出一个空闲的句柄，然后返回给上一级
 
@@ -5187,7 +5187,7 @@ filealloc(void)
 }
 ```
 
-### `Filedup`
+#### `Filedup`
 
 增减句柄被引用的个数并返回句柄
 
@@ -5205,7 +5205,7 @@ filedup(struct file *f)
 }
 ```
 
-### `Fileclose`
+#### `Fileclose`
 
 当确认句柄没有引用之后，释放`inode`或者pipe
 
@@ -5256,7 +5256,7 @@ The functions `filestat`, `fileread`, and `filewrite` implement the stat, read, 
 
 The `inode` locking has the convenient side effect that the read and write offsets are updated atomically, so that multiple writing to the same file simultaneously cannot overwrite each other’s data, though their writes may end up interlaced.
 
-### `fileread`
+#### `fileread`
 
 ```c
 // Read from file f.
@@ -5288,7 +5288,7 @@ fileread(struct file *f, uint64 addr, int n)
 }
 ```
 
-### `filewrite`
+#### `filewrite`
 
 > 结合8.6Logging章节，文件一次写入的大小是有限制的，因为LOG在DISK上的空间是有限的，遇到大文件只能把它按照LOG的最大空间多次写入。
 
@@ -5345,7 +5345,7 @@ filewrite(struct file *f, uint64 addr, int n)
 }
 ```
 
-## 8.14 Code: System calls
+### 8.14 Code: System calls
 
 With the functions that the lower layers provide the implementation of most system calls is trivial (see (`kernel/sysfile.c`)). There are a few calls that deserve a closer look.
 
@@ -5353,7 +5353,7 @@ With the functions that the lower layers provide the implementation of most syst
 
 The functions `sys_link` and `sys_unlink` edit directories, creating or removing references to `inodes`. They are another good example of the power of using transactions.
 
-### `sys_link`(硬链接)
+#### `sys_link`(硬链接)
 
 > `sys_link`所做的是就是让new pathname和old pathname指向同一块`inode`。
 >
@@ -5423,7 +5423,7 @@ Transactions simplify the implementation because it requires updating multiple d
 
 `Sys_link` creates a new name for an existing `inode`.
 
-### `create`
+#### `create`
 
 The function `create` (kernel/sysfile.c:242) **creates a new name for a new `inode`.**
 
@@ -5499,7 +5499,7 @@ create(char *path, short type, short major, short minor)
 }
 ```
 
-### `sys_open`
+#### `sys_open`
 
 Using create, it is easy to implement `sys_open`, `sys_mkdir`, and `sys_mknod`.
 
@@ -5584,7 +5584,7 @@ sys_open(void)
 }
 ```
 
-### `sys_pipe`
+#### `sys_pipe`
 
 Chapter 7 examined the implementation of pipes before we even had a file system. The function `sys_pipe` connects that implementation to the file system by providing a way to create a pipe pair. Its argument is a pointer to space for two integers, where it will record the two new file descriptors. Then it allocates the pipe and installs the file descriptors.
 
@@ -5669,7 +5669,7 @@ pipealloc(struct file **f0, struct file **f1)
 }
 ```
 
-## 8.4 Logging layer
+### 8.4 Logging layer
 
 One of the most interesting problems in file system design is **crash recovery**. The problem arises because many file-system operations involve multiple writes to the disk, and **a crash after a subset of the writes may leave the on-disk file system in an inconsistent state**. For example, suppose a crash occurs during file truncation (setting the length of a file to zero and freeing its content blocks). Depending on the order of the disk writes, the crash may either leave an `inode` with a reference to a content block that is marked free, or it may leave an allocated but unreferenced content block.
 
@@ -5678,7 +5678,7 @@ One of the most interesting problems in file system design is **crash recovery**
 > 1. `inode`中依然指向着一块被标记为free的BLOCK（严重）
 > 2. BLOCK被写入了数据但`inode`没有指向它
 
-### Crash Handling
+#### Crash Handling
 
 The latter is relatively benign, but an `inode` that refers to a freed block is likely to cause serious problems after a reboot. **After reboot, the kernel might allocate that block to another file, and now we have two different files pointing unintentionally to the same block**. If xv6 supported multiple users, this situation could be a security problem, since the old file’s owner would be able to read and write blocks in the new file, owned by a different user.
 
@@ -5709,7 +5709,7 @@ Why does xv6’s log solve the problem of crashes during file system operations?
 
 In either case, **the log makes operations atomic with respect to crashes**: after recovery, **either all of the operation’s writes appear on the disk, or none of them appear.**
 
-## 8.5 Log design
+### 8.5 Log design
 
 The log resides at a known fixed location, specified in the superblock.
 
@@ -5750,7 +5750,7 @@ Xv6 writes the header block when a transaction commits, but not before, and sets
 
 ![image-20220723205203167](assets/Operating Systems.assets/image-20220723205203167.png)
 
-### Challenge: Concurrent FS `Syscalls`
+#### Challenge: Concurrent FS `Syscalls`
 
 Each system call’s code indicates the start and end of the sequence of writes that must be atomic with respect to crashes. To allow concurrent execution of file-system operations by different processes, **the logging system can accumulate the writes of multiple system calls into one transaction**. Thus a single commit may involve the writes of multiple complete system calls. To avoid splitting a system call across transactions, the logging system only commits when no file-system system calls are underway.
 
@@ -5759,7 +5759,7 @@ The idea of **committing several transactions together is known as `group commit
 - Group commit **reduces the number of disk operations** because it amortizes(分摊) the fixed cost of a commit over multiple operations.
 - Group commit also hands the disk system more concurrent writes at the same time, perhaps allowing the disk to write them all during a single disk rotation. Xv6’s `virtio` driver doesn’t support this kind of batching, but xv6’s file system design allows for it.
 
-### Challenge: MAX log size
+#### Challenge: MAX log size
 
 Xv6 dedicates a fixed amount of space on the disk to hold the log.
 
@@ -5770,7 +5770,7 @@ The total number of blocks written by the system calls in a transaction must fit
 - **No single system call can be allowed to write more distinct blocks than there is space in the log**. This is not a problem for most system calls, but two of them can potentially write many blocks: write and unlink. A large file write may write many data blocks and many bitmap blocks as well as an `inode` block; unlinking a large file might write many bitmap blocks and an `inode`. Xv6’s write system call breaks up large writes into multiple smaller writes that fit in the log, and unlink doesn’t cause problems because in practice the xv6 file system uses only one bitmap block.
 - The other consequence of limited log space is that **the logging system cannot allow a system call to start unless it is certain that the system call’s writes will fit in the space remaining in the log.**
 
-## 8.6 Code: logging
+### 8.6 Code: logging
 
 A typical use of the log in a system call looks like this:
 
@@ -5784,7 +5784,7 @@ log_write(bp);
 end_op();
 ```
 
-### `begin_op`
+#### `begin_op`
 
 `begin_op` (kernel/log.c:126) waits until the logging system is not currently committing, and until there is enough unreserved log space to hold the writes from this call. **`log.outstanding` counts the number of system calls that have reserved log space;** the total reserved space is `log.outstanding` times MAXOPBLOCKS. Incrementing `log.outstanding` both reserves space and prevents a commit from occurring during this system call. The code conservatively assumes that each system call might write up to MAXOPBLOCKS distinct blocks.
 
@@ -5817,7 +5817,7 @@ begin_op(void)
 
 ---
 
-### `log_write`
+#### `log_write`
 
 `log_write` (kernel/log.c:214) acts as a proxy for `bwrite`.
 
@@ -5869,7 +5869,7 @@ log_write(struct buf *b)
 
 ---
 
-### `end_op`
+#### `end_op`
 
 > `end_op`主要干了两件事
 >
@@ -6056,15 +6056,15 @@ recover_from_log(void)
 }
 ```
 
-### Summary Figure
+#### Summary Figure
 
 ![image-20220723210534296](assets/Operating Systems.assets/image-20220723210534296.png)
 
-# Journaling the Linux ext2fs Filesystem
+## Journaling the Linux ext2fs Filesystem
 
-# Labs
+## Labs
 
-## GDB
+### GDB
 
 ```shell
 $ make CPUS=1 qemu-gdb
@@ -6085,16 +6085,16 @@ $ gdb-multiarch
 (gdb) c
 ```
 
-## Lab: Xv6 and Unix utilities
+### Lab: Xv6 and Unix utilities
 
-### sleep
+#### sleep
 
 残留问题：while循环用于确保用户的输入只有数字，但在`xv6` 运行过程中会有运行失败的情况。未能定位原因。删去while可以完美运行但逻辑不完整。
 
 ```c
-#include "kernel/types.h"
-#include "kernel/stat.h"
-#include "user/user.h"
+##include "kernel/types.h"
+##include "kernel/stat.h"
+##include "user/user.h"
 
 int main(int argc, char *argv[])
 {
@@ -6127,16 +6127,16 @@ int main(int argc, char *argv[])
 
 ```
 
-### pingpong
+#### pingpong
 
 记得在使用完file descriptor后将其关闭，否则当多次运行ping pong后，`pipe()`就没有多余的file descriptor可供分配了。
 
 <img src="assets/Operating Systems.assets/image-20220309231419282.png" alt="image-20220309231419282" style="zoom: 50%;" />
 
 ```c
-#include "kernel/types.h"
-#include "kernel/stat.h"
-#include "user/user.h"
+##include "kernel/types.h"
+##include "kernel/stat.h"
+##include "user/user.h"
 
 int main(int argc, char const *argv[])
 {
@@ -6183,25 +6183,25 @@ int main(int argc, char const *argv[])
 }
 ```
 
-### primes(\*)
+#### primes(\*)
 
-### find
+#### find
 
-## Lab: system calls
+### Lab: system calls
 
 本部分记录了系统调用的整个过程，所有的实现细节见`github`。
 
-### System call tracing
+#### System call tracing
 
-#### user mode
+##### user mode
 
 在user mode中的`user/trace.c`中，使用了system call ：`trace()`。
 
 ```c
-#include "kernel/param.h"
-#include "kernel/types.h"
-#include "kernel/stat.h"
-#include "user/user.h"
+##include "kernel/param.h"
+##include "kernel/types.h"
+##include "kernel/stat.h"
+##include "user/user.h"
 
 int
 main(int argc, char *argv[])
@@ -6240,8 +6240,8 @@ int trace(int);
 `ecall`通过硬件实现user mode进入kernel mode。
 
 ```perl
-#!/usr/bin/perl -w
-# Generate usys.S, the stubs for syscalls.
+##!/usr/bin/perl -w
+## Generate usys.S, the stubs for syscalls.
 print "# generated by usys.pl - do not edit\n";
 print "#include \"kernel/syscall.h\"\n";
 sub entry {
@@ -6268,31 +6268,31 @@ entry("trace");
 
 ```c
 // System call numbers
-#define SYS_fork    1
-#define SYS_exit    2
-#define SYS_wait    3
-#define SYS_pipe    4
-#define SYS_read    5
-#define SYS_kill    6
-#define SYS_exec    7
-#define SYS_fstat   8
-#define SYS_chdir   9
-#define SYS_dup    10
-#define SYS_getpid 11
-#define SYS_sbrk   12
-#define SYS_sleep  13
-#define SYS_uptime 14
-#define SYS_open   15
-#define SYS_write  16
-#define SYS_mknod  17
-#define SYS_unlink 18
-#define SYS_link   19
-#define SYS_mkdir  20
-#define SYS_close  21
-#define SYS_trace  22
+##define SYS_fork    1
+##define SYS_exit    2
+##define SYS_wait    3
+##define SYS_pipe    4
+##define SYS_read    5
+##define SYS_kill    6
+##define SYS_exec    7
+##define SYS_fstat   8
+##define SYS_chdir   9
+##define SYS_dup    10
+##define SYS_getpid 11
+##define SYS_sbrk   12
+##define SYS_sleep  13
+##define SYS_uptime 14
+##define SYS_open   15
+##define SYS_write  16
+##define SYS_mknod  17
+##define SYS_unlink 18
+##define SYS_link   19
+##define SYS_mkdir  20
+##define SYS_close  21
+##define SYS_trace  22
 ```
 
-#### kernel mode
+##### kernel mode
 
 在内核态，执行system call的入口在`kernel/syscall.c`中。`uint64 (*syscalls[])(void)` 是一个函数指针数组，类似于java中的`Method[]`.
 
@@ -6347,7 +6347,7 @@ syscall(void)
 }
 ```
 
-#### get `args` from user mode
+##### get `args` from user mode
 
 `kernel/sysproc.c` 中记录了sys_trace的具体实现。
 
@@ -6370,7 +6370,7 @@ sys_trace(void)
 }
 ```
 
-### Sysinfo
+#### Sysinfo
 
 系统调用的过程不再赘述，这一部分的实验涉及了process和page table的部分代码，这里不做详述。**这个实验的重点在于，内核态如何把内核态中的变量返回给用户态**。`copyout(p->pagetable, st, (char *)&xv6info, sizeof(xv6info))`做到了这一点，`copyout`是如何做到的不是这个lab的重点，会在之后的章节中讲明。
 
@@ -6403,7 +6403,7 @@ sys_sysinfo(void)
 }
 ```
 
-## Lab: Page Table
+### Lab: Page Table
 
 ```she
 test sbrkbugs: usertrap(): unexpected scause 0x000000000000000c pid=3234
@@ -6412,9 +6412,9 @@ usertrap(): unexpected scause 0x000000000000000c pid=3235
             sepc=0x0000000000005406 stval=0x0000000000005406
 ```
 
-# Lab3 : Page Tables
+## Lab3 : Page Tables
 
-## Lab 3.1 Print a page table
+### Lab 3.1 Print a page table
 
 > Define a function called `vmprint()`. It should take a `pagetable_t` argument, and print that page table in the format described below. Insert `if(p->pid==1) vmprint(p->pagetable)` in `exec.c` just before the `return argc`, to print the first process's page table.
 >
@@ -6476,13 +6476,13 @@ pteprint(pagetable_t pagetable, int level)
 }
 ```
 
-## Lab 3.2 A kernel page table per process
+### Lab 3.2 A kernel page table per process
 
 > Xv6 has a single kernel page table that's used whenever it executes in the kernel. The kernel page table is a direct mapping to physical addresses, so that kernel virtual address _x_ maps to physical address _x_. Xv6 also has a separate page table for each process's user address space, containing only mappings for that process's user memory, starting at virtual address zero. Because the kernel page table doesn't contain these mappings, user addresses are not valid in the kernel. Thus, **when the kernel needs to use a user pointer passed in a system call (e.g., the buffer pointer passed to `write()`), the kernel must first translate the pointer to a physical address**. **The goal of this section and the next is to allow the kernel to directly dereference user pointers.**
 
-# Lab4: Traps
+## Lab4: Traps
 
-## Lab 3.2 Alarm
+### Lab 3.2 Alarm
 
 `kernel/proc.h`
 
@@ -6586,9 +6586,9 @@ if(which_dev == 2) {
 
 注意：test 2 fork了一个新的进程同时并没有关闭test 1开启的alarm功能，所以我们需要修改fork()部分的代码，让新的进程和父进程的alarm状态一致。
 
-# Lab5 Lazy Allocation
+## Lab5 Lazy Allocation
 
-## Lab 5.1 Eliminate allocation from `sbrk()`
+### Lab 5.1 Eliminate allocation from `sbrk()`
 
 ```c
 uint64
@@ -6619,7 +6619,7 @@ usertrap(): unexpected scause 0x000000000000000f pid=3
 panic: uvmunmap: not mapped
 ```
 
-## Lab 5.2 Lazy Allocation
+### Lab 5.2 Lazy Allocation
 
 ![image-20220601212451904](assets/Operating Systems.assets/image-20220601212451904.png)
 
@@ -6664,7 +6664,7 @@ else if((which_dev = devintr()) != 0){
 >
 > page fault一般有两种原因，如图中所示，13代表无法读，15代表无法写。这里的目的仅仅只为了能让`echo hi`正常运行，所以没有考虑过多细节。
 
-## Lab 5.3 `Lazytests` and `Usertests`
+### Lab 5.3 `Lazytests` and `Usertests`
 
 > 实验5.2仅仅实现了一个基本的功能，但是他只支持为没有分配内存的虚拟地址空间增加内存，但没有考虑用户希望释放内存的请求
 >

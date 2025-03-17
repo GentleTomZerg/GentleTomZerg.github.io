@@ -9,14 +9,14 @@ date: 2024-01-07
 title: Philosophy of Software Design
 ---
 
-# Nature of Complexity
+## Nature of Complexity
 
-## Definition
+### Definition
 
 > Complexity is anything related to the structure of a software system that
 > makes it hard to understand and modify the system.
 
-## Symptoms of complexity
+### Symptoms of complexity
 
 - **Change amplification**
   > a seemingly simple change requires code modifications in many different places.
@@ -25,18 +25,18 @@ title: Philosophy of Software Design
 - **Unknown unknowns**
   > it is not obvious which pieces of code must be modified to complete a task, or what information a developer must have to carry out the task successfully.
 
-## Causes of Complexity
+### Causes of Complexity
 
 - **Dependencies**
 - **Obscurity**
 
 <!-- more -->
 
-## Complexity is Incremental
+### Complexity is Incremental
 
-# Strategic & Tactical Programming
+## Strategic & Tactical Programming
 
-## Tactical programming
+### Tactical programming
 
 > In the tactical approach, your main focus is to get something
 > working, such as a new feature or a bug fix. At first glance this seems totally
@@ -44,7 +44,7 @@ title: Philosophy of Software Design
 > However, tactical programming makes it nearly impossible to produce a good
 > system design.
 
-## Strategic programming
+### Strategic programming
 
 > Working code isn't enough
 > Your primary goal must be to produce a great design, which also happens to work.
@@ -62,7 +62,7 @@ title: Philosophy of Software Design
 
       - Take extra time to fix design problems!!!
 
-# Modules Should Be Deep
+## Modules Should Be Deep
 
 Modules can take many forms -> classes, subsystems, or services.
 
@@ -71,7 +71,7 @@ Modules can take many forms -> classes, subsystems, or services.
 
 - Reality, **modules must work together by calling each others's functions or methods.** Dependencies always exists!!!
 
-## Modular Design
+### Modular Design
 
 - Two parts of Module
 
@@ -82,12 +82,12 @@ Modules can take many forms -> classes, subsystems, or services.
 
   whose interfaces are much simpler than their implementations
 
-## What's in an interface
+### What's in an interface
 
 - formal information: information that are specified explicitly in the code.
 - informal information: information that are not specified in a way that can be understood or enforced by the programming language.
 
-## Abstractions
+### Abstractions
 
 > An
 > abstraction is a simplified view of an entity, which omits **unimportant**
@@ -96,14 +96,14 @@ Modules can take many forms -> classes, subsystems, or services.
 - Include unimportant details -> increase `cognitive load`
 - Omit important details -> increase `obscurity`
 
-## Deep Modules
+### Deep Modules
 
 > **The best modules are those that provide powerful functionality yet have simple
 > interfaces.**
 
 ![Deep and Shallow Modules](assets/software-design.assets/deep_modules.png)
 
-## Shallow Modules
+### Shallow Modules
 
 > a shallow module is one whose interface is relatively complex
 > in comparison to the functionality that it provides.
@@ -116,7 +116,7 @@ private void addNullValueForAttribute(String attribute) {
 }
 ```
 
-## :triangular_flag_on_post:Shallow Module:triangular_flag_on_post:
+### :triangular_flag_on_post:Shallow Module:triangular_flag_on_post:
 
 > A shallow module is one whose interface is complicated relative to the
 > functionality it provides. Shallow modules don’t help much in the battle
@@ -124,14 +124,14 @@ private void addNullValueForAttribute(String attribute) {
 > how they work internally) is negated by the cost of learning and using their
 > interfaces. Small modules tend to be shallow.
 
-# Information Hiding(and Leakage)
+## Information Hiding(and Leakage)
 
 > techniques for creating deep modules
 
 - reduce cognitive load -> simplifies interface
 - easier to evolve
 
-## :triangular_flag_on_post:Information Leakage:triangular_flag_on_post:
+### :triangular_flag_on_post:Information Leakage:triangular_flag_on_post:
 
 > Information leakage occurs when the **same knowledge** is used in **multiple places**,
 > such as two different classes that both understand the format of a particular
@@ -142,7 +142,7 @@ private void addNullValueForAttribute(String attribute) {
 - Answer1: merge them into a single class
 - Answer2: create a new class that encapsulates just that information
 
-## :triangular_flag_on_post:Temporal Decomposition:triangular_flag_on_post:
+### :triangular_flag_on_post:Temporal Decomposition:triangular_flag_on_post:
 
 In temporal decomposition, the structure of a system corresponds to the time
 order in which operations will occur.
@@ -176,20 +176,20 @@ order in which operations will occur.
   > execution, it gets encoded in multiple places, resulting in information
   > leakage.
 
-## :triangular_flag_on_post:Overexposure:triangular_flag_on_post:
+### :triangular_flag_on_post:Overexposure:triangular_flag_on_post:
 
 > If the API for a commonly used feature forces users to learn about other
 > features that are rarely used, this increases the **cognitive load** on users who
 > don't need the rarely used features.
 
-# General-Purpose Modules are Deeper
+## General-Purpose Modules are Deeper
 
 Questions: When Designing Modules,
 
 - General Purpose? -> might include facilities that are never actually needed.
 - Special Purpose? -> you can always refactor it to make it general purpose.
 
-## Make classes somewhat general-purpose
+### Make classes somewhat general-purpose
 
 **somewhat general-purpose** means that the module's functionality should
 reflect your current needs, but its interface should be general enough to
@@ -229,7 +229,7 @@ support multiple uses.
   deleted. **When the details are important it is better to make them explicit
   and as obvious as possible.**
 
-## How to design general-purpose class?
+### How to design general-purpose class?
 
 - What is the simplest interface that will cover all my current needs?
 
@@ -241,9 +241,9 @@ support multiple uses.
   purpose!!!
 - Is this API easy to use for my current needs? -> Don't go too far!!!
 
-# Different Layer, Different Abstraction
+## Different Layer, Different Abstraction
 
-## :triangular_flag_on_post:Pass-through methods:triangular_flag_on_post:
+### :triangular_flag_on_post:Pass-through methods:triangular_flag_on_post:
 
 When adjacent layers have similar abstractions, the problem often manifests
 itself in the form of `pass-through` methods. A pass-through method is one that
@@ -294,7 +294,7 @@ identical to that of the calling method**.
   - (7.1c) redistribute the functionality between the classes
   - (7.1d) if the class cannot be disentangled, merge them together
 
-## When is Duplications OK?
+### When is Duplications OK?
 
 Having methods with the same signature is not always bad. The important thing is
 that **each new method should contribute significant functionality**.
@@ -303,7 +303,7 @@ that **each new method should contribute significant functionality**.
   useful and distinct functionality.
 - several methods provide different implementations of the same interface.
 
-## Decorator Design Pattern
+### Decorator Design Pattern
 
 Decorator Design Pattern encourages API duplication across layers. The decorator
 objects provides an API similar or identical to the underlying object and its
@@ -325,7 +325,7 @@ Whether to use Decorator?
 - Whether the new functionality really needs to wrap the existing
   functionality.
 
-## Interface VS Implementation
+### Interface VS Implementation
 
 Another application of the "different layer, different abstraction" rule is that
 **the interface of a class should normally be different from its
@@ -357,7 +357,7 @@ character based interface, which makes the text class deeper and simplifies
 higher level code that uses the class.
 ```
 
-## Pass-through Variables
+### Pass-through Variables
 
 Another form of API duplication across layers is a pass-through variable, which
 is a variable that is passed down through the long chain of methods.
@@ -396,7 +396,7 @@ How to solve?
   - Without discipline, a context can turn into a huge grab-bag of data that creates **notorious dependencies** throughout the system.
   - Contexts may also create **thread-safety** issues
 
-# Pull Complexity Downwards
+## Pull Complexity Downwards
 
 Suppose you are developing a new module, and you discover a piece of **unavoidable** complexity. Which is better?
 
@@ -405,7 +405,7 @@ Suppose you are developing a new module, and you discover a piece of **unavoidab
 
 **It is more important for a module to have a simple interface than a simple implementation**
 
-## Examples: Configuration Parameters
+### Examples: Configuration Parameters
 
 > Configuration parameters are an example of moving complexity upwards instead
 > of down. Rather than determining a particular behavior internally, a class can
@@ -418,13 +418,13 @@ Suppose you are developing a new module, and you discover a piece of **unavoidab
 - Good Ways: allow user to tune system for their particular requirements and workloads.
 - Bad Ways: provide an easy excuse to avoid dealing with important issues and pass them on to someone else.
 
-## When to pull complexity downwards?
+### When to pull complexity downwards?
 
 - the **complexity** being pulled down is **closely related** to the class's **existing functionality**.
 - pulling the complexity down **simplifies** the class's **interface**
 - the goal is to minimize overall **system** complexity
 
-# :star:Better Together Or Better Apart
+## :star:Better Together Or Better Apart
 
 > When deciding whether to combine or separate, the goal is to reduce the complexity of the system as a whole and improve its modularity. It might appear that the best way to achieve this goal is to **divide** the system into **a large number of small components**.
 
@@ -437,7 +437,7 @@ Problem of Subdivision:
 
 When it makes sense to separate?
 
-## Bring together if information is shared
+### Bring together if information is shared
 
 Examples:
 
@@ -455,26 +455,26 @@ request without doing most of the work of parsing it (for example, it had to par
 header lines in order to identify the header containing the overall request length).
 ```
 
-## Bring together if it will simplify the interface
+### Bring together if it will simplify the interface
 
 > When two or more modules are combined into a single module, it may be
 > possible to define an interface for the new module that is simpler or easier to use
 > than the original interfaces. This often happens when the original modules each
 > implement part of the solution to a problem.
 
-## Bring together to eliminate duplication
+### Bring together to eliminate duplication
 
 If you find the same pattern of code repeated over and over, see if you can reorganize the code to eliminate the repetition.
 
 - Approach 1: refactor the repeated code to eliminate the repetition. -> Most effective when the replacement method has a simple signature.
 - Approach 2: refactor the code so that the snippet in question only needs to be executed in one place
 
-## :triangular_flag_on_post:Repetition:triangular_flag_on_post:
+### :triangular_flag_on_post:Repetition:triangular_flag_on_post:
 
 > If the same piece of code (or code that is almost the same) appears over and
 > over again, that’s a red flag that you haven’t found the right abstractions.
 
-## Separate general-purpose and special-purpose code
+### Separate general-purpose and special-purpose code
 
 If a module contains a mechanism that can be used for several different purposes,
 then it should provide just that one general-purpose mechanism.
@@ -493,7 +493,7 @@ Conclusion:
 - **the <u>lower layers</u> of a system tend to be more <u>general-purpose</u> and the <u>upper layers</u> more <u>special-purpose</u>.**
 - When you encounter a class that includes both general purpose and special purpose features for the same abstraction, see if the class can be separated into two classes.
 
-## :triangular_flag_on_post:Special-General Mixture:triangular_flag_on_post:
+### :triangular_flag_on_post:Special-General Mixture:triangular_flag_on_post:
 
 > This red flag occurs when a general-purpose mechanism also contains code
 > specialized for a particular use of that mechanism. This makes the mechanism
@@ -501,7 +501,7 @@ Conclusion:
 > and the particular use case: future modifications to the use case are likely to
 > require changes to the underlying mechanism as well.
 
-## Splitting and joining methods
+### Splitting and joining methods
 
 > It is better to divide an existing method into multiple smaller methods? Or, should two smaller methods be combined into one larger one?
 
@@ -522,11 +522,11 @@ Conclusion:
     not make sense very often -> result in callers having to deal with multiple methods instead of one.
     run the risk of ending up with several shallow methods(figure d).
 
-## :triangular_flag_on_post:Conjoined Methods:triangular_flag_on_post:
+### :triangular_flag_on_post:Conjoined Methods:triangular_flag_on_post:
 
 > It should be possible to understand each method independently. If you can’t understand the implementation of one method without also understanding the implementation of another, that’s a red flag. This red flag can occur in other contexts as well: if two pieces of code are physically separated, but each can only be understood by looking at the other, that is a red flag.
 
-# Define Errors Out Of Existence
+## Define Errors Out Of Existence
 
 Code that deals with special conditions is inherently harder to write than code that deals with normal cases, and developers often define exceptions without considering how they will be handled.
 
@@ -535,7 +535,7 @@ Code that deals with special conditions is inherently harder to write than code 
 
 Key: **Reduce the number of places where exceptions must be handled**
 
-## Why exceptions add complexity
+### Why exceptions add complexity
 
 When exception occurs:
 
@@ -549,13 +549,13 @@ When exception occurs:
 - Try catch boilerplate
 - Untested error handling code: `“code	that	hasn’t	been	executed	doesn’t	work”`
 
-## Too many exceptions
+### Too many exceptions
 
 - The exceptions thrown by a class are part of its interface; **classes with lots of exceptions have complex interfaces, and they are shallower than classes with fewer exceptions**.
 
 - The complexity of exceptions comes from the exception handling code. The best way to reduce the complexity damage caused by exception handling is to **reduce the number of places where exceptions have to be handled**.
 
-## Solution1: Define errors out of existence
+### Solution1: Define errors out of existence
 
 Examples:
 
@@ -573,7 +573,7 @@ Examples:
 
 **The best way to reduce bugs is to make software simpler**
 
-## Solution2: Mask exceptions
+### Solution2: Mask exceptions
 
 An exceptional condition is detected and **handled at a low level** in the system, so that higher levels of software need not be aware of the condition.
 
@@ -581,7 +581,7 @@ Example:
 
 > For instance, in a network transport protocol such as TCP, packets can be dropped for various reasons such as corruption and congestion. TCP masks packet loss by resending lost packets within its implementation, so all data eventually gets through and clients are unaware of the dropped packets
 
-## Solution3: Exception aggregation
+### Solution3: Exception aggregation
 
 The idea behind exception aggregation is to handle many exceptions with a single piece of code; rather than writing distinct handlers for many individual exceptions, handle them all in one place with a single handler.
 
@@ -603,14 +603,14 @@ Design 2: aggregate the catch clause to the higher dispatcher class
 
 **NOTE**: Exception aggregation works best if an exception propagates several levels up the stack before it is handled; this allows more exceptions from more methods to be handled in the same place.
 
-## Solution4: Just Crash?
+### Solution4: Just Crash?
 
 In most applications there will be certain errors that it's not worth trying to handle. Typically, these errors are difficult or impossible to handle and don't occur very often. The simplest thing to do in response to these errors is to print diagnostic information and then abort the application.
 
 - Out of Memory
 - I/O Error
 
-## Design special cases out of existence
+### Design special cases out of existence
 
 Special cases can result in code that is riddled with if statements, which make the code hard to understand and lead to bugs. Thus, special cases should be eliminated wherever possible. The best way to do this is by designing the normal case in a way that automatically handles the special cases without any extra code.
 
@@ -621,11 +621,11 @@ Approach1: startIdx, endIdx, no_selection_flag -> result in numerous checks to d
 
 Approach2: startIdx, endIdx -> startIdx == endIdx means a empty selection. No need to define a special case!!!
 
-# Design it Twice
+## Design it Twice
 
 Designing software is hard, so it’s unlikely that your first thoughts about how to structure a module or system will produce the best design. You’ll end up with a much better result if you consider multiple options for each major design decision: **design it twice**.
 
-# Why Write Comments? The Four Excuses
+## Why Write Comments? The Four Excuses
 
 - Good code is self-documenting -> BUT: **If users must read the code of a method in order to use it, then there is no abstraction**
 
@@ -637,11 +637,11 @@ Designing software is hard, so it’s unlikely that your first thoughts about ho
 
 :star:**The overall idea behind comments is to capture information that was in the mind of the designer but couldn't be represented in the code.**
 
-# Comments Should Describe Things that Aren't Obvious from the Code
+## Comments Should Describe Things that Aren't Obvious from the Code
 
 Developers should be able to understand the abstraction provided by a module without reading any code other than its externally visible declarations.
 
-## Pick conventions
+### Pick conventions
 
 - **Interface**: a `comment block` that immediately precedes the declaration of a
   module such as a class, data structure, function, or method. The comment
@@ -659,7 +659,7 @@ Developers should be able to understand the abstraction provided by a module wit
 - **Cross-module comment**: a comment describing dependencies that cross
   module boundaries.
 
-## Don't repeat the code
+### Don't repeat the code
 
 - Mistake 1:
 
@@ -714,11 +714,11 @@ Developers should be able to understand the abstraction provided by a module wit
    private static final int textHorizontalPadding = 4;
   ```
 
-## :triangular_flag_on_post:Comment Repeats Code:triangular_flag_on_post:
+### :triangular_flag_on_post:Comment Repeats Code:triangular_flag_on_post:
 
 > If the information in a comment is already obvious from the code next to the comment, then the comment isn’t helpful. One example of this is when the comment uses the same words that make up the name of the thing it is describing
 
-## Lower-level comments add precision
+### Lower-level comments add precision
 
 Comments augment the code by providing information at a different level of detail
 
@@ -780,7 +780,7 @@ Comments augment the code by providing information at a different level of detai
    private boolean receivedValidHeartbeat;
   ```
 
-## Higher-level comments enhance intuition
+### Higher-level comments enhance intuition
 
 Omit details and help reader to understand the overall intent and structure of the code. This approach is commonly used for comments inside methods, and for interface comments.
 
@@ -820,7 +820,7 @@ Better version:
 
 > But, great software designers can also step back from the details and think about a system at a higher level. This means deciding which aspects of the system are most important, and being able to ignore the low-level details and think about the system only in terms of its most fundamental characteristics. This is the essence of abstraction (finding a simple way to think about a complex entity), and it’s also what you must do when writing higher-level comments.
 
-## Interface documentation
+### Interface documentation
 
 - **If you want code that presents good abstractions, you must document those abstractions with comments.**
 

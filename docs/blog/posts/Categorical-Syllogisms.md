@@ -31,7 +31,7 @@ title: Categorical Syllogisms
 - [:star: Exposition of the Fifteen Valid Forms of the Categorical Syllogism](#star-exposition-of-the-fifteen-valid-forms-of-the-categorical-syllogism)
 <!--toc:end-->
 
-# Standard-Form Categorical Syllogisms
+## Standard-Form Categorical Syllogisms
 
 **Categorical Syllogisms** is defined as a **deductive argument** consisting of **three** categorical propositions that together
 **contain exactly three terms**, **each** of which **occurs** in exactly **two** of the
@@ -45,7 +45,7 @@ constituent propositions.
   1. its premises and its conclusion are all Standard-Form categorical syllogisms propositions(A,E,I or O).
   2. those propositions are arranged in a specified **standard order**.
 
-## Terms of the Syllogisms: Major, Minor, and Middle
+### Terms of the Syllogisms: Major, Minor, and Middle
 
 ```tex
 No heros are cowards.
@@ -70,7 +70,7 @@ Minor Premise: Some soldiers are cowards.
 **In a standard-form syllogism, the major premise is always stated first, the
 minor premise second, and the conclusion last.**
 
-## The mood of the Syllogism
+### The mood of the Syllogism
 
 **mood**: is determined by the types (A, E, I, O) of standard-form categorical
 propositions it contains. For example, the mood of the syllogism below is called
@@ -82,7 +82,7 @@ Some soldiers are cowards. (I)
 Therefore some soldiers are not heros. (O)
 ```
 
-## The figure of the Syllogism
+### The figure of the Syllogism
 
 The mood of a standard-form syllogism is not enough, by itself, to characterize
 its logical form. Look at the two syllogisms shown below, they have the **same
@@ -109,49 +109,49 @@ $$
 
 - Syllogisms can have four -- and **only** four -- possible different figures.
 
-  - First Figure
+- First Figure
 
-  $$
-  \begin{align*}
-  & M - P \\
-  & S - M \\
-  \hline
-  & \therefore S - P
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& M - P \\
+& S - M \\
+\hline
+& \therefore S - P
+\end{align*}
+$$
 
-  - Second Figure
+- Second Figure
 
-  $$
-  \begin{align*}
-  & P - M \\
-  & S - M \\
-  \hline
-  & \therefore S - P
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& P - M \\
+& S - M \\
+\hline
+& \therefore S - P
+\end{align*}
+$$
 
-  - Third Figure
+- Third Figure
 
-  $$
-  \begin{align*}
-  & M - P \\
-  & M - S \\
-  \hline
-  & \therefore S - P
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& M - P \\
+& M - S \\
+\hline
+& \therefore S - P
+\end{align*}
+$$
 
-  - Fourth Figure
+- Fourth Figure
 
-  $$
-  \begin{align*}
-  & P - M \\
-  & M - S \\
-  \hline
-  & \therefore S - P
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& P - M \\
+& M - S \\
+\hline
+& \therefore S - P
+\end{align*}
+$$
 
 - **Any standard-form syllogisms is completely described when we specify its mood
   and its figure.**
@@ -161,7 +161,7 @@ $$
   There are $4 * 4 *4 = 64$ moods and 4 figures. So, syllogisms have $64 * 4 =
   256$ forms.
 
-# The Formal Nature of Syllogistic Argument
+## The Formal Nature of Syllogistic Argument
 
 Deductive Logic: aim to discriminate valid arguments from invalid ones;
 
@@ -178,26 +178,26 @@ Examples:
 
 - AAA-1
 
-  $$
-  \begin{align*}
-  & \text{All M is P} \\
-  & \text{All S is M} \\
-  \hline
-  & \therefore \text{All S is P}
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& \text{All M is P} \\
+& \text{All S is M} \\
+\hline
+& \therefore \text{All S is P}
+\end{align*}
+$$
 
-  Any syllogism of the form **AAA-1** is valid, regardless of its subject
-  matter. We can substitute S, P and M to Athenians, humans and Greeks.
+Any syllogism of the form **AAA-1** is valid, regardless of its subject
+matter. We can substitute S, P and M to Athenians, humans and Greeks.
 
-  $$
-  \begin{align*}
-  & \text{All Greeks are humans} \\
-  & \text{All Athenians are Greeks} \\
-  \hline
-  & \therefore \text{All Athenians are humans}
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& \text{All Greeks are humans} \\
+& \text{All Athenians are Greeks} \\
+\hline
+& \therefore \text{All Athenians are humans}
+\end{align*}
+$$
 
 ---
 
@@ -209,35 +209,35 @@ Examples:
 
 - Examples:
 
-  $$
-  \begin{align*}
-  & \text{All liberals(P) are proponents of national health insurance(M)} \\
-  & \text{Some members of the administration(S) are propositions of national health
-  insurance(M)} \\
-  \hline
-  & \therefore \text{Some members of the administration are liberals}
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& \text{All liberals(P) are proponents of national health insurance(M)} \\
+& \text{Some members of the administration(S) are propositions of national health
+insurance(M)} \\
+\hline
+& \therefore \text{Some members of the administration are liberals}
+\end{align*}
+$$
 
-  The best way to expose its fallacious character is to construct another
-  argument that has exactly the same form but whose invalidity is immediately
-  apparent.
+The best way to expose its fallacious character is to construct another
+argument that has exactly the same form but whose invalidity is immediately
+apparent.
 
-  $$
-  \begin{align*}
-  & \text{All rabbits(P) are very fast runners(M)} \\
-  & \text{Some horses(S) are very fast runners(M)} \\
-  \hline
-  & \therefore \text{Some horses are rabbits.}
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& \text{All rabbits(P) are very fast runners(M)} \\
+& \text{Some horses(S) are very fast runners(M)} \\
+\hline
+& \therefore \text{Some horses are rabbits.}
+\end{align*}
+$$
 
-# Venn Diagram Technique for Testing Syllogisms
+## Venn Diagram Technique for Testing Syllogisms
 
 The syllogism can be drawn as three overlapping circles.
 ![Venn-Diagram-Syllogisms](assets/logic/venn-diagram-syllogisms.jpg)
 
-## Example: Venn Graph for AAA-1
+### Example: Venn Graph for AAA-1
 
 $$
 \begin{align*}
@@ -273,7 +273,7 @@ $$
 This syllogism is valid if and only if the **two premises imply or entail the
 conclusion** -- that is, if together they say what is said by the conclusion.
 
-## Diagram the universal premise first
+### Diagram the universal premise first
 
 $$
 \begin{align*}
@@ -292,7 +292,7 @@ $$
 > out along with $\bar S \bar P M$ in diagramming the universal premise, we would not have known whether
 > to insert an x in $SPM$ or in $S \bar P M$ or in both.
 
-## :star: Put x at border
+### :star: Put x at border
 
 $$
 \begin{align*}
@@ -323,7 +323,7 @@ $$
 that there is something that belongs in one of them, but does not indicate which
 one.**
 
-## Technique Summary
+### Technique Summary
 
 1. Label the circles of a three-circle Venn diagram with the syllogism's three
    terms.
@@ -334,50 +334,50 @@ one.**
 4. Inspect the diagram to see whether the diagram of the premises contains a
    diagram of the conclusion.
 
-## :star:Why Venn Diagram can tell the validity?
+### :star:Why Venn Diagram can tell the validity?
 
 - It was shown there that **one legitimate test of the validity or invalidity of a syllogism is to establish the validity or
   invalidity of a different syllogism that has exactly the same form**.
 
 - Example
 
-  $$
-  \begin{align*}
-  & \text{All successful people are people who are keenly interested in their work} \\
-  & \text{No people who are keenly interested in their work are people whose
-  attention is easily distracted when they are working} \\
-  \hline
-  & \therefore \text{No People whose attention is easily distracted when they are
-  working are successful}
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& \text{All successful people are people who are keenly interested in their work} \\
+& \text{No people who are keenly interested in their work are people whose
+attention is easily distracted when they are working} \\
+\hline
+& \therefore \text{No People whose attention is easily distracted when they are
+working are successful}
+\end{align*}
+$$
 
   <div style="text-align: center;">
     <img src="assets/logic/why-valid.jpg">
   </div>
 
-  > How does this Venn Diagram tell us that the given syllogism is valid?
+> How does this Venn Diagram tell us that the given syllogism is valid?
 
-  :star: We can construct a syllogism of the same form that involves objects
-  that are immediately present and directly available for our inspection.
+:star: We can construct a syllogism of the same form that involves objects
+that are immediately present and directly available for our inspection.
 
-  Here is the new syllogism:
+Here is the new syllogism:
 
-  $$
-  \begin{align*}
-  & \text{All points with in the unshaded part of the circle labeled P are
-  points within the unshaded part of the circle labeled M.} \\
-  & \text{No points within the unshaded part of the circle labeled M are points
-  within the unshaded part of the circle labeled S.} \\
-  \hline
-  & \therefore \text{No points within the unshaded part of the circle labeled S
-  are points within the unshaded part of the circle labeled P}
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& \text{All points with in the unshaded part of the circle labeled P are
+points within the unshaded part of the circle labeled M.} \\
+& \text{No points within the unshaded part of the circle labeled M are points
+within the unshaded part of the circle labeled S.} \\
+\hline
+& \therefore \text{No points within the unshaded part of the circle labeled S
+are points within the unshaded part of the circle labeled P}
+\end{align*}
+$$
 
-# Syllogistic Rules and Syllogistic Fallacies
+## Syllogistic Rules and Syllogistic Fallacies
 
-## Rule 1: Avoid Four Terms
+### Rule 1: Avoid Four Terms
 
 A valid standard-form categorical syllogism **must contain exactly three terms**,
 each of which is used in the **same sense** throughout the argument.
@@ -385,7 +385,7 @@ each of which is used in the **same sense** throughout the argument.
 If more than three terms are involved, the syllogism is invalid. The fallacy
 thus committed is called the **fallacy of four terms**.
 
-## Rule 2: Distribute the middle term in at least one premise
+### Rule 2: Distribute the middle term in at least one premise
 
 A term is "distributed" in a proposition when the proposition refers to all
 members of the class designated by that term. **If the middle term is not
@@ -394,31 +394,31 @@ cannot be made.**
 
 - Example
 
-  $$
-  \begin{align*}
-  & \text{All Russians were revolutionists} \\
-  & \text{All anarchists were revolutionists} \\
-  \hline
-  & \therefore \text{All anarchists were Russians}
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& \text{All Russians were revolutionists} \\
+& \text{All anarchists were revolutionists} \\
+\hline
+& \therefore \text{All anarchists were Russians}
+\end{align*}
+$$
 
-  > This syllogism is plainly invalid. Its mistake is that it asserts a connection between anarchists
-  > and Russians by relying on the links between each of those classes and the class of
-  > revolutionists—**but revolutionists is an undistributed term in both of the premises. The first
-  > premise does not refer to all revolutionists**, and neither does the second. “Revolutionists” is
-  > the middle term in this argument, and if the middle term is not distributed in at least one
-  > premise of a syllogism, that syllogism cannot be valid.
+> This syllogism is plainly invalid. Its mistake is that it asserts a connection between anarchists
+> and Russians by relying on the links between each of those classes and the class of
+> revolutionists—**but revolutionists is an undistributed term in both of the premises. The first
+> premise does not refer to all revolutionists**, and neither does the second. “Revolutionists” is
+> the middle term in this argument, and if the middle term is not distributed in at least one
+> premise of a syllogism, that syllogism cannot be valid.
 
-  This is called the **fallacy of the undistributed middle.**
+This is called the **fallacy of the undistributed middle.**
 
-  :star:We want to use middle term to link the minor and major term. Either the
-  subject or the predicate of the conclusion must be related to the **whole** of
-  the class designated by the middle term. If that is **not so**, it is possible
-  that **each of the terms in the conclusion may be connected to a different part**
-  of the **middle term**, and **not necessarily connected** with each other.
+:star:We want to use middle term to link the minor and major term. Either the
+subject or the predicate of the conclusion must be related to the **whole** of
+the class designated by the middle term. If that is **not so**, it is possible
+that **each of the terms in the conclusion may be connected to a different part**
+of the **middle term**, and **not necessarily connected** with each other.
 
-## :star:Rule 3: Any term distributed in the conclusion must be distributed in the premises.
+### :star:Rule 3: Any term distributed in the conclusion must be distributed in the premises.
 
 - To refer to all members of a class is to say more about that class than is said when only some of its members are
   referred to.
@@ -443,6 +443,7 @@ cannot be made.**
     $$
 
   - Illicit process of the minor term
+
     $$
     \begin{align*}
     & \text{All traditionally religious people are fundamentalists} \\
@@ -452,7 +453,7 @@ cannot be made.**
     \end{align*}
     $$
 
-## Rule 4: Avoid two negative premises
+### Rule 4: Avoid two negative premises
 
 - Any **negative proposition** (E or O) **denies class inclusion**; it asserts that some or **all of one class** is **excluded** from the
   **whole of the other class**.
@@ -466,7 +467,7 @@ cannot be made.**
   - However, any one of these relations may very well be established no matter
     how S and P are related.
 
-## Rule 5: If either premise is negative, the conclusion must be negative
+### Rule 5: If either premise is negative, the conclusion must be negative
 
 - **If the conclusion is affirmative**—that is, if it asserts that one of the two classes, S or P , is wholly or partly contained
   in the other—**it can only be inferred from premises that assert the existence of a third class that contains the first
@@ -477,18 +478,18 @@ cannot be made.**
 ---
 
 - The mistake here is called the **fallacy of drawing an affirmative conclusion from a negative premise.**
-- <h3>This fallacy is uncommon, since is quite easy to tell</h3>
+- This fallacy is uncommon, since is quite easy to tell
 
-  $$
-  \begin{align*}
-  & \text{No poets are accountants} \\
-  & \text{Some artists are poets} \\
-  \hline
-  & \therefore \text{Some artists are accountants}
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& \text{No poets are accountants} \\
+& \text{Some artists are poets} \\
+\hline
+& \therefore \text{Some artists are accountants}
+\end{align*}
+$$
 
-## Rule 6: From two universal premises no particular conclusion may be drawn
+### Rule 6: From two universal premises no particular conclusion may be drawn
 
 > In the Boolean interpretation of categorical propositions, universal propositions (A and
 > E) have no existential import, but particular propositions (I and O) do have such import. Wherever the Boolean
@@ -499,18 +500,18 @@ cannot be made.**
   of an argument do not assert the existence of anything at all, the conclusion
   inferred asserts the existence of something.
 - This mistake is called **existential fallacy**.
-- <h3>Example</h3>
+- Example
 
-  $$
-  \begin{align*}
-  & \text{All household pets are domestic animals} \\
-  & \text{No unicorns(no existential import) are domestic animals} \\
-  \hline
-  & \therefore \text{Some unicorns(have existential import) are not household pets}
-  \end{align*}
-  $$
+$$
+\begin{align*}
+& \text{All household pets are domestic animals} \\
+& \text{No unicorns(no existential import) are domestic animals} \\
+\hline
+& \therefore \text{Some unicorns(have existential import) are not household pets}
+\end{align*}
+$$
 
-# :star: Exposition of the Fifteen Valid Forms of the Categorical Syllogism
+## :star: Exposition of the Fifteen Valid Forms of the Categorical Syllogism
 
 - <h3>AAA-1  Barbara</h3>
 - <h3>EAE-1  Celarent</h3>

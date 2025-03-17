@@ -12,9 +12,9 @@ tags:
   - clean code
 ---
 
-# Meaningful Names
+## Meaningful Names
 
-## Use Intention-Revealing Names
+### Use Intention-Revealing Names
 
 - fields
 
@@ -53,7 +53,7 @@ tags:
   }
   ```
 
-## Avoid Disinformation
+### Avoid Disinformation
 
 - Avoid names whose entrenched meanings vary from our intended meaning.
 
@@ -77,7 +77,7 @@ tags:
 
 - Lowercase l and Uppercase O
 
-## Make Meaningful Distinctions
+### Make Meaningful Distinctions
 
 - Number-series naming `(a1, a2, a3)` -> noninformative
 - Noise words -> redundant
@@ -88,26 +88,26 @@ tags:
 
   eg: Function `getActiveAccount()`, `getActiveAccounts()`, `getActiveAccountInfo()`
 
-## Use Pronounceable Names
+### Use Pronounceable Names
 
-## Use Searchable Names
+### Use Searchable Names
 
 - `MAX_CLASSES_PER_STUDENT` is better than `7`
 - single-letter names can **ONLY** be used as local variables inside short
   methods
 
-## Avoid Encodings
+### Avoid Encodings
 
-### Hungarian(匈牙利) Notation -> Old Naming fashions
+#### Hungarian(匈牙利) Notation -> Old Naming fashions
 
 - type is the prefix of the variable name: `chName`
 
-### Memeber Prefixes
+#### Memeber Prefixes
 
 - class field member prefix with `m_`, eg: `private String m_name`
 - modern IDE has solved this through colorize members to make them distinct
 
-### Interfaces and Implementations
+#### Interfaces and Implementations
 
 - `IShapeFactory` or `ShapeFactory`
 
@@ -121,16 +121,16 @@ tags:
 
   Concrete Class: `ShapeFactoryImp`
 
-## Avoid Mental Mapping
+### Avoid Mental Mapping
 
 Readers shouldn’t have to mentally translate your names into other names they already
 know.
 
-## Class Names
+### Class Names
 
 noun and noun phrase, no verb
 
-## Method Names
+### Method Names
 
 have verb or verb phrase + predicates
 
@@ -142,27 +142,27 @@ Complex fulcrumPoint = Complex.FromRealNumber(23.0); // Better
 Complex fulcrumPoint = new Complex(23.0);
 ```
 
-## Pick One Word per Concept
+### Pick One Word per Concept
 
 - `fetch`, `retrieve`, `get` -> stick to one!
 
-## Don't Pun
+### Don't Pun
 
 Avoid using the same word for two purposes
 
 - Use `add` for concatenating
 - Use `insert` for puts a value into a collection
 
-## Use Solution Domain Names
+### Use Solution Domain Names
 
 Use names that programmer will understand rather than terms from customers
 
-## Use Problem Domain Names
+### Use Problem Domain Names
 
 When there is no programmer term for the names, use the name from the problem
 domain.
 
-## Add Meaningful Context
+### Add Meaningful Context
 
 - Most names are not meaningful in and of themsevles.
 
@@ -256,4 +256,4 @@ public class GuessStatisticsMessage {
 }
 ```
 
-## Don't Add Gratuitous(无理由的) Context
+### Don't Add Gratuitous(无理由的) Context

@@ -38,44 +38,44 @@ title: Categorical propositions
   - [:star: **Boolean Interpretation of categorical logic**](#star-boolean-interpretation-of-categorical-logic)
   <!--toc:end-->
 
-# Four Kinds of Categorical propositions
+## Four Kinds of Categorical propositions
 
-## A: Universal Affirmative propositions
+### A: Universal Affirmative propositions
 
 <center> All S is P </center>
 
-## E: Universal Negative propositions
+### E: Universal Negative propositions
 
 <center> No S is P </center>
 
-## I: Particular Affirmative propositions
+### I: Particular Affirmative propositions
 
 <center> Some S is P </center>
 
-## O: Particular Negative propositions
+### O: Particular Negative propositions
 
 <center> Some S is not P </center>
 
-# Quality, Quantity and Distribution
+## Quality, Quantity and Distribution
 
-## Quality
+### Quality
 
 - Affirmative(A, I): the propositions affirms some class inclusion, whether complete or
   partial.
 - Negative(E, O): the propositions denies some class inclusion, whether complete or
   partial.
 
-## Quantity
+### Quantity
 
 - Universal(A, E): the propositions refers to `all members` of the class as its subjects.
 - Particular(I, O): the propositions refers only to `some members` of the class designated
   by its subject.
 
-## General Schema
+### General Schema
 
 <center>Quantifier + Subject + Copula + Predicate</center>
 
-## Distribution
+### Distribution
 
 A proposition distributes a term if it refers to `all members` of the class
 designated by that term.
@@ -90,7 +90,7 @@ designated by that term.
 | **Subject term distributed**   | A: All S is P                | E: No S is P               |
 | **Subject term undistributed** | I: Some S is P               | O: Some S is not P         |
 
-# The traditional square of opposition
+## The traditional square of opposition
 
 - **Opposition**: Standard-form categorical propositions having the **same subject**
   terms and the **same predicate** may **differ from each other in quality or in
@@ -100,7 +100,7 @@ designated by that term.
 - Differ in quantity: subalternation
 - Differ in both quality and quantity: contradictories
 
-## Contradictories
+### Contradictories
 
 - Two propositions are contradictories if one is the **denial** or **negation** of the other.
 - They can not be both **true** and cannot be both **false**.
@@ -118,7 +118,7 @@ designated by that term.
   Both opposed in quality and quantity.
   ```
 
-## Contraries
+### Contraries
 
 - Two propositions are said to be contraries if **they cannot both be true**.
 - The **truth of one entails the falsity of the other**.
@@ -138,7 +138,7 @@ designated by that term.
   A and E can not both be true, but can both be false(Some poets are dreamers).
   ```
 
-### Contingent:star:
+#### Contingent:star:
 
 A and E cannot be regarded as contraries when **either the A or E proposition is
 necessarily true**, **if either is a logical or mathematical truth.**
@@ -155,7 +155,7 @@ they can be both false**.
 **`Contingent`**: Propositions that are **neither necessarily true nor necessarily
 false** are said to be `contingent`.
 
-## Subcontraries
+### Subcontraries
 
 - Two propositions are said to be `Subcontraries` if **they cannot both be false**,
 - **They may both be true**.
@@ -175,7 +175,7 @@ false** are said to be `contingent`.
   Here, I can never be true, so I and O can not be Subcontraries.
   ```
 
-## Subalternation
+### Subalternation
 
 - Two propositions have the **same subject** and **same predicate** terms, and
   **agree in quality** (both affirming or both denying) but **differ in quantity** (one universal, the other particular). They are called `Corresponding Propositions`.
@@ -194,11 +194,11 @@ false** are said to be `contingent`.
   O: Some whales are not fishes. (subalternation of E)
   ```
 
-## The Square of Opposition
+### The Square of Opposition
 
 ![square of opposition](assets/logic/square-of-opposition.jpg)
 
-## Immediate Inferences
+### Immediate Inferences
 
 - A is given as true:E is false; I is true; O is false.
 - E is given as true:A is false; I is false; O is true.
@@ -209,13 +209,13 @@ false** are said to be `contingent`.
 - I is given as false:A is false; E is true; O is true.
 - O is given as false:A is true; E is false; I is true.
 
-# Further Immediate Inferences
+## Further Immediate Inferences
 
 - Interchange S and P: **Conversion**
 - Change quality & turn P to non-P: **Obversion**
 - Interchange S and P & turn S, P to non-S, non-P: **Contraposition**
 
-## Conversion
+### Conversion
 
 `conversion` is an inference that proceeds by **interchanging the subject and
 predicate** terms of a proposition.
@@ -266,7 +266,7 @@ P4: Some women are writers.
   | I: Some S is P     | I: Some P is S                |
   | O: Some S is not P | Not valid                     |
 
-## Classes and Class Complements
+### Classes and Class Complements
 
 Every class has, associated with it, a **complementary class**, or **complement**, which is the collection of all things that do not belong to the original class.
 
@@ -285,7 +285,7 @@ Every class has, associated with it, a **complementary class**, or **complement*
   coward is not non-hero!!!
   ```
 
-## Obversion
+### Obversion
 
 **Obversion**: **change its quality** and **replace the predicate term with its
 complement**.
@@ -331,7 +331,7 @@ complement**.
   | I: Some S is P     | O: Some S is not non-P |
   | O: Some S is not P | I: Some S is non-P     |
 
-## Contraposition
+### Contraposition
 
 **Contraposition**:
 
@@ -419,9 +419,9 @@ complement**.
   | I: Some S is P     | not valid                                 |
   | O: Some S is not P | O: Some non-P is not non-S                |
 
-# Existential Import and the Interpretation of Categorical Propositions
+## Existential Import and the Interpretation of Categorical Propositions
 
-## Existential Import
+### Existential Import
 
 **Existential Import**: A proposition is said to have existential import if it
 typically is uttered to **assert the existence of objects of some kind**.
@@ -502,7 +502,7 @@ typically is uttered to **assert the existence of objects of some kind**.
     > express and defend it without wanting to presuppose that there actually are any bodies that are
     > not acted on by external forces.
 
-## :star: **Boolean Interpretation of categorical logic**
+### :star: **Boolean Interpretation of categorical logic**
 
 1. **I** and **O** propositions continue to **have existential import** in the
    **Boolean Interpretation**.
@@ -596,7 +596,7 @@ typically is uttered to **assert the existence of objects of some kind**.
 > Any argument that relies on this mistaken assumption is said to commit the **fallacy of existential
 > assumption**, or more briefly, the existential fallacy.
 
-# Symbolism and Diagrams for Categorical Propositions
+## Symbolism and Diagrams for Categorical Propositions
 
 - To say that a class designated by the term S has no members:
   $$ S = 0 $$
@@ -607,7 +607,7 @@ typically is uttered to **assert the existence of objects of some kind**.
 - To symbolize a class designated by the term non-S:
   $$ \bar S$$
 
-## Symbolic Representation of Categorical Propositions
+### Symbolic Representation of Categorical Propositions
 
 | Form | Propositon      | Symbolic Representation |
 | ---- | --------------- | ----------------------- |
@@ -616,6 +616,6 @@ typically is uttered to **assert the existence of objects of some kind**.
 | I    | Some S is P     | $S P \neq 0$            |
 | O    | Some S is not P | $S \bar P \neq 0$       |
 
-## Venn Graph Representation
+### Venn Graph Representation
 
 ![Venn-Graph-Representation](assets/logic/venn-graph-representation.jpg)

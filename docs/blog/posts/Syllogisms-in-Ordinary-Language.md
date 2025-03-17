@@ -7,7 +7,7 @@ date: 2023-06-27
 title: Syllogisms in Ordinary Language
 ---
 
-# Syllogistic Arguments
+## Syllogistic Arguments
 
 Daily language has three kinds of **deviations**
 
@@ -24,9 +24,9 @@ Daily language has three kinds of **deviations**
 
   <!-- more -->
 
-# Translating Categorical Propositions into Standard Form
+## Translating Categorical Propositions into Standard Form
 
-## :star: Singular Propositions
+### :star: Singular Propositions
 
 Propositions affirm or deny that a specific individual or object belongs to a
 given class.
@@ -56,7 +56,7 @@ This table is not an antique.
 - In this way, the **distribution** and **existential import** of Singular
   Propositions are fulfilled.
 
-## Categorical Propositions That have Adjectives or Adjectival Phrases as Predicates, Rather than Substantives or Class Terms.
+### Categorical Propositions That have Adjectives or Adjectival Phrases as Predicates, Rather than Substantives or Class Terms.
 
 ```tex
 Some flowers are beautiful.
@@ -66,7 +66,7 @@ Some flowers are beautiful things.
 No warships are things available for active duty
 ```
 
-## Categorical Propositions Whose Main Verbs Are Other than the Standard-Form Copula "To Be"
+### Categorical Propositions Whose Main Verbs Are Other than the Standard-Form Copula "To Be"
 
 ```tex
 All people seek recogniton.
@@ -76,7 +76,7 @@ All people are seekers fo recogniton.
 Some people are Greek-wine drinkers
 ```
 
-## Statements in Which the Standard-Form Ingredients Are All Present But Not Arranged in Standard-Form Order
+### Statements in Which the Standard-Form Ingredients Are All Present But Not Arranged in Standard-Form Order
 
 ```tex
 Racehorses are all thoroughbreds.

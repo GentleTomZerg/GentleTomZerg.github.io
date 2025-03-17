@@ -7,7 +7,7 @@ date: 2023-05-25
 title: Fallacies of Logic
 ---
 
-# Fallacies of relevance
+## Fallacies of relevance
 
 - The appeal to the populace (ad populum):
 
@@ -47,7 +47,7 @@ title: Fallacies of Logic
   When correct reasoning is replaced by the mistaken refutation of a position
   that was not really at issue.
 
-# Fallacies of defective induction
+## Fallacies of defective induction
 
 - The argument from ignorances (ad ignorantiam):
 
@@ -71,7 +71,7 @@ title: Fallacies of Logic
   When one moves carelessly or too quickly from one or a vary few instances to a
   broad or universal claim.
 
-# Fallacies of presumptions
+## Fallacies of presumptions
 
 - Accident:
 
@@ -88,7 +88,7 @@ title: Fallacies of Logic
   When one assumes in the premises of an argument the truth of what one seeks to
   establish in the conclusion of that same argument.
 
-# Fallacies of ambiguity
+## Fallacies of ambiguity
 
 - Equivocation(歧义):
 
