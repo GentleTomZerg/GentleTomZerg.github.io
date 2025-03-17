@@ -30,6 +30,8 @@ title: Philosophy of Software Design
 - **Dependencies**
 - **Obscurity**
 
+<!-- more -->
+
 ## Complexity is Incremental
 
 # Strategic & Tactical Programming

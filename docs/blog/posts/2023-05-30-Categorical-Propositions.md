@@ -14,6 +14,7 @@ title: Categorical propositions
   - [E: Universal Negative propositions](#e-universal-negative-propositions)
   - [I: Particular Affirmative propositions](#i-particular-affirmative-propositions)
   - [O: Particular Negative propositions](#o-particular-negative-propositions)
+  <!-- more -->
 - [Quality, Quantity and Distribution](#quality-quantity-and-distribution)
   - [Quality](#quality)
   - [Quantity](#quantity)

@@ -13,6 +13,7 @@ title: Categorical Syllogisms
   - [Terms of the Syllogisms: Major, Minor, and Middle](#terms-of-the-syllogisms-major-minor-and-middle)
   - [The mood of the Syllogism](#the-mood-of-the-syllogism)
   - [The figure of the Syllogism](#the-figure-of-the-syllogism)
+  <!-- more -->
 - [The Formal Nature of Syllogistic Argument](#the-formal-nature-of-syllogistic-argument)
 - [Venn Diagram Technique for Testing Syllogisms](#venn-diagram-technique-for-testing-syllogisms)
   - [Example: Venn Graph for AAA-1](#example-venn-graph-for-aaa-1)

@@ -22,6 +22,8 @@ Daily language has three kinds of **deviations**
 - Third deviation: The component propositions of a syllogistic argument in
   ordinary language may not all be standard-form propositions.
 
+  <!-- more -->
+
 # Translating Categorical Propositions into Standard Form
 
 ## :star: Singular Propositions

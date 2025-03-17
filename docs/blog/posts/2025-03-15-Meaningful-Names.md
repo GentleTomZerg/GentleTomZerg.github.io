@@ -41,6 +41,8 @@ tags:
   }
   ```
 
+  <!-- more -->
+
   ```java
   public List<Cell> getFlaggedCells() {
     List<Cell> flaggedCells = new ArrayList<Cell>();
