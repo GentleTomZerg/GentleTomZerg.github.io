@@ -12,7 +12,7 @@ tags:
   - dotfiles
 ---
 
-# How to use this configuration file?
+## How to use this configuration file?
 
 > Man was born free, and he is everywhere in chains
 
@@ -27,17 +27,17 @@ Type this to the new laptop terminal, and we are ready to go!
 ```bash
 export {http,https,ftp,all}_proxy="http://IPhone_inner_ip:Proxy_port"
 export {HTTP,HTTPS,FTP,ALL}_PROXY="http://IPhone_inner_ip:Proxy_port"
-# Eg:
+## Eg:
 export {http,https,ftp,all}_proxy="http://192.168.1.6:1082"
 export {HTTP,HTTPS,FTP,ALL}_PROXY="http://192.168.1.6:1082"
 ```
 
-## New Challenges
+### New Challenges
 
 Docker Hub is not easy to reach now, we need to set proxy for our docker
 
 ```shell
-# /etc/docker/daemon.json
+## /etc/docker/daemon.json
 mkdir /etc/docker
 echo '{
   "proxies": {
@@ -48,14 +48,14 @@ echo '{
 ```
 
 ```bash
-# ~/.ssh/config
+## ~/.ssh/config
 Host github.com
   Hostname ssh.github.com
   User git
   Port 443
 ```
 
-## Start Configuration
+### Start Configuration
 
 1. Install necessary packages
 
@@ -69,15 +69,15 @@ zsh-syntax-highlighting \
 zsh-theme-powerlevel10k-git \
 zsh-theme-powerlevel10k-git-debug \
 
-# For terminal and polybar
+## For terminal and polybar
 sudo pacman -S ttf-firacode-nerd
 sudo pacman -S ttf-jetbrains-mono-nerd
 
-# For AUR Google-Chrome
+## For AUR Google-Chrome
 sudo pacman -S noto-fonts-cjk
 sudo pacman -S noto-fonts-emoji
 
-# For clash-meta
+## For clash-meta
 yay -S mihomo
 ```
 
@@ -85,15 +85,15 @@ yay -S mihomo
 
 ```bash
 ssh-kgen -t ed25519 -C "997707754@qq.com"
-# add the content in ~/.ssh/id_ed25519.pub to github ssh key
+## add the content in ~/.ssh/id_ed25519.pub to github ssh key
 mkdir ~/stow
 cd stow
 git clone git@github.com:GentleTomZerg/.dotfiles.git ~/stow
 
 stow clash i3 ideavimrc kitty neovim picom polybar README.md rofi tools vscode Xmodmap Xresources yazi zshrc
 
-# Vscode Configurtion
-# Different types of vscode has different path to of user settings
+## Vscode Configurtion
+## Different types of vscode has different path to of user settings
 cd /path/to/vscode/User/settings/directory
 ln -s $HOME/stow/vscode/keybindings.json ./keybindings.json
 ln -s $HOME/stow/vscode/settings.json ./settings.json
@@ -199,7 +199,7 @@ ln -s $HOME/stow/vscode/settings.json ./settings.json
     7295 systemctl status firewalld
     ```
 
-# Grub
+## Grub
 
 We can config grub under the path /etc/default/grub
 Below is a configuration example.
@@ -209,72 +209,72 @@ Below is a configuration example.
 
 ```bash
 
-# GRUB boot loader configuration
+## GRUB boot loader configuration
 
 GRUB_DEFAULT="0"
 GRUB_TIMEOUT="5"
 GRUB_DISTRIBUTOR="EndeavourOS"
 GRUB_CMDLINE_LINUX_DEFAULT="nowatchdog nvme_load=YES loglevel=3 i8042.dumbkbd"
-# GRUB_CMDLINE_LINUX="rhgb quiet i8042.dumbkbd"
+## GRUB_CMDLINE_LINUX="rhgb quiet i8042.dumbkbd"
 
-# Preload both GPT and MBR modules so that they are not missed
+## Preload both GPT and MBR modules so that they are not missed
 GRUB_PRELOAD_MODULES="part_gpt part_msdos"
 
-# Uncomment to enable booting from LUKS encrypted devices
-#GRUB_ENABLE_CRYPTODISK="y"
+## Uncomment to enable booting from LUKS encrypted devices
+##GRUB_ENABLE_CRYPTODISK="y"
 
-# Set to 'countdown' or 'hidden' to change timeout behavior,
-# press ESC key to display menu.
+## Set to 'countdown' or 'hidden' to change timeout behavior,
+## press ESC key to display menu.
 GRUB_TIMEOUT_STYLE="menu"
 
-# Uncomment to use basic console
+## Uncomment to use basic console
 GRUB_TERMINAL_INPUT="console"
 
-# Uncomment to disable graphical terminal
-#GRUB_TERMINAL_OUTPUT="console"
+## Uncomment to disable graphical terminal
+##GRUB_TERMINAL_OUTPUT="console"
 
-# The resolution used on graphical terminal
-# note that you can use only modes which your graphic card supports via VBE
-# you can see them in real GRUB with the command `videoinfo'
+## The resolution used on graphical terminal
+## note that you can use only modes which your graphic card supports via VBE
+## you can see them in real GRUB with the command `videoinfo'
 GRUB_GFXMODE="auto"
 
-# Uncomment to allow the kernel use the same resolution used by grub
+## Uncomment to allow the kernel use the same resolution used by grub
 GRUB_GFXPAYLOAD_LINUX="keep"
 
-# Uncomment if you want GRUB to pass to the Linux kernel the old parameter
-# format "root=/dev/xxx" instead of "root=/dev/disk/by-uuid/xxx"
-#GRUB_DISABLE_LINUX_UUID="true"
+## Uncomment if you want GRUB to pass to the Linux kernel the old parameter
+## format "root=/dev/xxx" instead of "root=/dev/disk/by-uuid/xxx"
+##GRUB_DISABLE_LINUX_UUID="true"
 
-# Uncomment to disable generation of recovery mode menu entries
+## Uncomment to disable generation of recovery mode menu entries
 GRUB_DISABLE_RECOVERY="true"
 
-# Uncomment and set to the desired menu colors.  Used by normal and wallpaper
-# modes only.  Entries specified as foreground/background.
-#GRUB_COLOR_NORMAL="light-blue/black"
-#GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
+## Uncomment and set to the desired menu colors.  Used by normal and wallpaper
+## modes only.  Entries specified as foreground/background.
+##GRUB_COLOR_NORMAL="light-blue/black"
+##GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
 
-# Uncomment one of them for the gfx desired, a image background or a gfxtheme
+## Uncomment one of them for the gfx desired, a image background or a gfxtheme
 GRUB_BACKGROUND="/usr/share/endeavouros/splash.png"
-#GRUB_THEME="/path/to/gfxtheme"
+##GRUB_THEME="/path/to/gfxtheme"
 
-# Uncomment to get a beep at GRUB start
-#GRUB_INIT_TUNE="480 440 1"
+## Uncomment to get a beep at GRUB start
+##GRUB_INIT_TUNE="480 440 1"
 
-# Uncomment to make GRUB remember the last selection. This requires
-# setting 'GRUB_DEFAULT=saved' above.
-#GRUB_SAVEDEFAULT="true"
+## Uncomment to make GRUB remember the last selection. This requires
+## setting 'GRUB_DEFAULT=saved' above.
+##GRUB_SAVEDEFAULT="true"
 
-# Uncomment to disable submenus in boot menu
+## Uncomment to disable submenus in boot menu
 GRUB_DISABLE_SUBMENU="false"
 
-# Probing for other operating systems is disabled for security reasons. Read
-# documentation on GRUB_DISABLE_OS_PROBER, if still want to enable this
-# functionality install os-prober and uncomment to detect and include other
-# operating systems.
+## Probing for other operating systems is disabled for security reasons. Read
+## documentation on GRUB_DISABLE_OS_PROBER, if still want to enable this
+## functionality install os-prober and uncomment to detect and include other
+## operating systems.
 GRUB_DISABLE_OS_PROBER="false"
 ```
 
-# SDDM
+## SDDM
 
 Migrate from `lightdm` to `sddm`
 
@@ -301,7 +301,7 @@ systemctl enable sddm.service
 systemctl start sddm.service
 ```
 
-# Timeshift
+## Timeshift
 
 Backup arch system!!!
 
@@ -310,7 +310,7 @@ sudo pacman -S timeshift
 yay -S timeshit autosnap
 ```
 
-# Some useful tools:
+## Some useful tools:
 
 - cpufetch
 - lsd
@@ -318,7 +318,7 @@ yay -S timeshit autosnap
 - speedtest
 - auto-cpufreq
 
-# Hyprland
+## Hyprland
 
 ```bash
 
