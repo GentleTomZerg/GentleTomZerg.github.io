@@ -280,3 +280,10 @@ public class GuessStatisticsMessage {
 </div>
 
 ### Don't Add Gratuitous(无理由的) Context
+
+🚫 Example 1: "GAS Station Deluxe" Application -> prefix every class with `GSD`
+
+🚫 Example 2: "MailingAddress" in GSD's accounting module -> `GSDAccountAddress`
+
+- Short names are generally better than longer ones, so long as they are clear.
+- Add no more context to a name than is necessary.
