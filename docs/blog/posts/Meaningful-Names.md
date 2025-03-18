@@ -5,7 +5,7 @@ authors:
   - GentleTomZerg
 date:
   created: 2025-03-15
-  updated: 2025-03-15
+  updated: 2025-03-18
 categories:
   - Software Engineering
 tags:
@@ -31,7 +31,9 @@ tags:
   `implicity` of the code: the degree to which the context is not explicit in the
   code itself.
 
-  ```java
+  <div class="grid" markdown>
+
+  ```java title="bad example"
   public List<int[]> getThem() {
     List<int[]> list1 = new ArrayList<int[]>();
     for (int[] x : theList)
@@ -41,9 +43,7 @@ tags:
   }
   ```
 
-  <!-- more -->
-
-  ```java
+  ```java title="good example"
   public List<Cell> getFlaggedCells() {
     List<Cell> flaggedCells = new ArrayList<Cell>();
     for (Cell cell : gameBoard)
@@ -52,6 +52,10 @@ tags:
     return flaggedCells;
   }
   ```
+
+  </div>
+
+  <!-- more -->
 
 ### Avoid Disinformation
 
@@ -196,8 +200,9 @@ class Address {
 
 Example 2: Variables in Function
 
-```java
-// Variables with unclear context
+<div class="grid" markdown>
+    
+```java title="Variables with unclear context"
 // number, verb, pluralModifier must be infered from the code
 private void printGuessStatistics(char candidate, int count) {
   String number;
@@ -219,8 +224,9 @@ private void printGuessStatistics(char candidate, int count) {
   String guessMessage = String.format( "There %s %s %s%s", verb, number, candidate, pluralModifier);
   print(guessMessage);
 }
+```
 
-// Variables have a context
+```java title="Variables have a context
 public class GuessStatisticsMessage {
   private String number;
   private String verb;
@@ -233,9 +239,9 @@ public class GuessStatisticsMessage {
     if (count == 0) {
       thereAreNoLetters();
     } else if (count == 1) {
-      thereIsOneLetter();
+        thereIsOneLetter();
     } else {
-      thereAreManyLetters(count);
+        thereAreManyLetters(count);
     }
   }
   private void thereAreManyLetters(int count) {
@@ -255,5 +261,7 @@ public class GuessStatisticsMessage {
   }
 }
 ```
+
+</div>
 
 ### Don't Add Gratuitous(无理由的) Context

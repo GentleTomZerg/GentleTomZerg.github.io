@@ -2,19 +2,37 @@
 
 💻 **Passionate Programmer** | 🎨 Hobbyist Painter | 📖 Philosophy Enthusiast
 
-Here’s the entrance to my **[🚀 Blog](/blog)**, where I share my **study notes** 📝 and **daily thoughts** 💭.
-
-## 🛠️ Programming Languages
-
-- ☕ `Java`
-- 🐍 `Python`
-- ⚡ `C/C++`
+Here’s the entrance to my **[🚀 Blog](blog/index.md)**, where I share my **study notes** 📝 and **daily thoughts** 💭.
 
 ## 🖥️ Workstation
 
-🖥️ **Operating System**: **LINUX** _(I use Arch, btw 🤓)_
+<div class="grid" markdown>
+  
+**LINUX** _I use Arch(1), btw 🤓_
+{.card .annotate}
 
-🛠️ Click to check out my **Linux Config** : [📝 My-Linux-Config](blog/posts/My-Linux-Config.md)
+1. Actually I use endeavouros, not a pure Arch, forgive me!
+
+---
+
+[📝 My-Linux-Config](blog/posts/My-Linux-Config.md)
+{.card}
+
+</div>
+
+## 🛠️ Programming Languages
+
+<div class="grid cards" markdown>
+
+- ☕ **Java** earn for a living
+
+- 🐍 **Python** write interesting scripts
+
+- ⚡ **C/C++** explore computer science basics
+
+- 📜 **Shell** enjoy linux
+
+</div>
 
 ## 🎨 Other Interests
 

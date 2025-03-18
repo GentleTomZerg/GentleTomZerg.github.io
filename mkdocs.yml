@@ -22,9 +22,12 @@ theme:
     - navigation.instant.progress
     - navigation.tabs
     - navigation.path
-    # - toc.integrate
+    - toc.integrate
     - search.suggest
     - search.share
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
 plugins:
   - blog
   - search
