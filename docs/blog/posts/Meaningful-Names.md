@@ -61,23 +61,24 @@ tags:
 
 - Avoid names whose entrenched meanings vary from our intended meaning.
 
-  eg: `hp`, `aix`, `sco` -> Unix platforms or variants
+      eg: `hp`, `aix`, `sco` -> Unix platforms or variants
 
 - Name for a group of things
 
-  eg: `accountList` -> the data structure may not be a list. Better names:
-  `accountGroup`, `bunchOfAccounts` Or `accounts`
+      eg: `accountList` -> the data structure may not be a list. Better names:
+
+      `accountGroup`, `bunchOfAccounts` Or `accounts`
 
 - Name with small difference
 
-  eg: `XYZControllerForEfficientHandlingOfStrings` and
-  `XYZControllerForEfficientStorageOfStrings`
+      eg: `XYZControllerForEfficientHandlingOfStrings` and
+      `XYZControllerForEfficientStorageOfStrings`
 
 - Spelling similar concepts similarly is `information`; Using inconsistent
   spellings is `disinformation`
 
-  eg: IDE will prompt all desired functions that can do replacment if we enter
-  "replace"
+      eg: IDE will prompt all desired functions that can do replacment if we enter
+      "replace"
 
 - Lowercase l and Uppercase O
 
@@ -86,11 +87,11 @@ tags:
 - Number-series naming `(a1, a2, a3)` -> noninformative
 - Noise words -> redundant
 
-  eg: Class `Product`, `ProductInfo`, `ProductData`
+      eg: Class `Product`, `ProductInfo`, `ProductData`
 
-  eg: Class `Name`, `NameString`
+      eg: Class `Name`, `NameString`
 
-  eg: Function `getActiveAccount()`, `getActiveAccounts()`, `getActiveAccountInfo()`
+      eg: Function `getActiveAccount()`, `getActiveAccounts()`, `getActiveAccountInfo()`
 
 ### Use Pronounceable Names
 
@@ -138,13 +139,15 @@ noun and noun phrase, no verb
 
 have verb or verb phrase + predicates
 
-**NOTE**: when facing with constructors overloaded, static factory methods with
-names that describes the arguments is better.
+!!! note "Give Overloaded Constructors Name"
 
-```java
-Complex fulcrumPoint = Complex.FromRealNumber(23.0); // Better
-Complex fulcrumPoint = new Complex(23.0);
-```
+    when facing with constructors overloaded, static factory methods with
+    names that describes the arguments is better.
+
+    ```java
+    Complex fulcrumPoint = Complex.FromRealNumber(23.0); // Better
+    Complex fulcrumPoint = new Complex(23.0);
+    ```
 
 ### Pick One Word per Concept
 
@@ -177,56 +180,68 @@ domain.
 
 Example 1: Address Variables
 
-```java
-// Together seems to be the attributes of address
-// What if we use state alone in a method?
-String firstName;
-String lastName;
-String street;
-String houseNumber;
-String city;
-String state;
+=== "Variables Together As Context"
 
-// Solution 1: Prefix
-String addrFirstName;
-String addrLastName;
+    ```java
+    // Together seems to be the attributes of address
+    // What if we use state alone in a method?
+    String firstName;
+    String lastName;
+    String street;
+    String houseNumber;
+    String city;
+    String state;
+    ```
 
-// Solution 2: Class
-class Address {
-  String firstName;
-  ....
-}
-```
+=== "Prefix As Context"
+
+    ```java
+    String addrFirstName;
+    String addrLastName;
+    ...
+    ```
+
+=== "Class as Context"
+
+    ```java
+    class Address {
+      String firstName;
+      String lastName;
+      String street;
+      ....
+    }
+
+    ```
 
 Example 2: Variables in Function
 
 <div class="grid" markdown>
-    
+
 ```java title="Variables with unclear context"
 // number, verb, pluralModifier must be infered from the code
 private void printGuessStatistics(char candidate, int count) {
-  String number;
-  String verb;
-  String pluralModifier;
-  if (count == 0) {
-    number = "no";
-    verb = "are";
-  pluralModifier = "s";
-  } else if (count == 1) {
-    number = "1";
-    verb = "is";
-    pluralModifier = "";
-  } else {
-    number = Integer.toString(count);
-    verb = "are";
-    pluralModifier = "s";
-  }
-  String guessMessage = String.format( "There %s %s %s%s", verb, number, candidate, pluralModifier);
-  print(guessMessage);
+String number;
+String verb;
+String pluralModifier;
+if (count == 0) {
+number = "no";
+verb = "are";
+pluralModifier = "s";
+} else if (count == 1) {
+number = "1";
+verb = "is";
+pluralModifier = "";
+} else {
+number = Integer.toString(count);
+verb = "are";
+pluralModifier = "s";
+}
+String guessMessage = String.format( "There %s %s %s%s", verb, number, candidate, pluralModifier);
+print(guessMessage);
 }
 ```
 
-```java title="Variables have a context
+```java title="Variables have a context"
 public class GuessStatisticsMessage {
   private String number;
   private String verb;
