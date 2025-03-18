@@ -2,4 +2,5 @@ authors:
   GentleTomZerg:
     name: Tom
     description: Creator
-    avatar: https://gentletomzerg.github.io/blog/posts/assets/paintings/avatar.jpeg
+    # Use github avatar link
+    avatar: https://avatars.githubusercontent.com/u/51043088?s=400&u=e233a4511c1fc3a60a8afcc9b5a18839c3a1bb9e&v=4
