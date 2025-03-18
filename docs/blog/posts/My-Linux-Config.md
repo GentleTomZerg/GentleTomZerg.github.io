@@ -36,7 +36,7 @@ export {HTTP,HTTPS,FTP,ALL}_PROXY="http://192.168.1.6:1082"
 
 Docker Hub is not easy to reach now, we need to set proxy for our docker
 
-```shell
+```bash
 ## /etc/docker/daemon.json
 mkdir /etc/docker
 echo '{
@@ -55,9 +55,9 @@ Host github.com
   Port 443
 ```
 
-### Start Configuration
+## Start Configuration
 
-1. Install necessary packages
+### Install necessary packages
 
 ```bash
 sudo pacman -S \
@@ -66,8 +66,7 @@ lazygit \
 neovim \
 zsh-autosuggestions \
 zsh-syntax-highlighting \
-zsh-theme-powerlevel10k-git \
-zsh-theme-powerlevel10k-git-debug \
+starship
 
 ## For terminal and polybar
 sudo pacman -S ttf-firacode-nerd
@@ -81,7 +80,7 @@ sudo pacman -S noto-fonts-emoji
 yay -S mihomo
 ```
 
-2. Stow the configuration
+### Download and Stow the configuration
 
 ```bash
 ssh-kgen -t ed25519 -C "997707754@qq.com"
@@ -99,7 +98,7 @@ ln -s $HOME/stow/vscode/keybindings.json ./keybindings.json
 ln -s $HOME/stow/vscode/settings.json ./settings.json
 ```
 
-3. Migrate to ZSH
+### Migrate to ZSH
 
 - type zsh in bash
 - enter chsh
@@ -108,16 +107,16 @@ ln -s $HOME/stow/vscode/settings.json ./settings.json
 - logout from i3wm and login again
 - now zsh shell is the default shell
 
-4. Install oh-my-zsh
+### Install oh-my-zsh
 
 - go to oh-my-zsh paste the download script and execute
 - oh-my-zsh will make the .zshrc symlinked by stow as a old version and provide a new version.
 - delete the old and new version
 - stow zshrc again
 
-5. Clash / Mihomo
+### Clash / Mihomo
 
-   Now, we can use Mihomo on the new laptop!!!
+Now, we can use Mihomo on the new laptop!!!
 
 - ~~Add proxy subscribe url to /stow/clash/.config/clash/urls.txt~~
 - ~~Type `updateproxy` in terminal and follow instructions~~
@@ -127,14 +126,15 @@ ln -s $HOME/stow/vscode/settings.json ./settings.json
 - Type `startproxy` in terminal and follow instructions
 - Mihomo Dashboard
 
-  ```bash
-  git clone -b gh-pages git@github.com:MetaCubeX/metacubexd.git
-  ```
+```bash
+git clone -b gh-pages git@github.com:MetaCubeX/metacubexd.git
+```
 
-6. AstroNvim
-   Just Google it and follow instructions!
+### AstroNvim
 
-7. Chinese input
+Just Google it and follow instructions!
+
+### Chinese input
 
 - install `fcitx5`
 - install `fcitx5-chinese-addons`
@@ -155,7 +155,33 @@ ln -s $HOME/stow/vscode/settings.json ./settings.json
 - Remember to **Enable Cloud Pinyin** in fcitx5-config
 - Dictionary: Follow the link [fcitx5-pinyin-zhwiki](https://github.com/felixonmars/fcitx5-pinyin-zhwiki) and [mw2fcitx](https://github.com/outloudvi/mw2fcitx)
 
-8. Display
+### Rofi
+
+There are some really nice themes and applets written for rofi, download from here:
+[rofi-collection](https://github.com/adi1090x/rofi)
+
+Follow the link and setup as instructed. The `i3wm` and `polybar` will use this preconfigured repository.
+
+### Bluetooth
+
+    ```bash
+    sudo systemctl start bluetooth
+    sudo systemctl enable bluetooth
+    ```
+
+### Kde-Connect
+
+    To enable kdeconnect, the linux host machine needs to open specified ports and protocol for kdeconnect
+
+    ```bash
+    sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
+    7266 sudo firewall-cmd --reload
+    7278 sudo firewall-cmd --list-all
+    7282 sudo systemctl enable firewalld.service
+    7295 systemctl status firewalld
+    ```
+
+### Display(For Xorg)
 
 - first use `arandr` to set the monitors. (GUI tool)
 - then use `autorandr` to save the current monitors config (`autorandr --save [name]`)
@@ -172,32 +198,6 @@ ln -s $HOME/stow/vscode/settings.json ./settings.json
   - Use arandr to generate a basic display shell script and make modifications
   - Change the refresh rate: `--rate 144.00`
   - write script to let the script execute when start up
-
-9. Rofi
-
-   There are some really nice themes and applets written for rofi, download from here:
-   [rofi-collection](https://github.com/adi1090x/rofi)
-
-   Follow the link and setup as instructed. The `i3wm` and `polybar` will use this preconfigured repository.
-
-10. Bluetooth
-
-    ```bash
-    sudo systemctl start bluetooth
-    sudo systemctl enable bluetooth
-    ```
-
-11. Kde-Connect
-
-    To enable kdeconnect, the linux host machine needs to open specified ports and protocol for kdeconnect
-
-    ```bash
-    sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
-    7266 sudo firewall-cmd --reload
-    7278 sudo firewall-cmd --list-all
-    7282 sudo systemctl enable firewalld.service
-    7295 systemctl status firewalld
-    ```
 
 ## Grub
 
