@@ -32,6 +32,7 @@ plugins:
   - blog
   - search
   - tags
+  - glightbox
 extra:
   generator: false
 nav:
