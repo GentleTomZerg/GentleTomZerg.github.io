@@ -39,6 +39,9 @@ nav:
       - index.md
   - Blog:
       - blog/index.md
+  - Art:
+      - Overview: art/index.md
+      - Collection1: art/collection1/index.md
 markdown_extensions:
   # Python Markdown
   - abbr
