@@ -3,8 +3,9 @@ site_url: https://gentletomzerg.github.io
 theme:
   name: material
   font:
-    text: EB Garamond
-    code: Robot Mono
+    # text: EB Garamond
+    text: BioRhyme
+    code: Fira Code
   palette:
     # Palette toggle for light mode
     - scheme: default
@@ -29,7 +30,9 @@ theme:
     - content.code.select
     - content.code.annotate
 plugins:
-  - blog
+  - blog:
+      pagination: true
+      pagination_per_page: 5
   - search
   - tags
   - glightbox
