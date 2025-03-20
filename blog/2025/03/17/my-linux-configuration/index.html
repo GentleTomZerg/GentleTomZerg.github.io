@@ -1,0 +1,1501 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://gentletomzerg.github.io/blog/2025/03/17/my-linux-configuration/">
+      
+      
+        <link rel="prev" href="../../15/meaningful-names/">
+      
+      
+        <link rel="next" href="../../18/functions/">
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>My Linux Configuration - GentleTomZerg Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=BioRhyme:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"BioRhyme";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-use-this-configuration-file" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="GentleTomZerg Blog" class="md-header__button md-logo" aria-label="GentleTomZerg Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GentleTomZerg Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              My Linux Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="grey"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../art/" class="md-tabs__link">
+          
+  
+  Art
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="GentleTomZerg Blog" class="md-nav__button md-logo" aria-label="GentleTomZerg Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GentleTomZerg Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    👋 Hi! I’m Tom
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2022/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/computer-science/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Computer Science
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/logic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/software-engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software Engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Art
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Art
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../art/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../art/collection1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collection1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/51043088?s=400&u=e233a4511c1fc3a60a8afcc9b5a18839c3a1bb9e&v=4" alt="Tom">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          Tom
+                        
+                      </strong>
+                      <br>
+                      Creator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-03-17 00:00:00+00:00" class="md-ellipsis">March 17, 2025</time>
+                      </div>
+                    </li>
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13h1.5v2.82l2.44 1.41-.75 1.3L15 16.69zm4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67zM5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2zm11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85"/></svg>
+                          <time datetime="2025-03-17 00:00:00+00:00" class="md-ellipsis">March 17, 2025</time>
+                        </div>
+                      </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/linux/">Linux</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              5 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-this-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use this configuration file?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to use this configuration file?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Challenges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Start Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-necessary-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install necessary packages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-and-stow-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download and Stow the configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrate-to-zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migrate to ZSH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-oh-my-zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install oh-my-zsh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clash-mihomo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clash / Mihomo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#astronvim" class="md-nav__link">
+    <span class="md-ellipsis">
+      AstroNvim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chinese-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chinese input
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rofi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rofi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bluetooth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bluetooth
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kde-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kde-Connect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displayfor-xorg" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display(For Xorg)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grub
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sddm" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDDM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timeshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timeshift
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-useful-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Some useful tools:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hyprland" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hyprland
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">dotfiles</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">linux</span>
+      
+    
+  </nav>
+
+
+
+  <h1>My Linux Configuration</h1>
+
+<h2 id="how-to-use-this-configuration-file">How to use this configuration file?<a class="headerlink" href="#how-to-use-this-configuration-file" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Man was born free, and he is everywhere in chains</p>
+</blockquote>
+<p>I don't know if we were born free, but I do know we are in chains. To break the chains, we need network proxy to the free world.</p>
+<p>This article assumes we have a stable proxy service already. In my scenario, I have an IPhone with shadowrocket installed. If I connect my IPhone and my new laptop into the same local network, then my new laptop could use my IPhone as the proxy.<strong>The Chains break!!!</strong></p>
+<p>Type this to the new laptop terminal, and we are ready to go!</p>
+<!-- more -->
+
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="o">{</span>http,https,ftp,all<span class="o">}</span><span class="nv">_proxy</span><span class="o">=</span><span class="s2">&quot;http://IPhone_inner_ip:Proxy_port&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="o">{</span>HTTP,HTTPS,FTP,ALL<span class="o">}</span><span class="nv">_PROXY</span><span class="o">=</span><span class="s2">&quot;http://IPhone_inner_ip:Proxy_port&quot;</span>
+<span class="c1">## Eg:</span>
+<span class="nb">export</span><span class="w"> </span><span class="o">{</span>http,https,ftp,all<span class="o">}</span><span class="nv">_proxy</span><span class="o">=</span><span class="s2">&quot;http://192.168.1.6:1082&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="o">{</span>HTTP,HTTPS,FTP,ALL<span class="o">}</span><span class="nv">_PROXY</span><span class="o">=</span><span class="s2">&quot;http://192.168.1.6:1082&quot;</span>
+</code></pre></div>
+<h3 id="new-challenges">New Challenges<a class="headerlink" href="#new-challenges" title="Permanent link">&para;</a></h3>
+<p>Docker Hub is not easy to reach now, we need to set proxy for our docker</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## /etc/docker/daemon.json</span>
+mkdir<span class="w"> </span>/etc/docker
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">  &quot;proxies&quot;: {</span>
+<span class="s1">    &quot;http-proxy&quot;: &quot;http://127.0.0.1:7890&quot;,</span>
+<span class="s1">    &quot;https-proxy&quot;: &quot;https://127.0.0.1:7890&quot;</span>
+<span class="s1">  }</span>
+<span class="s1">}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/docker/daemon.json<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">## ~/.ssh/config</span>
+Host<span class="w"> </span>github.com
+<span class="w">  </span>Hostname<span class="w"> </span>ssh.github.com
+<span class="w">  </span>User<span class="w"> </span>git
+<span class="w">  </span>Port<span class="w"> </span><span class="m">443</span>
+</code></pre></div>
+<h2 id="start-configuration">Start Configuration<a class="headerlink" href="#start-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="install-necessary-packages">Install necessary packages<a class="headerlink" href="#install-necessary-packages" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span><span class="se">\</span>
+clash<span class="w"> </span>kitty<span class="w"> </span>i3-gaps<span class="w"> </span>picom<span class="w"> </span>polybar<span class="w"> </span>rofi<span class="w"> </span>stow<span class="w"> </span>arandr<span class="w"> </span>google-chrome-stable<span class="w"> </span>zsh<span class="w"> </span>yazi<span class="w"> </span>light<span class="w"> </span>feh<span class="w"> </span>fcitx5<span class="w"> </span>xinput<span class="w"> </span>docker<span class="w"> </span><span class="se">\</span>
+lazygit<span class="w"> </span><span class="se">\</span>
+neovim<span class="w"> </span><span class="se">\</span>
+zsh-autosuggestions<span class="w"> </span><span class="se">\</span>
+zsh-syntax-highlighting<span class="w"> </span><span class="se">\</span>
+starship
+
+<span class="c1">## For terminal and polybar</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>ttf-firacode-nerd
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>ttf-jetbrains-mono-nerd
+
+<span class="c1">## For AUR Google-Chrome</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>noto-fonts-cjk
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>noto-fonts-emoji
+
+<span class="c1">## For clash-meta</span>
+yay<span class="w"> </span>-S<span class="w"> </span>mihomo
+</code></pre></div>
+<h3 id="download-and-stow-the-configuration">Download and Stow the configuration<a class="headerlink" href="#download-and-stow-the-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ssh-kgen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;997707754@qq.com&quot;</span>
+<span class="c1">## add the content in ~/.ssh/id_ed25519.pub to github ssh key</span>
+mkdir<span class="w"> </span>~/stow
+<span class="nb">cd</span><span class="w"> </span>stow
+git<span class="w"> </span>clone<span class="w"> </span>git@github.com:GentleTomZerg/.dotfiles.git<span class="w"> </span>~/stow
+
+stow<span class="w"> </span>clash<span class="w"> </span>i3<span class="w"> </span>ideavimrc<span class="w"> </span>kitty<span class="w"> </span>neovim<span class="w"> </span>picom<span class="w"> </span>polybar<span class="w"> </span>README.md<span class="w"> </span>rofi<span class="w"> </span>tools<span class="w"> </span>vscode<span class="w"> </span>Xmodmap<span class="w"> </span>Xresources<span class="w"> </span>yazi<span class="w"> </span>zshrc
+
+<span class="c1">## Vscode Configurtion</span>
+<span class="c1">## Different types of vscode has different path to of user settings</span>
+<span class="nb">cd</span><span class="w"> </span>/path/to/vscode/User/settings/directory
+ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$HOME</span>/stow/vscode/keybindings.json<span class="w"> </span>./keybindings.json
+ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$HOME</span>/stow/vscode/settings.json<span class="w"> </span>./settings.json
+</code></pre></div>
+<h3 id="migrate-to-zsh">Migrate to ZSH<a class="headerlink" href="#migrate-to-zsh" title="Permanent link">&para;</a></h3>
+<ul>
+<li>type zsh in bash</li>
+<li>enter chsh</li>
+<li>zsh will prompt you to install packages which provides chsh</li>
+<li><code>sudo chsh -s /path/to/zsh</code> <strong>Must use sudo</strong></li>
+<li>logout from i3wm and login again</li>
+<li>now zsh shell is the default shell</li>
+</ul>
+<h3 id="install-oh-my-zsh">Install oh-my-zsh<a class="headerlink" href="#install-oh-my-zsh" title="Permanent link">&para;</a></h3>
+<ul>
+<li>go to oh-my-zsh paste the download script and execute</li>
+<li>oh-my-zsh will make the .zshrc symlinked by stow as a old version and provide a new version.</li>
+<li>delete the old and new version</li>
+<li>stow zshrc again</li>
+</ul>
+<h3 id="clash-mihomo">Clash / Mihomo<a class="headerlink" href="#clash-mihomo" title="Permanent link">&para;</a></h3>
+<p>Now, we can use Mihomo on the new laptop!!!</p>
+<ul>
+<li><del>Add proxy subscribe url to /stow/clash/.config/clash/urls.txt</del></li>
+<li><del>Type <code>updateproxy</code> in terminal and follow instructions</del></li>
+<li><del>Type <code>startproxy</code> in terminal and follow instructions</del></li>
+<li><del>Clash-Dashboard</del></li>
+<li>Enter subscribe url to '$HOME/stow/clash/.config/clash/mihomo.yaml'</li>
+<li>Type <code>startproxy</code> in terminal and follow instructions</li>
+<li>Mihomo Dashboard</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>gh-pages<span class="w"> </span>git@github.com:MetaCubeX/metacubexd.git
+</code></pre></div>
+<h3 id="astronvim">AstroNvim<a class="headerlink" href="#astronvim" title="Permanent link">&para;</a></h3>
+<p>Just Google it and follow instructions!</p>
+<h3 id="chinese-input">Chinese input<a class="headerlink" href="#chinese-input" title="Permanent link">&para;</a></h3>
+<ul>
+<li>install <code>fcitx5</code></li>
+<li>install <code>fcitx5-chinese-addons</code></li>
+<li>open fcitx5 config, add pinyin</li>
+<li>reboot</li>
+<li>add the following code to /etc/environment and login again</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">GTK_IM_MODULE</span><span class="o">=</span>fcitx
+<span class="nv">QT_IM_MODULE</span><span class="o">=</span>fcitx
+<span class="nv">XMODIFIERS</span><span class="o">=</span>@im<span class="o">=</span>fcitx
+<span class="nv">SDL_IM_MODULE</span><span class="o">=</span>fcitx
+<span class="nv">GLFW_IM_MODULE</span><span class="o">=</span>ibus
+</code></pre></div>
+<ul>
+<li>
+<p>Theme: follow this <a href="https://github.com/hosxy/Fcitx5-Material-Color">link</a>. Remember to restart the fcitx5 after changing the theme.</p>
+</li>
+<li>
+<p>Remember to <strong>Enable Cloud Pinyin</strong> in fcitx5-config</p>
+</li>
+<li>Dictionary: Follow the link <a href="https://github.com/felixonmars/fcitx5-pinyin-zhwiki">fcitx5-pinyin-zhwiki</a> and <a href="https://github.com/outloudvi/mw2fcitx">mw2fcitx</a></li>
+</ul>
+<h3 id="rofi">Rofi<a class="headerlink" href="#rofi" title="Permanent link">&para;</a></h3>
+<p>There are some really nice themes and applets written for rofi, download from here:
+<a href="https://github.com/adi1090x/rofi">rofi-collection</a></p>
+<p>Follow the link and setup as instructed. The <code>i3wm</code> and <code>polybar</code> will use this preconfigured repository.</p>
+<h3 id="bluetooth">Bluetooth<a class="headerlink" href="#bluetooth" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>```bash
+sudo systemctl start bluetooth
+sudo systemctl enable bluetooth
+```
+</code></pre></div>
+<h3 id="kde-connect">Kde-Connect<a class="headerlink" href="#kde-connect" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>To enable kdeconnect, the linux host machine needs to open specified ports and protocol for kdeconnect
+
+```bash
+sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
+7266 sudo firewall-cmd --reload
+7278 sudo firewall-cmd --list-all
+7282 sudo systemctl enable firewalld.service
+7295 systemctl status firewalld
+```
+</code></pre></div>
+<h3 id="displayfor-xorg">Display(For Xorg)<a class="headerlink" href="#displayfor-xorg" title="Permanent link">&para;</a></h3>
+<ul>
+<li>first use <code>arandr</code> to set the monitors. (GUI tool)</li>
+<li>then use <code>autorandr</code> to save the current monitors config (<code>autorandr --save [name]</code>)</li>
+</ul>
+<!-- TODO: -->
+<ul>
+<li>Bug: the i3wm has problems to initialize the monitors display corrently when first enter, it needs a manual refresh.</li>
+<li>Temporal solution:</li>
+</ul>
+<p>I use arandr to customize a laptop left, monitor right config. Let autorandr to save it, in this way, two monitors will have correct display of wallpapers.</p>
+<p>If we put laptop left and monitor right, the first display when we entered i3wm shows the laptop-size wall-paper in the monitor and the monitor-size wall-paper in both laptop and monitor. Now, I suspect it is the problem of <code>feh</code> or <code>i3wm</code> multiple monitor config rule.</p>
+<ul>
+<li>
+<p><strong>We might face with complex conditions when switch between different monitors. The best way is to use <code>arandr</code>.</strong></p>
+</li>
+<li>
+<p>Use arandr to generate a basic display shell script and make modifications</p>
+</li>
+<li>Change the refresh rate: <code>--rate 144.00</code></li>
+<li>write script to let the script execute when start up</li>
+</ul>
+<h2 id="grub">Grub<a class="headerlink" href="#grub" title="Permanent link">&para;</a></h2>
+<p>We can config grub under the path /etc/default/grub
+Below is a configuration example.</p>
+<ul>
+<li>Not shown boot log: add quiet in GRUB_CMDLINE_LINUX_DEFAULT</li>
+<li>Keyboard Issue of Xiaoxin: add i8042.dumbkbd</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">## GRUB boot loader configuration</span>
+
+<span class="nv">GRUB_DEFAULT</span><span class="o">=</span><span class="s2">&quot;0&quot;</span>
+<span class="nv">GRUB_TIMEOUT</span><span class="o">=</span><span class="s2">&quot;5&quot;</span>
+<span class="nv">GRUB_DISTRIBUTOR</span><span class="o">=</span><span class="s2">&quot;EndeavourOS&quot;</span>
+<span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&quot;nowatchdog nvme_load=YES loglevel=3 i8042.dumbkbd&quot;</span>
+<span class="c1">## GRUB_CMDLINE_LINUX=&quot;rhgb quiet i8042.dumbkbd&quot;</span>
+
+<span class="c1">## Preload both GPT and MBR modules so that they are not missed</span>
+<span class="nv">GRUB_PRELOAD_MODULES</span><span class="o">=</span><span class="s2">&quot;part_gpt part_msdos&quot;</span>
+
+<span class="c1">## Uncomment to enable booting from LUKS encrypted devices</span>
+<span class="c1">##GRUB_ENABLE_CRYPTODISK=&quot;y&quot;</span>
+
+<span class="c1">## Set to &#39;countdown&#39; or &#39;hidden&#39; to change timeout behavior,</span>
+<span class="c1">## press ESC key to display menu.</span>
+<span class="nv">GRUB_TIMEOUT_STYLE</span><span class="o">=</span><span class="s2">&quot;menu&quot;</span>
+
+<span class="c1">## Uncomment to use basic console</span>
+<span class="nv">GRUB_TERMINAL_INPUT</span><span class="o">=</span><span class="s2">&quot;console&quot;</span>
+
+<span class="c1">## Uncomment to disable graphical terminal</span>
+<span class="c1">##GRUB_TERMINAL_OUTPUT=&quot;console&quot;</span>
+
+<span class="c1">## The resolution used on graphical terminal</span>
+<span class="c1">## note that you can use only modes which your graphic card supports via VBE</span>
+<span class="c1">## you can see them in real GRUB with the command `videoinfo&#39;</span>
+<span class="nv">GRUB_GFXMODE</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+
+<span class="c1">## Uncomment to allow the kernel use the same resolution used by grub</span>
+<span class="nv">GRUB_GFXPAYLOAD_LINUX</span><span class="o">=</span><span class="s2">&quot;keep&quot;</span>
+
+<span class="c1">## Uncomment if you want GRUB to pass to the Linux kernel the old parameter</span>
+<span class="c1">## format &quot;root=/dev/xxx&quot; instead of &quot;root=/dev/disk/by-uuid/xxx&quot;</span>
+<span class="c1">##GRUB_DISABLE_LINUX_UUID=&quot;true&quot;</span>
+
+<span class="c1">## Uncomment to disable generation of recovery mode menu entries</span>
+<span class="nv">GRUB_DISABLE_RECOVERY</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+
+<span class="c1">## Uncomment and set to the desired menu colors.  Used by normal and wallpaper</span>
+<span class="c1">## modes only.  Entries specified as foreground/background.</span>
+<span class="c1">##GRUB_COLOR_NORMAL=&quot;light-blue/black&quot;</span>
+<span class="c1">##GRUB_COLOR_HIGHLIGHT=&quot;light-cyan/blue&quot;</span>
+
+<span class="c1">## Uncomment one of them for the gfx desired, a image background or a gfxtheme</span>
+<span class="nv">GRUB_BACKGROUND</span><span class="o">=</span><span class="s2">&quot;/usr/share/endeavouros/splash.png&quot;</span>
+<span class="c1">##GRUB_THEME=&quot;/path/to/gfxtheme&quot;</span>
+
+<span class="c1">## Uncomment to get a beep at GRUB start</span>
+<span class="c1">##GRUB_INIT_TUNE=&quot;480 440 1&quot;</span>
+
+<span class="c1">## Uncomment to make GRUB remember the last selection. This requires</span>
+<span class="c1">## setting &#39;GRUB_DEFAULT=saved&#39; above.</span>
+<span class="c1">##GRUB_SAVEDEFAULT=&quot;true&quot;</span>
+
+<span class="c1">## Uncomment to disable submenus in boot menu</span>
+<span class="nv">GRUB_DISABLE_SUBMENU</span><span class="o">=</span><span class="s2">&quot;false&quot;</span>
+
+<span class="c1">## Probing for other operating systems is disabled for security reasons. Read</span>
+<span class="c1">## documentation on GRUB_DISABLE_OS_PROBER, if still want to enable this</span>
+<span class="c1">## functionality install os-prober and uncomment to detect and include other</span>
+<span class="c1">## operating systems.</span>
+<span class="nv">GRUB_DISABLE_OS_PROBER</span><span class="o">=</span><span class="s2">&quot;false&quot;</span>
+</code></pre></div>
+<h2 id="sddm">SDDM<a class="headerlink" href="#sddm" title="Permanent link">&para;</a></h2>
+<p>Migrate from <code>lightdm</code> to <code>sddm</code></p>
+<ul>
+<li>sddm and theme</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pacman<span class="w"> </span>-S<span class="w"> </span>sddm
+yay<span class="w"> </span>-S<span class="w"> </span>where-is-my-sddm-theme
+</code></pre></div>
+<ul>
+<li>modify sddm configuration file</li>
+</ul>
+<div class="highlight"><pre><span></span><code>vim<span class="w"> </span>/etc/sddm.conf.d/kde_settings.conf
+<span class="o">[</span>Theme<span class="o">]</span>
+<span class="nv">Current</span><span class="o">=</span>where_is_my_sddm_theme
+</code></pre></div>
+<ul>
+<li>enable and start sddm</li>
+</ul>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>stop<span class="w"> </span>lightdm.service
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>sddm.service
+systemctl<span class="w"> </span>start<span class="w"> </span>sddm.service
+</code></pre></div>
+<h2 id="timeshift">Timeshift<a class="headerlink" href="#timeshift" title="Permanent link">&para;</a></h2>
+<p>Backup arch system!!!</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>timeshift
+yay<span class="w"> </span>-S<span class="w"> </span>timeshit<span class="w"> </span>autosnap
+</code></pre></div>
+<h2 id="some-useful-tools">Some useful tools:<a class="headerlink" href="#some-useful-tools" title="Permanent link">&para;</a></h2>
+<ul>
+<li>cpufetch</li>
+<li>lsd</li>
+<li>bpytop</li>
+<li>speedtest</li>
+<li>auto-cpufreq</li>
+</ul>
+<h2 id="hyprland">Hyprland<a class="headerlink" href="#hyprland" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span><span class="se">\</span>
+wayland<span class="w"> </span>hyprland<span class="w"> </span>rofi-wayland<span class="w"> </span>cliphist<span class="w"> </span>waybar<span class="w"> </span>pywal<span class="w"> </span>hyprpaper<span class="w"> </span>hypridle<span class="w"> </span>hyprlock<span class="w"> </span>slurp<span class="w"> </span>grim
+</code></pre></div>
+<ul>
+<li>enable wayland mode for electron app -&gt; see: <code>$HOME/stow/electronflags</code></li>
+<li>glaze problem</li>
+<li>practice lazygit</li>
+<li>lsp format file, can it have a template? or only change the modified lines</li>
+<li>learn what oh my zsh is, and what starship is, how to enhance zsh speed</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.path", "toc.integrate", "search.suggest", "search.share", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
