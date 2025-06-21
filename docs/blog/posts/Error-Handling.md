@@ -4,7 +4,7 @@ authors:
   - GentleTomZerg
 date:
   created: 2025-05-24
-  updated: 2025-05-24
+  updated: 2025-06-21
 categories:
   - Software Engineering
 tags:
@@ -171,3 +171,96 @@ public class LocalPort{
 - also makes it easier to mock out third-party calls when you are testing your own code.
 
 ### Define the Normal Flow
+
+Separation between business logic and error handling is good. However, the process of doing this pushes error detection to the edges of your program. We can define a handler to deal with any aborted computaiton. **BUT** There are some times when you may not want to abort.
+
+<div class="grid" markdown>
+
+```java title="Handle logic in catch"
+try {
+  MealExpenses expenses = expenseReportDAO.getMeals(employeegetID())
+  m_total += expenses.getTotal();
+}
+catch(MealExpensesNotFound e) {
+  m_total += getMealPerDiem();
+}
+```
+
+```java title="Use Special Case Pattern"
+  MealExpenses expenses = expenseReportDAO.getMeals(employeegetID())
+  m_total += expenses.getTotal();
+
+  public class PerDiemMealExpenses implements MealExpenses {
+    public int getTotal() {
+      // return the per diem default
+    }
+  }
+```
+
+</div>
+
+!!! note "Special Case Pattern"
+
+    you create a class or configure an object so that it handles a special case for you. When you do, the client code doesn’t have to deal with exceptional behavior. That behavior is encapsulated in the special case object.
+
+### Don't Return Null
+
+```java title="Many Null checks"
+public void registerItem(Item item) {
+  if (item != null) {
+    ItemRegistry registry = peristentStore.getItemRegistry();
+    if (registry != null) {
+    Item existing = registry.getItem(item.getID());
+      if (existing.getBillingPeriod().hasRetailOwner()) {
+        existing.register(item)
+      }
+    }
+  }
+}
+```
+
+- When return `null`, we are essentially creating work for ourselves and foisting problems upon our callers.
+- **If you are tempted to return `null` from a method**, consider throwing an exception or returning a SPECIAL CASE object instead.
+- **If you are calling a `null` returnging method from a third-party** API, consider wrapping that method with a method that either throws an excepiton or returns a special case object.
+
+Example:
+Java has `Collections.emptyList()`, it returns a predefined immutable list that we can use as a Special Case object, rather than return `null` to the caller who needs a List Object.
+
+### Don't Pass Null
+
+> Returning null from methods is bad, but passing null into methods is worse. Unless you are working with an API which expects you to pass null, you should avoid passing null in your code whenever possible.
+
+<div class="grid" markdown>
+
+```java title="Null pointer Exception"
+public class MetricsCalculator  {
+  public double xProjection(Point p1, Point p2) {
+    return (p2.x – p1.x) * 1.5;
+  }
+}
+```
+
+```java title="Handle Null Args Exception"
+public class MetricsCalculator  {
+  public double xProjection(Point p1, Point p2) {
+    if (p1 == null || p2 == null) {
+      throw InvalidArgumentExcepiton("XXX");
+    }
+    return (p2.x – p1.x) * 1.5;
+  }
+}
+```
+
+```java title="Assert Not Null"
+public class MetricsCalculator  {
+  public double xProjection(Point p1, Point p2) {
+    assert p1 != null : "xxx";
+    assert p2 != null : "xxx";
+    return (p2.x – p1.x) * 1.5;
+  }
+}
+```
+
+</div>
+
+> In most programming languages there is no good way to deal with a null that is passed by a caller accidentally. Because this is the case, the rational approach is to forbid passing null by default. When you do, you can code with the knowledge that a null in an argument list is an indication of a problem, and end up with far fewer careless mistakes.
