@@ -1,5 +1,7 @@
 # 👋 Hi! I’m **Tom**
 
+![type:audio](./introduction.m4a)
+
 💻 **Passionate Programmer** | 🎨 Hobbyist Painter | 📖 Philosophy Enthusiast
 
 Here’s the entrance to my **[🚀 Blog](blog/index.md)**, where I share my **study notes** 📝 and **daily thoughts** 💭.
