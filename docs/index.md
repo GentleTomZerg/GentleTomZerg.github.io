@@ -1,6 +1,6 @@
 # 👋 Hi! I’m **Tom**
 
-![type:audio](./introduction.m4a)
+![type:audio](./introduction.mp3)
 
 💻 **Passionate Programmer** | 🎨 Hobbyist Painter | 📖 Philosophy Enthusiast
 
