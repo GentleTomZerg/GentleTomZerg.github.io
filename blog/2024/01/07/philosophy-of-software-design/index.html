@@ -1,0 +1,2397 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://gentletomzerg.github.io/blog/2024/01/07/philosophy-of-software-design/">
+      
+      
+        <link rel="prev" href="../../../../2023/06/27/syllogisms-in-ordinary-language/">
+      
+      
+        <link rel="next" href="../../../../2025/03/15/meaningful-names/">
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Philosophy of Software Design - GentleTomZerg Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=BioRhyme:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"BioRhyme";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nature-of-complexity" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="GentleTomZerg Blog" class="md-header__button md-logo" aria-label="GentleTomZerg Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GentleTomZerg Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Philosophy of Software Design
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="grey"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../art/" class="md-tabs__link">
+          
+  
+  
+  Art
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="GentleTomZerg Blog" class="md-nav__button md-logo" aria-label="GentleTomZerg Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GentleTomZerg Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    👋 Hi! I’m Tom
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2023
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2022
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/computer-science/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Computer Science
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/software-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Software Engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Art
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Art
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../art/collection1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Collection1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/51043088?s=400&u=e233a4511c1fc3a60a8afcc9b5a18839c3a1bb9e&v=4" alt="Tom">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          Tom
+                        
+                      </strong>
+                      <br>
+                      Creator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-01-07 00:00:00+00:00" class="md-ellipsis">January 7, 2024</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/software-engineering/">Software Engineering</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              21 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nature-of-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nature of Complexity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Nature of Complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symptoms-of-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Symptoms of complexity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causes-of-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Causes of Complexity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexity-is-incremental" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexity is Incremental
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strategic-tactical-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategic &amp; Tactical Programming
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Strategic &amp; Tactical Programming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tactical-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactical programming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategic-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategic programming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modules-should-be-deep" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modules Should Be Deep
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modules Should Be Deep">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modular-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modular Design
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-in-an-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's in an interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstractions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abstractions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deep-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deep Modules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shallow-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shallow Modules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shallow-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shallow Module
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information-hidingand-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Information Hiding(and Leakage)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Information Hiding(and Leakage)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#information-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Information Leakage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temporal-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temporal Decomposition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overexposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overexposure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-purpose-modules-are-deeper" class="md-nav__link">
+    <span class="md-ellipsis">
+      General-Purpose Modules are Deeper
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General-Purpose Modules are Deeper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make-classes-somewhat-general-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Make classes somewhat general-purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-design-general-purpose-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to design general-purpose class?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#different-layer-different-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Different Layer, Different Abstraction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Different Layer, Different Abstraction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pass-through-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pass-through methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-is-duplications-ok" class="md-nav__link">
+    <span class="md-ellipsis">
+      When is Duplications OK?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorator-design-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decorator Design Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-vs-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface VS Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-through-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pass-through Variables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pull-complexity-downwards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull Complexity Downwards
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pull Complexity Downwards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples-configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples: Configuration Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-pull-complexity-downwards" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to pull complexity downwards?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#better-together-or-better-apart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Better Together Or Better Apart
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Better Together Or Better Apart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bring-together-if-information-is-shared" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bring together if information is shared
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bring-together-if-it-will-simplify-the-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bring together if it will simplify the interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bring-together-to-eliminate-duplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bring together to eliminate duplication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repetition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repetition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-general-purpose-and-special-purpose-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate general-purpose and special-purpose code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-general-mixture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Special-General Mixture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#splitting-and-joining-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splitting and joining methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conjoined-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conjoined Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-errors-out-of-existence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define Errors Out Of Existence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Define Errors Out Of Existence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-exceptions-add-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why exceptions add complexity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#too-many-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Too many exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution1-define-errors-out-of-existence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution1: Define errors out of existence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution2-mask-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution2: Mask exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution3-exception-aggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution3: Exception aggregation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution4-just-crash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution4: Just Crash?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-special-cases-out-of-existence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design special cases out of existence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-it-twice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design it Twice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-write-comments-the-four-excuses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Write Comments? The Four Excuses
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comments-should-describe-things-that-arent-obvious-from-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comments Should Describe Things that Aren't Obvious from the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comments Should Describe Things that Aren&#39;t Obvious from the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pick-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pick conventions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-repeat-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Don't repeat the code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comment-repeats-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comment Repeats Code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lower-level-comments-add-precision" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lower-level comments add precision
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#higher-level-comments-enhance-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Higher-level comments enhance intuition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface documentation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Software Design</span>
+      
+    
+  </nav>
+
+
+
+  <h1>Philosophy of Software Design</h1>
+
+<div><h2 id="nature-of-complexity">Nature of Complexity<a class="headerlink" href="#nature-of-complexity" title="Permanent link">¶</a></h2>
+<h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>Complexity is anything related to the structure of a software system that
+makes it hard to understand and modify the system.</p>
+</blockquote>
+<h3 id="symptoms-of-complexity">Symptoms of complexity<a class="headerlink" href="#symptoms-of-complexity" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Change amplification</strong><blockquote>
+<p>a seemingly simple change requires code modifications in many different places.</p>
+</blockquote>
+</li>
+<li><strong>Cognitive load</strong><blockquote>
+<p>refers to how much a developer needs to know in order to complete a task.</p>
+</blockquote>
+</li>
+<li><strong>Unknown unknowns</strong><blockquote>
+<p>it is not obvious which pieces of code must be modified to complete a task, or what information a developer must have to carry out the task successfully.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="causes-of-complexity">Causes of Complexity<a class="headerlink" href="#causes-of-complexity" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Dependencies</strong></li>
+<li><strong>Obscurity</strong></li>
+</ul>
+<!-- more -->
+
+<h3 id="complexity-is-incremental">Complexity is Incremental<a class="headerlink" href="#complexity-is-incremental" title="Permanent link">¶</a></h3>
+<h2 id="strategic-tactical-programming">Strategic &amp; Tactical Programming<a class="headerlink" href="#strategic-tactical-programming" title="Permanent link">¶</a></h2>
+<h3 id="tactical-programming">Tactical programming<a class="headerlink" href="#tactical-programming" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>In the tactical approach, your main focus is to get something
+working, such as a new feature or a bug fix. At first glance this seems totally
+reasonable: what could be more important than writing code that works?
+However, tactical programming makes it nearly impossible to produce a good
+system design.</p>
+</blockquote>
+<h3 id="strategic-programming">Strategic programming<a class="headerlink" href="#strategic-programming" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>Working code isn't enough
+Your primary goal must be to produce a great design, which also happens to work.</p>
+</blockquote>
+<ul>
+<li>
+<p>Proactive Investments</p>
+</li>
+<li>
+<p>taking extra time to find a better design rather the first one comes to mind.</p>
+</li>
+<li>
+<p>good documentation</p>
+</li>
+<li>
+<p>Reactive Investments</p>
+<blockquote>
+<p>No matter how much you invest up front,</p>
+</blockquote>
+</li>
+</ul>
+<p>there will inevitably be mistakes in your design decisions.</p>
+<div class="highlight"><pre><span></span><code>  - Take extra time to fix design problems!!!
+</code></pre></div>
+<h2 id="modules-should-be-deep">Modules Should Be Deep<a class="headerlink" href="#modules-should-be-deep" title="Permanent link">¶</a></h2>
+<p>Modules can take many forms -&gt; classes, subsystems, or services.</p>
+<ul>
+<li>
+<p>Ideally, each module would be completely independent of the others &gt; a developer could work in any of the modules without
+  knowing anything about any of the other modules</p>
+</li>
+<li>
+<p>Reality, <strong>modules must work together by calling each others's functions or methods.</strong> Dependencies always exists!!!</p>
+</li>
+</ul>
+<h3 id="modular-design">Modular Design<a class="headerlink" href="#modular-design" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p>Two parts of Module</p>
+</li>
+<li>
+<p>interface</p>
+</li>
+<li>
+<p>implementation</p>
+</li>
+<li>
+<p>Best Modules</p>
+</li>
+</ul>
+<p>whose interfaces are much simpler than their implementations</p>
+<h3 id="whats-in-an-interface">What's in an interface<a class="headerlink" href="#whats-in-an-interface" title="Permanent link">¶</a></h3>
+<ul>
+<li>formal information: information that are specified explicitly in the code.</li>
+<li>informal information: information that are not specified in a way that can be understood or enforced by the programming language.</li>
+</ul>
+<h3 id="abstractions">Abstractions<a class="headerlink" href="#abstractions" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>An
+abstraction is a simplified view of an entity, which omits <strong>unimportant</strong>
+details.</p>
+</blockquote>
+<ul>
+<li>Include unimportant details -&gt; increase <code>cognitive load</code></li>
+<li>Omit important details -&gt; increase <code>obscurity</code></li>
+</ul>
+<h3 id="deep-modules">Deep Modules<a class="headerlink" href="#deep-modules" title="Permanent link">¶</a></h3>
+<blockquote>
+<p><strong>The best modules are those that provide powerful functionality yet have simple
+interfaces.</strong></p>
+</blockquote>
+<p><a class="glightbox" href="../../../../assets/software-design.assets/deep_modules.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Deep and Shallow Modules" src="../../../../assets/software-design.assets/deep_modules.png"></a></p>
+<h3 id="shallow-modules">Shallow Modules<a class="headerlink" href="#shallow-modules" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>a shallow module is one whose interface is relatively complex
+in comparison to the functionality that it provides.</p>
+</blockquote>
+<p>Extremes Examples:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addNullValueForAttribute</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">attribute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">data</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="shallow-module"><img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:">Shallow Module<img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:"><a class="headerlink" href="#shallow-module" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>A shallow module is one whose interface is complicated relative to the
+functionality it provides. Shallow modules don’t help much in the battle
+against complexity, because the benefit they provide (not having to learn about
+how they work internally) is negated by the cost of learning and using their
+interfaces. Small modules tend to be shallow.</p>
+</blockquote>
+<h2 id="information-hidingand-leakage">Information Hiding(and Leakage)<a class="headerlink" href="#information-hidingand-leakage" title="Permanent link">¶</a></h2>
+<blockquote>
+<p>techniques for creating deep modules</p>
+</blockquote>
+<ul>
+<li>reduce cognitive load -&gt; simplifies interface</li>
+<li>easier to evolve</li>
+</ul>
+<h3 id="information-leakage"><img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:">Information Leakage<img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:"><a class="headerlink" href="#information-leakage" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>Information leakage occurs when the <strong>same knowledge</strong> is used in <strong>multiple places</strong>,
+such as two different classes that both understand the format of a particular
+type of file</p>
+</blockquote>
+<ul>
+<li>How can I recognize these classes so that this particular piece of knowledge
+  only affects a single class?</li>
+<li>Answer1: merge them into a single class</li>
+<li>Answer2: create a new class that encapsulates just that information</li>
+</ul>
+<h3 id="temporal-decomposition"><img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:">Temporal Decomposition<img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:"><a class="headerlink" href="#temporal-decomposition" title="Permanent link">¶</a></h3>
+<p>In temporal decomposition, the structure of a system corresponds to the time
+order in which operations will occur.</p>
+<ul>
+<li>Examples:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Application -&gt; reads a file in a particular format -&gt; modifies -&gt; writes;
+
+Design -&gt; Three Classes:
+1. read file
+2. perform modifications
+3. write out new version
+
+Problem: Both three class has knowledge about the file format -&gt; results in
+information leakage.
+
+Solution: Combine the core mechanisms for reading and writing files into single
+class.
+</code></pre></div>
+<ul>
+<li>Conclusion:
+  Order usually does matter, but it shouldn't be reflected in the module structure
+  unless that structure is consistent with information hiding.<strong>When design
+  modules, focus on the knowledge that's needed to perform each task, not the
+  order in which tasks occur.</strong></li>
+</ul>
+<blockquote>
+<p>In temporal decomposition, execution order is reflected in the code
+structure: operations that happen at different times are in different
+methods or classes. If the same knowledge is used at different points in
+execution, it gets encoded in multiple places, resulting in information
+leakage.</p>
+</blockquote>
+<h3 id="overexposure"><img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:">Overexposure<img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:"><a class="headerlink" href="#overexposure" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>If the API for a commonly used feature forces users to learn about other
+features that are rarely used, this increases the <strong>cognitive load</strong> on users who
+don't need the rarely used features.</p>
+</blockquote>
+<h2 id="general-purpose-modules-are-deeper">General-Purpose Modules are Deeper<a class="headerlink" href="#general-purpose-modules-are-deeper" title="Permanent link">¶</a></h2>
+<p>Questions: When Designing Modules,</p>
+<ul>
+<li>General Purpose? -&gt; might include facilities that are never actually needed.</li>
+<li>Special Purpose? -&gt; you can always refactor it to make it general purpose.</li>
+</ul>
+<h3 id="make-classes-somewhat-general-purpose">Make classes somewhat general-purpose<a class="headerlink" href="#make-classes-somewhat-general-purpose" title="Permanent link">¶</a></h3>
+<p><strong>somewhat general-purpose</strong> means that the module's functionality should
+reflect your current needs, but its interface should be general enough to
+support multiple uses.</p>
+<ul>
+<li>Examples:</li>
+</ul>
+<p>App -&gt; GUI text editor</p>
+<div class="highlight"><pre><span></span><code>Design 1:
+void backspace(Cursor cursor);
+void delete(Cursor cursor);
+void deleteSelection(Selection selection);
+
+- high cognitive load
+- shallow methods -&gt; each method only suitable for one user interface
+  operation
+- user had to learn about a large number of methods
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Design 2:
+void insert(Position position, String newText);
+void delete(Position start, String end);
+Position changePosition(Position position, int numChars);
+
+now, the delete key looks like:
+text.delete(cursor, text.changePosition(cursor, 1));
+the backspace looks like:
+text.delete(text.changePosition(cursor, -1), cursor);
+</code></pre></div>
+<p>Here, the details are important: user wants to know which characters are
+  deleted. <strong>When the details are important it is better to make them explicit
+  and as obvious as possible.</strong></p>
+<h3 id="how-to-design-general-purpose-class">How to design general-purpose class?<a class="headerlink" href="#how-to-design-general-purpose-class" title="Permanent link">¶</a></h3>
+<ul>
+<li>What is the simplest interface that will cover all my current needs?</li>
+</ul>
+<blockquote>
+<p>If you reduce the number of methods in an API without reducing its overall
+capabilities, then you are probably creating more general-purpose
+methods.</p>
+</blockquote>
+<ul>
+<li>In how many situations will this method be used? -&gt; Don't be special
+  purpose!!!</li>
+<li>Is this API easy to use for my current needs? -&gt; Don't go too far!!!</li>
+</ul>
+<h2 id="different-layer-different-abstraction">Different Layer, Different Abstraction<a class="headerlink" href="#different-layer-different-abstraction" title="Permanent link">¶</a></h2>
+<h3 id="pass-through-methods"><img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:">Pass-through methods<img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:"><a class="headerlink" href="#pass-through-methods" title="Permanent link">¶</a></h3>
+<p>When adjacent layers have similar abstractions, the problem often manifests
+itself in the form of <code>pass-through</code> methods. A pass-through method is one that
+<strong>does little except invoke another method, whose signature is similar or
+identical to that of the calling method</strong>.</p>
+<ul>
+<li>
+<p>make methods shallower -&gt; increase the interface complexity; no contribution
+  to the functionality of the system.</p>
+</li>
+<li>
+<p>indicates that there is a confusion over the division of responsibility
+  between classes.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TextDocument</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">TextArea</span><span class="w"> </span><span class="n">textArea</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">TextDocumentListener</span><span class="w"> </span><span class="n">listener</span><span class="p">;</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Character</span><span class="w"> </span><span class="nf">getLastTypedCharacter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">textArea</span><span class="p">.</span><span class="na">getLastTypedCharacter</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getCursorOffset</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">textArea</span><span class="p">.</span><span class="na">getCursorOffset</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertString</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">textToInsert</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">textArea</span><span class="p">.</span><span class="na">insertString</span><span class="p">(</span><span class="n">textToInsert</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">willInsertString</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">stringToInsert</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">listener</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">listener</span><span class="p">.</span><span class="na">willInsertString</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">stringToInsert</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>A pass-through method is one that does nothing except pass its arguments to
+another method, usually with the same API as the pass-through method. This
+typically indicates that there is not a clean division of responsibility between
+the classes.</p>
+</blockquote>
+<ul>
+<li>
+<p>Solutions:
+  <a class="glightbox" href="../../../../assets/software-design.assets/solutions_for_passthrough.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="solutions-for-passthrough" src="../../../../assets/software-design.assets/solutions_for_passthrough.jpg"></a></p>
+</li>
+<li>
+<p>(7.1b) expose the lower level class directly to the callers of the higher
+    level class.</p>
+</li>
+<li>
+<p>(7.1c) redistribute the functionality between the classes</p>
+</li>
+<li>(7.1d) if the class cannot be disentangled, merge them together</li>
+</ul>
+<h3 id="when-is-duplications-ok">When is Duplications OK?<a class="headerlink" href="#when-is-duplications-ok" title="Permanent link">¶</a></h3>
+<p>Having methods with the same signature is not always bad. The important thing is
+that <strong>each new method should contribute significant functionality</strong>.</p>
+<ul>
+<li>several methods have same signature as long as each of them provides
+  useful and distinct functionality.</li>
+<li>several methods provide different implementations of the same interface.</li>
+</ul>
+<h3 id="decorator-design-pattern">Decorator Design Pattern<a class="headerlink" href="#decorator-design-pattern" title="Permanent link">¶</a></h3>
+<p>Decorator Design Pattern encourages API duplication across layers. The decorator
+objects provides an API similar or identical to the underlying object and its
+method invoke the methods of the underlying object.</p>
+<ul>
+<li>Motivation: separate special-purpose extensions of a class from a more generic
+  core.</li>
+<li>Problem: decorator classes tend to be shallow. -&gt; a large amount of
+  boilerplate for a small amount of new functionality</li>
+<li>Note: easy to overuse!!!</li>
+</ul>
+<p>Whether to use Decorator?</p>
+<ul>
+<li>Could you add the new functionality directly to the underlying class, rather
+  than creating a decorator class?</li>
+<li>If the functionality is specialized for a particular use case, would it make
+  sense to merge it with the use case rather than creating a separate class?</li>
+<li>Could you merge the new functionality with an existing decorator?</li>
+<li>Whether the new functionality really needs to wrap the existing
+  functionality.</li>
+</ul>
+<h3 id="interface-vs-implementation">Interface VS Implementation<a class="headerlink" href="#interface-vs-implementation" title="Permanent link">¶</a></h3>
+<p>Another application of the "different layer, different abstraction" rule is that
+<strong>the interface of a class should normally be different from its
+implementation</strong>:
+the representations used internally should be different from the abstractions
+that appear in the interface. -&gt; <strong>If the two have similar abstractions, then the
+class probably isn't very deep</strong>.</p>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><code>App: text editor -&gt; the text are stores as lines
+
+Design 1:
+getLine()
+putLine()
+
+Problem:
+shallow and awkward to use, the interface getLine() has the implementations of
+get line, when user use this, they have to handle the changes between lines.
+
+Design 2:
+insert() -&gt; characters at some position
+delete() -&gt; characters at some position
+
+Note:
+the API insert() and delete() uses lines representations, but it provides a
+character based interface, which makes the text class deeper and simplifies
+higher level code that uses the class.
+</code></pre></div>
+<h3 id="pass-through-variables">Pass-through Variables<a class="headerlink" href="#pass-through-variables" title="Permanent link">¶</a></h3>
+<p>Another form of API duplication across layers is a pass-through variable, which
+is a variable that is passed down through the long chain of methods.</p>
+<p>Pass-through Variables add <strong>complexity</strong> because <strong>they force all of the
+intermediate methods to be aware of their existence</strong>, even though the methods
+have no use for the variables (See Figure a).</p>
+<p><a class="glightbox" href="../../../../assets/software-design.assets/pass-through-variables.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="techniques for dealing pass-through variables" src="../../../../assets/software-design.assets/pass-through-variables.png"></a></p>
+<p>How to solve?</p>
+<ul>
+<li>
+<p><strong>If there is already an object shared between the topmost and bottommost
+  methods.</strong> (See Figure b) However, if there is such an object, then it may
+  itself be a pass-through variable(how else does m3 get access to it).</p>
+</li>
+<li>
+<p><strong>Store information in a global variable.</strong>(See Figure c) However, global
+  variables make it impossible to create two independent instances of the same
+  system in the same process, since access to the global variables will
+  conflict. Examples: when you do testing, you want to use different
+  configurations.</p>
+</li>
+<li>
+<p><strong><img alt="⭐" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2b50.svg" title=":star:">Introduce a context object</strong> (See Figure d)</p>
+</li>
+</ul>
+<p>The context allows multiple
+  instances of the system to coexist in a single process, each with its own
+  context. The class of m3 and class of m1 stores a reference to the context
+  object. Thus, the context is available everywhere, but it only appears as an
+  explicit argument in constructors.</p>
+<p>However, it has disadvantages:</p>
+<ul>
+<li>
+<p>it may <strong>not be obvious</strong> why a particular variable is present, or where it
+    is used.</p>
+</li>
+<li>
+<p>Without discipline, a context can turn into a huge grab-bag of data that creates <strong>notorious dependencies</strong> throughout the system.</p>
+</li>
+<li>Contexts may also create <strong>thread-safety</strong> issues</li>
+</ul>
+<h2 id="pull-complexity-downwards">Pull Complexity Downwards<a class="headerlink" href="#pull-complexity-downwards" title="Permanent link">¶</a></h2>
+<p>Suppose you are developing a new module, and you discover a piece of <strong>unavoidable</strong> complexity. Which is better?</p>
+<ul>
+<li>let the users deal with the complexity</li>
+<li>handle the complexity internally within the module</li>
+</ul>
+<p><strong>It is more important for a module to have a simple interface than a simple implementation</strong></p>
+<h3 id="examples-configuration-parameters">Examples: Configuration Parameters<a class="headerlink" href="#examples-configuration-parameters" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>Configuration parameters are an example of moving complexity upwards instead
+of down. Rather than determining a particular behavior internally, a class can
+export a few parameters that control its behavior, such as the size of a cache or
+the number of times to retry a request before giving up. Users of the class must
+then specify appropriate values for the parameters. Configuration parameters
+have become very popular in systems today; some systems have hundreds of
+them.</p>
+</blockquote>
+<ul>
+<li>Good Ways: allow user to tune system for their particular requirements and workloads.</li>
+<li>Bad Ways: provide an easy excuse to avoid dealing with important issues and pass them on to someone else.</li>
+</ul>
+<h3 id="when-to-pull-complexity-downwards">When to pull complexity downwards?<a class="headerlink" href="#when-to-pull-complexity-downwards" title="Permanent link">¶</a></h3>
+<ul>
+<li>the <strong>complexity</strong> being pulled down is <strong>closely related</strong> to the class's <strong>existing functionality</strong>.</li>
+<li>pulling the complexity down <strong>simplifies</strong> the class's <strong>interface</strong></li>
+<li>the goal is to minimize overall <strong>system</strong> complexity</li>
+</ul>
+<h2 id="better-together-or-better-apart"><img alt="⭐" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2b50.svg" title=":star:">Better Together Or Better Apart<a class="headerlink" href="#better-together-or-better-apart" title="Permanent link">¶</a></h2>
+<blockquote>
+<p>When deciding whether to combine or separate, the goal is to reduce the complexity of the system as a whole and improve its modularity. It might appear that the best way to achieve this goal is to <strong>divide</strong> the system into <strong>a large number of small components</strong>.</p>
+</blockquote>
+<p>Problem of Subdivision:</p>
+<ul>
+<li>Some <strong>complexity</strong> comes just from the <strong>number of components</strong> -&gt; harder to keep track of and harder to find a desired component.</li>
+<li>Result in <strong>additional code to manage the components</strong></li>
+<li>Creates <strong>separation</strong> -&gt; make the developer harder to see the components at the same time or even be aware of their existence.</li>
+<li>Result in <strong>duplications</strong></li>
+</ul>
+<p>When it makes sense to separate?</p>
+<h3 id="bring-together-if-information-is-shared">Bring together if information is shared<a class="headerlink" href="#bring-together-if-information-is-shared" title="Permanent link">¶</a></h3>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><code>App -&gt; Http Server
+
+Implementation:
+String read(text from network socket)
+Map parse(String from read())
+
+Problem: both of the methods ended up with
+considerable knowledge of the format of HTTP requests: the first method was
+only trying to read the request, not parse it, but it couldn’t identify the end of the
+request without doing most of the work of parsing it (for example, it had to parse
+header lines in order to identify the header containing the overall request length).
+</code></pre></div>
+<h3 id="bring-together-if-it-will-simplify-the-interface">Bring together if it will simplify the interface<a class="headerlink" href="#bring-together-if-it-will-simplify-the-interface" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>When two or more modules are combined into a single module, it may be
+possible to define an interface for the new module that is simpler or easier to use
+than the original interfaces. This often happens when the original modules each
+implement part of the solution to a problem.</p>
+</blockquote>
+<h3 id="bring-together-to-eliminate-duplication">Bring together to eliminate duplication<a class="headerlink" href="#bring-together-to-eliminate-duplication" title="Permanent link">¶</a></h3>
+<p>If you find the same pattern of code repeated over and over, see if you can reorganize the code to eliminate the repetition.</p>
+<ul>
+<li>Approach 1: refactor the repeated code to eliminate the repetition. -&gt; Most effective when the replacement method has a simple signature.</li>
+<li>Approach 2: refactor the code so that the snippet in question only needs to be executed in one place</li>
+</ul>
+<h3 id="repetition"><img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:">Repetition<img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:"><a class="headerlink" href="#repetition" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>If the same piece of code (or code that is almost the same) appears over and
+over again, that’s a red flag that you haven’t found the right abstractions.</p>
+</blockquote>
+<h3 id="separate-general-purpose-and-special-purpose-code">Separate general-purpose and special-purpose code<a class="headerlink" href="#separate-general-purpose-and-special-purpose-code" title="Permanent link">¶</a></h3>
+<p>If a module contains a mechanism that can be used for several different purposes,
+then it should provide just that one general-purpose mechanism.</p>
+<p><strong>Special-purpose code associated with a general-purpose mechanism should normally go in a <u>different module</u></strong>
+Example:</p>
+<div class="highlight"><pre><span></span><code>App -&gt; GUI text editor
+text class -&gt; provide general purpose operations like delete() and insert()
+user interface class -&gt; provide special purpose operations like delete the selection
+</code></pre></div>
+<p>Conclusion:</p>
+<ul>
+<li><strong>the <u>lower layers</u> of a system tend to be more <u>general-purpose</u> and the <u>upper layers</u> more <u>special-purpose</u>.</strong></li>
+<li>When you encounter a class that includes both general purpose and special purpose features for the same abstraction, see if the class can be separated into two classes.</li>
+</ul>
+<h3 id="special-general-mixture"><img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:">Special-General Mixture<img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:"><a class="headerlink" href="#special-general-mixture" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>This red flag occurs when a general-purpose mechanism also contains code
+specialized for a particular use of that mechanism. This makes the mechanism
+more complicated and creates information leakage between the mechanism
+and the particular use case: future modifications to the use case are likely to
+require changes to the underlying mechanism as well.</p>
+</blockquote>
+<h3 id="splitting-and-joining-methods">Splitting and joining methods<a class="headerlink" href="#splitting-and-joining-methods" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>It is better to divide an existing method into multiple smaller methods? Or, should two smaller methods be combined into one larger one?</p>
+</blockquote>
+<p><strong>Each method should do one thing and do it completely.</strong> The method should have a clean and simple interface, so that users don't need to have much information in their heads in order to use it correctly. The method should be deep: its interface should be much simpler than its implementation.</p>
+<ul>
+<li>Splitting up a method only makes sense if it results in <strong>cleaner abstractions</strong>.</li>
+</ul>
+<p><a class="glightbox" href="../../../../assets/software-design.assets/split-method.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="split methods" src="../../../../assets/software-design.assets/split-method.png"></a></p>
+<ul>
+<li>
+<p>figure b: factoring out a subtask into a separate method</p>
+<p>makes sense if there is a subtask that is cleanly separable from the rest of the original method, which means someone reading the child method doesn't need to know anything about the parent method and vice versa.</p>
+<p>If you make a split of this form and then <strong>find yourself flipping back and forth between the parent and child</strong> to understand how they work together, that is a red flag indicating that the split was probably <strong>a bad idea</strong>.</p>
+</li>
+<li>
+<p>figure c: split a method into two separate methods, each visible to callers of the original method.</p>
+<p>not make sense very often -&gt; result in callers having to deal with multiple methods instead of one.
+run the risk of ending up with several shallow methods(figure d).</p>
+</li>
+</ul>
+<h3 id="conjoined-methods"><img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:">Conjoined Methods<img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:"><a class="headerlink" href="#conjoined-methods" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>It should be possible to understand each method independently. If you can’t understand the implementation of one method without also understanding the implementation of another, that’s a red flag. This red flag can occur in other contexts as well: if two pieces of code are physically separated, but each can only be understood by looking at the other, that is a red flag.</p>
+</blockquote>
+<h2 id="define-errors-out-of-existence">Define Errors Out Of Existence<a class="headerlink" href="#define-errors-out-of-existence" title="Permanent link">¶</a></h2>
+<p>Code that deals with special conditions is inherently harder to write than code that deals with normal cases, and developers often define exceptions without considering how they will be handled.</p>
+<ul>
+<li>Why exceptions contribute disproportionately to complexity?</li>
+<li>How to simplify exception handling?</li>
+</ul>
+<p>Key: <strong>Reduce the number of places where exceptions must be handled</strong></p>
+<h3 id="why-exceptions-add-complexity">Why exceptions add complexity<a class="headerlink" href="#why-exceptions-add-complexity" title="Permanent link">¶</a></h3>
+<p>When exception occurs:</p>
+<ul>
+<li>
+<p>Approach 1: move forward and complete the work in progress in spite of the exception.</p>
+</li>
+<li>
+<p>Approach 2: abort the operation in progress and report the exception upwards.</p>
+</li>
+<li>
+<p>BUT: the exception handling code might need to restore consistency in distributed system</p>
+</li>
+<li>
+<p>BUT: cascade of exceptions -&gt; handle exceptions of exception handling code</p>
+</li>
+<li>
+<p>Try catch boilerplate</p>
+</li>
+<li>Untested error handling code: <code>“code  that    hasn’t  been    executed    doesn’t work”</code></li>
+</ul>
+<h3 id="too-many-exceptions">Too many exceptions<a class="headerlink" href="#too-many-exceptions" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p>The exceptions thrown by a class are part of its interface; <strong>classes with lots of exceptions have complex interfaces, and they are shallower than classes with fewer exceptions</strong>.</p>
+</li>
+<li>
+<p>The complexity of exceptions comes from the exception handling code. The best way to reduce the complexity damage caused by exception handling is to <strong>reduce the number of places where exceptions have to be handled</strong>.</p>
+</li>
+</ul>
+<h3 id="solution1-define-errors-out-of-existence">Solution1: Define errors out of existence<a class="headerlink" href="#solution1-define-errors-out-of-existence" title="Permanent link">¶</a></h3>
+<p>Examples:</p>
+<ul>
+<li>Unset a non-exists variable</li>
+</ul>
+<blockquote>
+<p>I made this mistake myself in the design of the Tcl scripting language. Tcl contains an unset command that can be used to remove a variable. I defined unset so that it throws an error if the variable doesn’t exist. At the time I thought that it must be a bug if someone tries to delete a variable that doesn’t exist, so Tcl should report it. However, one of the most common uses of unset is to clean up temporary state created by some previous operation. It’s often hard to predict exactly what state was created, particularly if the operation aborted partway through. Thus, the simplest thing is to delete all of the variables that might possibly have been created. The definition of unset makes this awkward: developers end up enclosing calls to unset in catch statements to catch and ignore errors thrown by unset. In retrospect, the definition of the unset command is one of the biggest mistakes I made in the design of Tcl.</p>
+</blockquote>
+<ul>
+<li>Java substring</li>
+</ul>
+<blockquote>
+<p>if either index is outside the range of the string, then substring throws IndexOutOfBoundsException. This exception is unnecessary and complicates the use of this method. The Java substring method would be easier to use if it performed this adjustment automatically, so that it implemented the following API: “returns the characters of the string (if any) with index greater than or equal to beginIndex and less than endIndex.” This is a simple and natural API, and it defines the IndexOutOfBoundsException exception out of existence.</p>
+</blockquote>
+<ul>
+<li>Argue: If errors are defined out of existence, won't that result in buggier software?</li>
+</ul>
+<p>BUT: error-ful approach may catch some bugs but increase complexity, which results in other bugs. Developers must write additional code to avoid or ignore the errors.</p>
+<p><strong>The best way to reduce bugs is to make software simpler</strong></p>
+<h3 id="solution2-mask-exceptions">Solution2: Mask exceptions<a class="headerlink" href="#solution2-mask-exceptions" title="Permanent link">¶</a></h3>
+<p>An exceptional condition is detected and <strong>handled at a low level</strong> in the system, so that higher levels of software need not be aware of the condition.</p>
+<p>Example:</p>
+<blockquote>
+<p>For instance, in a network transport protocol such as TCP, packets can be dropped for various reasons such as corruption and congestion. TCP masks packet loss by resending lost packets within its implementation, so all data eventually gets through and clients are unaware of the dropped packets</p>
+</blockquote>
+<h3 id="solution3-exception-aggregation">Solution3: Exception aggregation<a class="headerlink" href="#solution3-exception-aggregation" title="Permanent link">¶</a></h3>
+<p>The idea behind exception aggregation is to handle many exceptions with a single piece of code; rather than writing distinct handlers for many individual exceptions, handle them all in one place with a single handler.</p>
+<p>Examples:</p>
+<p>Consider how to handle missing parameters in a Web server. A Web server implements a collection of URLs. When the server receives an incoming URL, it dispatches to a URL-specific service method to process that URL and generate a response. The URL contains various parameters that are used to generate the response. Each service method will call a lower-level method (let’s call it getParameter) to extract the parameters that it needs from the URL. If the URL does not contain the desired parameter, getParameter throws an exception.</p>
+<p>Design 1: catch the problem in each handle function
+<a class="glightbox" href="../../../../assets/software-design.assets/exception_handle_design1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="exception_handling_design1" src="../../../../assets/software-design.assets/exception_handle_design1.png"></a></p>
+<p>Design 2: aggregate the catch clause to the higher dispatcher class
+<a class="glightbox" href="../../../../assets/software-design.assets/exception_handle_design2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="exception_handling_design1" src="../../../../assets/software-design.assets/exception_handle_design2.png"></a></p>
+<ul>
+<li>
+<p>Encapsulation and Information Hiding:</p>
+</li>
+<li>
+<p>the top-level exception handler encapsulated knowledge about how to generate error response, but know nothing about specific errors</p>
+</li>
+<li>
+<p>the <code>getParameter</code> encapsulates knowledge about how to extract a parameter from a URL, and it also knows how to describe extraction errors in a human readable form, but know nothing about the syntax of HTTP error response.</p>
+</li>
+</ul>
+<p><strong>NOTE</strong>: Exception aggregation works best if an exception propagates several levels up the stack before it is handled; this allows more exceptions from more methods to be handled in the same place.</p>
+<h3 id="solution4-just-crash">Solution4: Just Crash?<a class="headerlink" href="#solution4-just-crash" title="Permanent link">¶</a></h3>
+<p>In most applications there will be certain errors that it's not worth trying to handle. Typically, these errors are difficult or impossible to handle and don't occur very often. The simplest thing to do in response to these errors is to print diagnostic information and then abort the application.</p>
+<ul>
+<li>Out of Memory</li>
+<li>I/O Error</li>
+</ul>
+<h3 id="design-special-cases-out-of-existence">Design special cases out of existence<a class="headerlink" href="#design-special-cases-out-of-existence" title="Permanent link">¶</a></h3>
+<p>Special cases can result in code that is riddled with if statements, which make the code hard to understand and lead to bugs. Thus, special cases should be eliminated wherever possible. The best way to do this is by designing the normal case in a way that automatically handles the special cases without any extra code.</p>
+<p>Example:
+Text Editor -&gt; How to represent selection?</p>
+<p>Approach1: startIdx, endIdx, no_selection_flag -&gt; result in numerous checks to detect the no selection condition and handle it specially.</p>
+<p>Approach2: startIdx, endIdx -&gt; startIdx == endIdx means a empty selection. No need to define a special case!!!</p>
+<h2 id="design-it-twice">Design it Twice<a class="headerlink" href="#design-it-twice" title="Permanent link">¶</a></h2>
+<p>Designing software is hard, so it’s unlikely that your first thoughts about how to structure a module or system will produce the best design. You’ll end up with a much better result if you consider multiple options for each major design decision: <strong>design it twice</strong>.</p>
+<h2 id="why-write-comments-the-four-excuses">Why Write Comments? The Four Excuses<a class="headerlink" href="#why-write-comments-the-four-excuses" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Good code is self-documenting -&gt; BUT: <strong>If users must read the code of a method in order to use it, then there is no abstraction</strong></p>
+</li>
+<li>
+<p>I don't have time to write comments -&gt; BUT: <strong>Comments will pay for themselves, good trade off</strong></p>
+</li>
+<li>
+<p>Comments get out of date and become misleading -&gt; BUT: <strong>Keep them up-to-date</strong></p>
+</li>
+<li>
+<p>All the comments I have seen are worthless</p>
+</li>
+</ul>
+<p><img alt="⭐" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2b50.svg" title=":star:"><strong>The overall idea behind comments is to capture information that was in the mind of the designer but couldn't be represented in the code.</strong></p>
+<h2 id="comments-should-describe-things-that-arent-obvious-from-the-code">Comments Should Describe Things that Aren't Obvious from the Code<a class="headerlink" href="#comments-should-describe-things-that-arent-obvious-from-the-code" title="Permanent link">¶</a></h2>
+<p>Developers should be able to understand the abstraction provided by a module without reading any code other than its externally visible declarations.</p>
+<h3 id="pick-conventions">Pick conventions<a class="headerlink" href="#pick-conventions" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p><strong>Interface</strong>: a <code>comment block</code> that immediately precedes the declaration of a
+  module such as a class, data structure, function, or method. The comment
+  describe’s the module’s interface.</p>
+</li>
+<li>
+<p>For a class, the comment describes the overall abstraction provided by the class.</p>
+</li>
+<li>
+<p>For a method or function, the comment describes its overall behavior, its arguments and return value, if any, any side effects or exceptions that it generates, and any other requirements the caller must satisfy before invoking the method.</p>
+</li>
+<li>
+<p><strong>Data structure member</strong>: a comment <code>next to the declaration of a field</code> in a data
+  structure, such as an instance variable or static variable for a class.</p>
+</li>
+<li>
+<p><strong>Implementation comment</strong>: a comment <code>inside</code> the code of a method or
+  function, which describes how the code works internally.</p>
+</li>
+<li>
+<p><strong>Cross-module comment</strong>: a comment describing dependencies that cross
+  module boundaries.</p>
+</li>
+</ul>
+<h3 id="dont-repeat-the-code">Don't repeat the code<a class="headerlink" href="#dont-repeat-the-code" title="Permanent link">¶</a></h3>
+<ul>
+<li>Mistake 1:</li>
+</ul>
+<p>After write a comment, ask yourself: <strong>could someone who has never seen the code write the comment just by looking at the code next to the comment</strong> -&gt; If YES: the comments are worthless</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//Add a horizontal scroll bar</span>
+<span class="n">hScrollBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JScrollBar</span><span class="p">(</span><span class="n">JScrollBar</span><span class="p">.</span><span class="na">HORIZONTAL</span><span class="p">);</span>
+<span class="n">add</span><span class="p">(</span><span class="n">hScrollBar</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+<span class="c1">// Add a vertical scroll bar</span>
+<span class="n">vScrollBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JScrollBar</span><span class="p">(</span><span class="n">JScrollBar</span><span class="p">.</span><span class="na">VERTICAL</span><span class="p">);</span>
+<span class="n">add</span><span class="p">(</span><span class="n">vScrollBar</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">EAST</span><span class="p">);</span>
+<span class="c1">// Initialize the caret-position related values</span>
+<span class="n">caretX</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">caretY</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">caretMemX</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>Mistake 2:</li>
+</ul>
+<p>Use the same words in the comments that appear in the name of the entity being documented</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
+<span class="cm"> * Obtain a normalized resource name from REQ.</span>
+<span class="cm"> */</span>
+<span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="nf">getNormalizedResourceNames</span><span class="p">(</span><span class="n">HTTPRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">...</span>
+<span class="w"> </span><span class="cm">/*</span>
+<span class="cm"> * Downcast PARAMETER to TYPE.</span>
+<span class="cm"> */</span>
+<span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="nf">downCastParameter</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">parameter</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">)</span>
+<span class="w"> </span><span class="p">...</span>
+<span class="w"> </span><span class="cm">/*</span>
+<span class="cm"> * The horizontal padding of each line in the text.</span>
+<span class="cm"> */</span>
+<span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">textHorizontalPadding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+</code></pre></div>
+<p><img alt="⭐" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2b50.svg" title=":star:"> <strong>Use different words in the comments form those in the name of the entity being described</strong></p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="cm">/*</span>
+<span class="cm"> * The amount of blank space to leave on the left and</span>
+<span class="cm"> * right sides of each line of text, in pixels.</span>
+<span class="cm"> */</span>
+<span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">textHorizontalPadding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="comment-repeats-code"><img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:">Comment Repeats Code<img alt="🚩" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a9.svg" title=":triangular_flag_on_post:"><a class="headerlink" href="#comment-repeats-code" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>If the information in a comment is already obvious from the code next to the comment, then the comment isn’t helpful. One example of this is when the comment uses the same words that make up the name of the thing it is describing</p>
+</blockquote>
+<h3 id="lower-level-comments-add-precision">Lower-level comments add precision<a class="headerlink" href="#lower-level-comments-add-precision" title="Permanent link">¶</a></h3>
+<p>Comments augment the code by providing information at a different level of detail</p>
+<ul>
+<li>lower, more detailed, level than the code -&gt; Add <strong>precision</strong> by clarifying the exact meaning of the code</li>
+<li>higher, more abstract, level than the code -&gt; offer <strong>intuition</strong>, reasoning behind the code, simpler and more abstract way of thinking about the code</li>
+</ul>
+<p><strong>Precision</strong> is most useful when commenting <strong>variable declarations</strong> such as class interface variables, method arguments, and return values.</p>
+<ul>
+<li>Problem: Comments are too vague</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="c1">//Current offset in resp Buffer</span>
+<span class="w"> </span><span class="n">uint32_t</span><span class="w"> </span><span class="n">offset</span><span class="p">;</span>
+<span class="w"> </span><span class="c1">// Contains all line-widths inside the document and</span>
+<span class="w"> </span><span class="c1">// number of appearances.</span>
+<span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">TreeMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lineWidths</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>What does current mean?</li>
+<li>Are widths measured in pixels or characters?</li>
+</ul>
+<p>Better version:</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="c1">//  Position in this buffer of the first object that hasn't</span>
+<span class="w"> </span><span class="c1">//  been returned to the client.</span>
+<span class="w"> </span><span class="n">uint32_t</span><span class="w"> </span><span class="n">offset</span><span class="p">;</span>
+<span class="w"> </span><span class="c1">//  Holds statistics about line lengths of the form &lt;length, count&gt;</span>
+<span class="w"> </span><span class="c1">//  where length is the number of characters in a line (including</span>
+<span class="w"> </span><span class="c1">//  the newline), and count is the number of lines with</span>
+<span class="w"> </span><span class="c1">//  exactly that many characters. If there are no lines with</span>
+<span class="w"> </span><span class="c1">//  a particular length, then there is no entry for that length.</span>
+<span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">TreeMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">numLinesWithLength</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>Document variable: think <code>nouns</code>, not <code>verbs</code></li>
+</ul>
+<p>Focus on what the variable represents, not how it is manipulated</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="cm">/* FOLLOWER VARIABLE: indicator variable that allows the Receiver and the</span>
+<span class="cm"> * PeriodicTasks thread to communicate about whether a heartbeat has been</span>
+<span class="cm"> * received within the follower's election timeout window.</span>
+<span class="cm"> * Toggled to TRUE when a valid heartbeat is received.</span>
+<span class="cm"> * Toggled to FALSE when the election timeout window is reset.  */</span>
+<span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">receivedValidHeartbeat</span><span class="p">;</span>
+</code></pre></div>
+<p>Better Version</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="cm">/* True means that a heartbeat has been received since the last time</span>
+<span class="cm"> * the election timer was reset. Used for communication between the</span>
+<span class="cm"> * Receiver and PeriodicTasks threads.  */</span>
+<span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">receivedValidHeartbeat</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="higher-level-comments-enhance-intuition">Higher-level comments enhance intuition<a class="headerlink" href="#higher-level-comments-enhance-intuition" title="Permanent link">¶</a></h3>
+<p>Omit details and help reader to understand the overall intent and structure of the code. This approach is commonly used for comments inside methods, and for interface comments.</p>
+<p>Examples</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="c1">// If there is a LOADING readRpc using the same session</span>
+<span class="w"> </span><span class="c1">// as PKHash pointed to by assignPos, and the last PKHash</span>
+<span class="w"> </span><span class="c1">// in that readRPC is smaller than current assigning</span>
+<span class="w"> </span><span class="c1">// PKHash, then we put assigning PKHash into that readRPC.</span>
+<span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">readActiveRpcId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RPC_ID_NOT_ASSIGNED</span><span class="p">;</span>
+<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_READ_RPC</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">session</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">readRpc</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">session</span>
+<span class="w">                 </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">readRpc</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LOADING</span>
+<span class="w">                 </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">readRpc</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">maxPos</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">assignPos</span>
+<span class="w">                 </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">readRpc</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">numHashes</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_PKHASHES_PERRPC</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">readActiveRpcId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">          </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Too low-level and detailed</li>
+<li>Partially repeat the code</li>
+<li>does not explain the overall purpose of the code</li>
+</ul>
+<p>Better version:</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="c1">// Try to append the current key hash onto an existing</span>
+<span class="w"> </span><span class="c1">// RPC to the desired server that hasn't been sent yet.</span>
+</code></pre></div>
+<ul>
+<li>No details But describes the code's overall function at higher level</li>
+<li>With the high-level info, a reader can <strong>explain almost everything</strong> that happens in the code</li>
+<li>provides a basis for readers to <strong>judge the code</strong></li>
+</ul>
+<blockquote>
+<p>But, great software designers can also step back from the details and think about a system at a higher level. This means deciding which aspects of the system are most important, and being able to ignore the low-level details and think about the system only in terms of its most fundamental characteristics. This is the essence of abstraction (finding a simple way to think about a complex entity), and it’s also what you must do when writing higher-level comments.</p>
+</blockquote>
+<h3 id="interface-documentation">Interface documentation<a class="headerlink" href="#interface-documentation" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p><strong>If you want code that presents good abstractions, you must document those abstractions with comments.</strong></p>
+</li>
+<li>
+<p><strong>If interface comments must also describe the implementation, then the class or method is shalow.</strong></p>
+</li>
+</ul></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.path", "toc.integrate", "search.suggest", "search.share", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
