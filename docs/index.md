@@ -1,24 +1,18 @@
 # 👋 Hi! I’m **Tom**
 
-![type:audio](./introduction.mp3)
-
 💻 **Passionate Programmer** | 🎨 Hobbyist Painter | 📖 Philosophy Enthusiast
 
 Here’s the entrance to my **[🚀 Blog](blog/index.md)**, where I share my **study notes** 📝 and **daily thoughts** 💭.
 
 ## 🖥️ Workstation
 
-<div class="grid" markdown>
+<div class="grid cards" markdown>
   
-**LINUX** _I use Arch(1), btw 🤓_
-{.card .annotate}
+- **LINUX** _I use Arch, btw 🤓_
+  
+- **MAC** _Really a GOOD one_
 
-1. Actually I use endeavouros, not a pure Arch, forgive me!
-
----
-
-[📝 My-Linux-Config](blog/posts/My-Linux-Config.md)
-{.card}
+- [📝 My Dotfiles](https://github.com/GentleTomZerg/.dotfiles)
 
 </div>
 
