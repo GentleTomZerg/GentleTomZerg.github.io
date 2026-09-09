@@ -264,7 +264,7 @@ plugins:
       subdir: plugin
     enabled: true
     options:
-      theme: tokyo-night
+      theme: catppuccin
       mode: both
   - source: github:quartz-community/obsidian-plugin-excalidraw
     enabled: true
