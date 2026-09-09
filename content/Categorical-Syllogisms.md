@@ -1,4 +1,5 @@
 ---
+publish: true
 date: 2023-05-20
 title: Categorical Syllogisms
 aliases: []

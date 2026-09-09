@@ -1,4 +1,5 @@
 ---
+publish: true
 date: 2023-05-30
 title: Categorical propositions
 aliases: []

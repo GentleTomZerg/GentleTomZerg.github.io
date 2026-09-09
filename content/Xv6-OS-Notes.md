@@ -1,4 +1,5 @@
 ---
+publish: true
 layout: article
 title: Notes - Xv6
 date: 2022-07-01

@@ -1,4 +1,5 @@
 ---
+publish: true
 authors:
   - GentleTomZerg
 categories:
