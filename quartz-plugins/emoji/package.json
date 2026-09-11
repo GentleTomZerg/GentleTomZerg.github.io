@@ -1,0 +1,23 @@
+{
+  "name": "emoji",
+  "version": "1.0.0",
+  "description": "Local Quartz transformer that converts :emoji: shortcodes to unicode emoji",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "remark-gemoji": "^8.0.0"
+  },
+  "peerDependencies": {
+    "@quartz-community/types": "^0.3.0"
+  },
+  "quartz": {
+    "name": "emoji",
+    "displayName": "Emoji",
+    "category": "transformer",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultOrder": 35,
+    "defaultEnabled": true,
+    "defaultOptions": {}
+  }
+}
