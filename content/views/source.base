@@ -1,0 +1,14 @@
+filters:
+  and:
+    - type == "source"
+properties:
+  quotes_check:
+    displayName: 引文核对
+views:
+  - type: table
+    name: Sources
+    order:
+      - file.name
+      - tags
+      - updated
+      - quotes_check

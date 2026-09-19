@@ -1,0 +1,18 @@
+filters:
+  and:
+    - type == "person"
+properties:
+  sources:
+    displayName: 出处
+  aliases:
+    displayName: 别名
+views:
+  - type: table
+    name: People
+    order:
+      - file.name
+      - gist
+      - aliases
+      - sources
+      - tags
+      - updated
