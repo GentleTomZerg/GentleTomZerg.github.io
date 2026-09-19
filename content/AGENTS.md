@@ -20,9 +20,10 @@ Accepted page types. A type enters only when the human accepts it, carrying its 
 - **`concept`** — a distinction, with its contrast. Fails when the contrast is wrong. Slots: `distinction` · `contrast` · `per-source usage` · `the human's position`.
 - **`person`** — who someone was here, and what they held. Fails when a position is attributed to the wrong person. Slots: `stance` · `what this book does with them` · `contrast` · `wording warnings`.
 - **`argument`** — whether a conclusion holds. Fails when an inference step does not follow, a ground is misread, or the falsifier is already met. Slots: `C` · `G` · `W` · `I` · `S` · `R`.
+- **`trace`** — how this came to be. Fails when a date is wrong, causation is reversed, or the telling is anachronistic. Slots: `timeline` · `positions` · `causal chain` · `links out`. Dates stay inside the source's own markers; the page does not import years the text never gave.
 - **`take`** — what the human makes of this. Fails when it is no longer what they think. Slots: `position` · `what it opposes` · `open or settled`.
 
-Proposed, not yet accepted: `practice`, `mechanism`, `trace`.
+Proposed, not yet accepted: `practice`, `mechanism`.
 
 Per-book shape notes live in that book's `book` hub. They may add or rename slots — never drop a registry slot.
 
@@ -34,6 +35,24 @@ Per-book shape notes live in that book's `book` hub. They may add or rename slot
 - **Quotes**: verbatim only after a same-run check against the text; one home per quote — a second page cites, never copies. The count lives in `quotes_check`.
 - **No `log.md`**: chronology is `git log`, the quote audit is frontmatter.
 - **Reading is the human's**: pace, dialogue, and how much gets read together are not the agent's to set.
+
+## Publish
+
+The vault is the library, `~/Projects/Obsidian-Blog` (Quartz) is the printer. Detailed history lives here; the blog gets one squashed commit per publish.
+
+Local check (in the blog repo):
+
+1. `npm run sync` — mirror the vault into `content/`
+2. `npx quartz build --serve` — preview at http://localhost:8080 and read the changed pages
+3. `git status` — expect only `content/` changes; never edit `content/` by hand
+
+Publish:
+
+1. Commit here first — `feat` / `refactor` / `docs` per change, so the vault keeps the real history
+2. In the blog: `git add -A content/` plus one `chore(sync): publish <date> <what>` — never `feat(reading)` there
+3. `git push origin v5` — GitHub Actions builds and deploys automatically
+
+Only `publish: true` frontmatter reaches the site; `private/` and `templates/` sync but never publish.
 
 ## In flight — deliberately not migrated
 
