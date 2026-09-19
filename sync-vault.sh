@@ -10,7 +10,7 @@
 # private notes, dailies and ToDo stay local even though they're synced.
 set -euo pipefail
 
-VAULT="$HOME/Projects/Obsidian_Vault"
+VAULT="$HOME/Projects/Obsidian-Vault"
 CONTENT="$(cd "$(dirname "$0")" && pwd)/content"
 
 if [ ! -d "$VAULT" ]; then
@@ -19,7 +19,7 @@ if [ ! -d "$VAULT" ]; then
 fi
 
 rsync -av --delete \
-  --exclude='.obsidian/' \
+  --exclude='.obsidian*' \
   --exclude='.trash/' \
   --exclude='.DS_Store' \
   --exclude='*.code-workspace' \
