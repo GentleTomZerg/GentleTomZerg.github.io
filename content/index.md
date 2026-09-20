@@ -57,4 +57,25 @@ software design, and books I'm reading.
 
 Use the search or the explorer on the left to browse around.
 
-Browse by kind: [[views/index|Views]] — concepts, people, arguments, sources, books, takes.
+## Summaries
+
+- [[伯林我的学术之路]] — 伯林学术自述：牛津证实主义异端→一元论批判→多元论与两种自由；pass1 read
+
+## Concepts
+
+- [[一元论]] — 一问题一答案、答案和谐可集成完美生活
+- [[价值多元论]] — 价值多而客观、互斥、可理解可评判；非相对主义
+- [[消极自由与积极自由]] — 免于障碍 vs 谁控制我；高级自我偷换即压迫
+- [[历史决定论批判]] — 决定论的代价：道德语言崩塌；必然 yet 牺牲悖论
+- [[文化重心与内部理解]] — 维柯内部理解、赫尔德重心、大花园
+- [[浪漫主义的价值创造论]] — 价值被造非被发现；拜伦个体 vs 集体超我
+
+## Entities
+
+- [[伯林]] — 本书作者，一元论怀疑者、多元论提出者
+- [[维柯]] — 文化观念第一人，内部理解源头
+- [[赫尔德]] — 文化重心、大花园；文化民族主义之父
+- [[赫尔岑]] — 歌例；俄国章再遇
+
+## Comparisons
+## Syntheses

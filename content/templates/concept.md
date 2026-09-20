@@ -1,20 +1,41 @@
 ---
 type: concept
-tags: []
-sources: []
-aliases: []
-quotes_check: 0
-updated: {{date:YYYY-MM-DD}}
-publish: true
+sources: ["[[<source-unit>]]"]
+tested:
+confidence:
 ---
 
-# {{title}} (english term)
+# <Idea>
 
-- 一句话的区分：
-- 对照（它**不是**什么）：相对的词是 [[…]]。
-- 各来源的用法：〈…〉§n 说 …（[[…]]）；〈…〉§n 说 …
-- 库主的立场：[mine]
-- 证据：→ [[…#§n <title>]]
+## In my words
 
-> [!note] 只有一个来源
-> 本页目前只由一个来源支撑，且没有分歧。这是诚实的，也是本类型的下限。
+<The human's formulation. Absent until a test passes solid; until then write
+`> pending — no solid test yet` so the absence is visible.>
+
+## Where it came from
+
+<The problem this was invented to answer, and what it was a response to — the
+answerable form of "how was this idea generated". Fill it from the source; hand it to
+`/skill:research` when the origins lie outside the vault.>
+
+## What the sources say
+
+- **<Source, locator>** — <claim, attributed>
+
+## Where they collide
+
+<Two claims that cannot both stand, kept side by side with both attributions and the
+reason the collision exists — different goals, different layer, or real disagreement.>
+
+## Tests
+
+> [!example]- T1 — <reproduce | reconstruct | adjudicate>
+> **Prompt:** <asked cold: no page, no source>
+> **Must include:** (a) … (b) … (c) …
+> **Tested:** →
+> **Confidence:** solid | shaky | unlearned
+
+## Open questions
+
+> [!question]- 待解
+> - <what would answer it — another source, a passage to re-read, or a decision the human has to make>
