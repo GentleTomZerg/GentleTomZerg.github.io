@@ -17,7 +17,8 @@ Karpathy's frame, which this vault follows: the raw sources are the source of tr
 ## Layout
 
 ```
-raw/                    immutable sources — clipped articles, extracted chapters, pasted quotes
+raw/books/<slug>/         the real source file (EPUB, PDF) — untracked by git, read from here, never edited
+raw/<note>.md            small clipped articles and pasted quotes in markdown (tracked); no extracted-chapter dumps, no binaries
 wiki/summaries/         one page per source unit
 wiki/entities/          people, works, projects, named things that recur
 wiki/concepts/          one page per idea
@@ -43,6 +44,8 @@ inbox.md                questions captured without an agent
 A **concept page** carries the disagreement rather than hiding it: when a new source contradicts an existing claim, the page keeps both, attributes both, and marks the contradiction in place. Nothing is silently overwritten.
 
 Skeletons for every type live in `templates/`. Copy the type's skeleton when you create a page, and trim the sections that carry nothing.
+
+A page carries no `## Notes` section. A gap found while testing goes in the `**待补**` line of the test it belongs to; edit history goes in `log.md`.
 
 ## Frontmatter
 
@@ -113,7 +116,7 @@ Chronological, append-only, one line per event, with a parseable prefix so `grep
 ## Invariants
 
 1. Pass 1 is the human's — record it; never replace it.
-2. `raw/` is immutable. Read it; never edit it.
+2. `raw/` holds sources, not notes. Big binaries live untracked in `raw/books/`; markdown in `raw/` is only for small clippings. Read sources; never edit them.
 3. No page without a source behind it.
 4. Contradictions are flagged in place, never overwritten.
 5. Candidate questions and candidate tests are proposals; only accepted ones become work.
