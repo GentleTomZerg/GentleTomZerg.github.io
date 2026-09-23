@@ -1,0 +1,83 @@
+filters:
+  and:
+    - file.inFolder("wiki")
+    - file.ext == "md"
+    - file.basename != "index"
+properties:
+  work:
+    displayName: Book
+  pass1:
+    displayName: Pass 1
+  tested:
+    displayName: Tested
+  confidence:
+    displayName: Confidence
+  status:
+    displayName: Status
+  sources:
+    displayName: Sources
+views:
+  - type: table
+    name: Books
+    filters:
+      and:
+        - type == "work"
+    order:
+      - file.name
+      - status
+  - type: table
+    name: Summaries
+    filters:
+      and:
+        - type == "summary"
+    order:
+      - file.name
+      - work
+      - pass1
+  - type: table
+    name: Concepts
+    filters:
+      and:
+        - type == "concept"
+    order:
+      - file.name
+      - confidence
+      - tested
+  - type: table
+    name: To test
+    filters:
+      and:
+        - type == "concept"
+        - confidence != "solid"
+    order:
+      - file.name
+      - confidence
+      - tested
+  - type: list
+    name: Entities
+    filters:
+      and:
+        - type == "entity"
+    order:
+      - file.name
+  - type: list
+    name: Comparisons and syntheses
+    filters:
+      or:
+        - type == "comparison"
+        - type == "synthesis"
+    order:
+      - file.name
+  - type: table
+    name: Everything
+    order:
+      - file.name
+      - type
+      - work
+      - pass1
+      - confidence
+    sort:
+      - property: confidence
+        direction: ASC
+      - property: type
+        direction: DESC
